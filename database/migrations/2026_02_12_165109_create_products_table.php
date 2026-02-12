@@ -21,7 +21,15 @@ return new class extends Migration {
             $table->integer('starter_bid')->default(1000)->round(-3);
             $table->date('bid_start_date')->default(now());
             $table->date('bid_end_date')->default(now()->addDays(7));
-            $table->enum('category', ['Electronics', 'Books', 'Clothing', 'House', 'Sports', 'Vehicles', 'Jewelry'])->default('Electronics');
+            $table->enum('category', [
+                'Electronics',
+                'Books',
+                'Clothing',
+                'House',
+                'Sports',
+                'Vehicles',
+                'Jewelry'
+            ])->default('Electronics');
             $table->timestamps();
             $table->softDeletes();
         });
