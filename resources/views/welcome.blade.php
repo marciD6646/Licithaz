@@ -22,16 +22,14 @@
             <div class="relative">
                 <div class="absolute -inset-3 rounded-3xl bg-linear-to-tr from-amber-200 via-orange-100 to-rose-200">
                 </div>
-                <img class="relative w-full rounded-2xl object-cover shadow-lg"
-                    src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1000&q=80"
-                    alt="Auction gavel and bidder" />
+                <img class="relative w-full rounded-2xl object-cover shadow-lg" src=""
+                    alt="A picture about auctions" />
             </div>
         </section>
 
         <section class="grid items-center gap-10 rounded-3xl bg-slate-900 p-8 text-white shadow-sm md:grid-cols-2">
             <div class="order-2 md:order-1">
-                <img class="w-full rounded-2xl object-cover shadow-lg"
-                    src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80"
+                <img class="w-full rounded-2xl object-cover shadow-lg" src=""
                     alt="Team collaborating on a project" />
             </div>
             <div class="order-1 md:order-2">
