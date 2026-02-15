@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->text("extended_description");
             $table->string('image_url');
             $table->integer('starter_bid')->default(1000)->round(-3);
             $table->date('bid_start_date')->default(now());
