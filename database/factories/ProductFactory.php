@@ -21,6 +21,7 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->word(),
             'description' => $this->faker->sentence(),
+            'extended_description' => $this->faker->paragraph(20),
             'image_url' => $this->faker->imageUrl(),
             'starter_bid' => $roundedBid * 1000,
             'bid_start_date' => now(),

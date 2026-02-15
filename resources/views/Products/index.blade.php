@@ -23,7 +23,15 @@
                                 Starting bid: {{ $product->starter_bid }}
                             </span>
                         </div>
-                        <p class="mt-4 text-sm text-slate-600">Description: {{ $product->description }}</p>
+                        <div>
+                            <p class="mt-4 text-sm text-slate-600">Description: {{ $product->description }}</p>
+                        </div>
+                        <div class="mt-auto flex justify-end">
+                            <a href="{{ route('products.show', $product) }}"
+                                class="inline-flex justify-end btn btn-primary rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800">View
+                                Details </a>
+                        </div>
+
                     </div>
                 @endforeach
             </div>

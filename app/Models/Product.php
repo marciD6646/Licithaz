@@ -11,7 +11,7 @@ class Product extends Model
     /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'description', 'image_url', 'starter_bid', 'bid_end_date'];
+    protected $fillable = ['name', 'description', 'extended_description', 'image_url', 'starter_bid', 'bid_end_date'];
     public function bids()
     {
         return $this->hasMany(Bid::class);
