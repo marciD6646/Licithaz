@@ -25,7 +25,7 @@
         @if (Auth::user()->is_admin)
         
             <a class="hover:text-gray-300" href="">Admin Dashboard</a>
-            <a class="hover:text-gray-300" href="">Add New Product</a>
+            <a class="hover:text-gray-300" href="{{ route('products.create')  }}">Add New Product</a>
         
         
         @endif
