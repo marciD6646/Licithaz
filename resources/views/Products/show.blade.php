@@ -22,9 +22,27 @@
                         Starting bid: {{ $product->starter_bid }}
                     </span>
                     <div>
+                       @guest
+                       <p>Please log in to place a bid.</p>
+                       @else
                         <button
-                            class="rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-600">Place
-                            Bid</button>
+                            class="rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-600">Place Bid</button>
+                        <div class="relative w-40">
+    <input 
+        type="number" 
+        id="quantity" 
+        name="quantity" 
+        min="1" 
+        max="5"
+        class="w-full rounded-lg border border-slate-300 px-3 py-2 pr-10"
+    >
+    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500">
+        Ft
+    </span>
+</div>
+ 
+                        
+                        @endguest 
                     </div>
                 </div>
             </div>
