@@ -31,7 +31,7 @@
                                     Bid</button>
                                 <div class="relative w-40">
                                     <input type="number" id="quantity" name="quantity" min="1000" step="1000"
-                                        onkeydown="return false;"
+                                        value="1000" onkeydown="return false;"
                                         class="w-full rounded-lg border border-slate-300 px-3 py-2 pr-10">
                                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500">
                                         Ft
