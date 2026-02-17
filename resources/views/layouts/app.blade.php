@@ -15,30 +15,31 @@
         <a class="hover:text-gray-300" href="{{ route('welcome') }}">Home</a>
         <a class="hover:text-gray-300" href="{{ route('products.index') }}">View Products</a>
         <a class="hover:text-gray-300" href="">About us</a>
+
         @guest
-        <a class="hover:text-gray-300" href="{{ route('login') }}">Login</a>
-        <a class="hover:text-gray-300" href="{{ route('register') }}">Register</a>
-        
-       
+            <a class="hover:text-gray-300" href="{{ route('login') }}">Login</a>
+            <a class="hover:text-gray-300" href="{{ route('register') }}">Register</a>
         @endguest
+
         @auth
-        @if (Auth::user()->is_admin)
-        
-            <a class="hover:text-gray-300" href="">Admin Dashboard</a>
-            <a class="hover:text-gray-300" href="{{ route('products.create')  }}">Add New Product</a>
-        
-        
-        @endif
-        <a class="hover:text-gray-300" href="">Profile</a>
-        <a class="hover:text-gray-300" href="{{ route('logout') }}"
-            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            Logout
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-        @csrf
-    </form>
+            @if (Auth::user()->is_admin)
+                <a class="hover:text-gray-300" href="">Admin Dashboard</a>
+                <a class="hover:text-gray-300" href="{{ route('products.create') }}">Add New Product</a>
+            @endif
+            @if (Auth::check())
+                <a class="hover:text-gray-300">
+                    Profile
+                </a>
+
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit" class="hover:text-gray-300">
+                        Logout
+                    </button>
+                </form>
+            @endif
         @endauth
-        
+
     </nav>
 
     @yield('content')
