@@ -22,15 +22,30 @@
             <div class="relative">
                 <div class="absolute -inset-3 rounded-3xl bg-linear-to-tr from-amber-200 via-orange-100 to-rose-200">
                 </div>
-                <img class="relative w-full rounded-2xl object-cover shadow-lg" src=""
-                    alt="A picture about auctions" />
+                <img class="relative w-full rounded-2xl object-cover shadow-lg" src="" alt="A picture about auctions" />
             </div>
         </section>
 
         <section class="grid items-center gap-10 rounded-3xl bg-slate-900 p-8 text-white shadow-sm md:grid-cols-2">
-            <div class="order-2 md:order-1">
-                <img class="w-full rounded-2xl object-cover shadow-lg" src=""
-                    alt="Team collaborating on a project" />
+            <div class="order-2 md:order-1 flex flex-col gap-6">
+                <!--<img class="w-full rounded-2xl object-cover shadow-lg" src="" alt="Team collaborating on a project" />-->
+                <div class="flex items-center gap-4">
+                    <img class="w-2/7 rounded-2xl object-cover shadow-lg" src="{{ asset('images/deak.png') }}"
+                        alt="Deákvári Marcell" />
+                    <p class="text-lg font-semibold"> ■► Deákvári Marcell</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <img class="w-2/7 rounded-2xl object-cover shadow-lg" src="{{ asset('images/szok.png') }}"
+                        alt="Szokolay Márk" />
+                    <p class="text-lg font-semibold"> ■► Szokolay Márk</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <img class="w-2/7 rounded-2xl object-cover shadow-lg" src="{{ asset('images/vik.png') }}"
+                        alt="Csermák Viktor" />
+                    <p class="text-lg font-semibold"> ■► Csermák Viktor</p>
+                </div>
+
+            </div>
             </div>
             <div class="order-1 md:order-2">
                 <p class="text-sm font-semibold uppercase tracking-[0.2em] text-amber-200">What is this about</p>

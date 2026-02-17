@@ -11,35 +11,52 @@
 <body class="bg-amber-100">
     @yield('header')
     <hr>
-    <nav class="bg-gray-800 p-4 text-white gap-2.5 flex flex-row flex-nowrap justify-around">
-        <a class="hover:text-gray-300" href="{{ route('welcome') }}">Home</a>
-        <a class="hover:text-gray-300" href="{{ route('products.index') }}">View Products</a>
-        <a class="hover:text-gray-300" href="">About us</a>
+
+    <nav class="bg-gray-800 text-white flex divide-x divide-gray-700">
+        <a href="{{ route('welcome') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
+            Home
+        </a>
+
+        <a href="{{ route('products.index') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
+            View Products
+        </a>
+
+        <a href="#" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
+            About Us
+        </a>
 
         @guest
-            <a class="hover:text-gray-300" href="{{ route('login') }}">Login</a>
-            <a class="hover:text-gray-300" href="{{ route('register') }}">Register</a>
+            <a href="{{ route('login') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
+                Login
+            </a>
+
+            <a href="{{ route('register') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
+                Register
+            </a>
         @endguest
 
         @auth
             @if (Auth::user()->is_admin)
-                <a class="hover:text-gray-300" href="">Admin Dashboard</a>
-                <a class="hover:text-gray-300" href="{{ route('products.create') }}">Add New Product</a>
-            @endif
-            @if (Auth::check())
-                <a class="hover:text-gray-300">
-                    Profile
+                <a href="#" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
+                    Admin Dashboard
                 </a>
 
-                <form action="{{ route('logout') }}" method="POST" class="inline">
-                    @csrf
-                    <button type="submit" class="hover:text-gray-300">
-                        Logout
-                    </button>
-                </form>
+                <a href="{{ route('products.create') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
+                    Add New Product
+                </a>
             @endif
-        @endauth
 
+            <a href="{{ route('profile') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
+                Profile
+            </a>
+
+            <form action="{{ route('logout') }}" method="POST" class="flex-1">
+                @csrf
+                <button type="submit" class="w-full text-center py-3 hover:bg-gray-700 transition-colors">
+                    Logout
+                </button>
+            </form>
+        @endauth
     </nav>
 
     @yield('content')
