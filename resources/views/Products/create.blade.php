@@ -41,5 +41,6 @@
                     elements[i].style.color = '#f8f9fa';
                 }
             }
+
         </script>
 @endsection
