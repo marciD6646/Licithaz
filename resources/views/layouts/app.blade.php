@@ -8,7 +8,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-amber-100">
+<body class="bg-amber-100" id="body">
     @yield('header')
     <hr>
 
@@ -60,6 +60,13 @@
     </nav>
 
     @yield('content')
+
+    <script>
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.getElementById('body').classList.remove('bg-amber-100');
+            document.getElementById('body').style.backgroundColor = '#1A202C';
+        }
+    </script>
 </body>
 
 </html>
