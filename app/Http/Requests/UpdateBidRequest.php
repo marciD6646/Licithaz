@@ -11,7 +11,8 @@ class UpdateBidRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
+        //TODO Auth
     }
 
     /**
@@ -21,8 +22,7 @@ class UpdateBidRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        //
     }
+
 }

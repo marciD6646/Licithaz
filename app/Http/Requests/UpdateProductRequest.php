@@ -22,11 +22,29 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules(): array
     {
+        if ($this->isMethod("put")) {
+            return [
+                'name' => 'required|string|max:255',
+                'description' => 'required|string',
+                'extended_description' => 'required|string',
+                'image_url' => 'required|url',
+                'bid_start_date' => 'required|date',
+                'bid_end_date' => 'required|date|after_or_equal:bid_start_date',
+                'category' => 'required|in:Electronics,Books,Clothing,House,Sports,Vehicles,Jewelry',
+                'starter_bid' => 'required|numeric|min:0',
+            ];
+        }
+        ;
+
         return [
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
+            'name' => 'sometimes|string|max:255',
+            'description' => 'sometimes|string',
+            'extended_description' => 'sometimes|string',
+            'image_url' => 'sometimes|url',
+            'bid_start_date' => 'sometimes|date',
+            'bid_end_date' => 'sometimes|date|after_or_equal:bid_start_date',
+            'category' => 'sometimes|in:Electronics,Books,Clothing,House,Sports,Vehicles,Jewelry',
+            'starter_bid' => 'sometimes|numeric|min:0',
         ];
     }
 }

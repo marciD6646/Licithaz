@@ -24,9 +24,13 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
+            'description' => 'required|string',
+            'extended_description' => 'required|string',
+            'image_url' => 'required|url',
+            'bid_start_date' => 'required|date',
+            'bid_end_date' => 'required|date|after_or_equal:bid_start_date',
+            'category' => 'required|in:Electronics,Books,Clothing,House,Sports,Vehicles,Jewelry',
+            'starter_bid' => 'required|numeric|min:0',
         ];
     }
 }
