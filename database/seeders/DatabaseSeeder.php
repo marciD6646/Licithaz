@@ -1,4 +1,4 @@
-z<?php
+<?php
 
 namespace Database\Seeders;
 
@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-    User::factory()->create([
+        User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
             'password' => Hash::make('password'),
