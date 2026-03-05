@@ -2,13 +2,15 @@
 
 @section('content')
     <main class="mx-auto max-w-6xl space-y-12 px-6 py-12">
-        <section class="grid items-center gap-10 rounded-3xl bg-slate-50 p-8 shadow-sm md:grid-cols-2">
+        <section id="welcome-section" class="grid items-center gap-10 rounded-3xl bg-slate-50 p-8 shadow-sm md:grid-cols-2">
             <div>
-                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Welcome</p>
-                <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl">
+                <p class="welcome-section-inside-text text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                    Welcome</p>
+                <h1
+                    class="welcome-section-inside-text mt-3 text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl">
                     Bid smarter at AuctionHouse
                 </h1>
-                <p class="mt-4 text-lg text-slate-600">
+                <p class="welcome-section-inside-text mt-4 text-lg text-slate-600">
                     Discover live listings, track your bids, and win items with confidence.
                 </p>
                 <div class="mt-6 flex flex-wrap gap-3">
@@ -22,7 +24,8 @@
             <div class="relative">
                 <div class="absolute -inset-3 rounded-3xl bg-linear-to-tr from-amber-200 via-orange-100 to-rose-200">
                 </div>
-                <img class="relative w-full rounded-2xl object-cover shadow-lg" src="" alt="A picture about auctions" />
+                <img class="relative w-full rounded-2xl object-cover shadow-lg" src=""
+                    alt="A picture about auctions" />
             </div>
         </section>
 
@@ -62,4 +65,13 @@
             </div>
         </section>
     </main>
+    <script>
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.getElementById('welcome-section').style.backgroundColor = '#575b64';
+            var elements = document.getElementsByClassName('welcome-section-inside-text');
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.color = '#f8f9fa';
+            }
+        }
+    </script>
 @endsection
