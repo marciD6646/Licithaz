@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
 
-    public function show(User $user)
+    public function show(): View
     {
-        $user = Auth::user();
-        return view('profile', compact('user'));
+        $user = Auth::user()->load([
+            'bids' => function ($query) {
+                $query->latest()->with('product');
+            },
+        ]);
+
+        return view('profile', ['user' => $user]);
     }
 
 }

@@ -26,9 +26,15 @@ class ProductController extends Controller
         return redirect()->route('products.index');
     }
     /* Display the specified resource. */
-    public function show(Product $product)
+    public function show(int $id)
     {
-        return view('products.show', ['product' => $product]);
+        $product = Product::with('bids.user')->findOrFail($id);
+
+        return view('products.show', [
+            'product' => $product,
+            'currentHighestBid' => $product->currentHighestBidAmount(),
+            'minimumBid' => $product->minimumNextBidAmount(),
+        ]);
     }
     /* Show the form for editing the specified resource.*/
     public function edit(Product $product)

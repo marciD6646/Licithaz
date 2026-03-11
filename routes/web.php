@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BidController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,4 +18,8 @@ Route::get('/profile', [ProfileController::class, 'show'])
     ->middleware('auth')
     ->name('profile');
 
-Route::resource('products', App\Http\Controllers\ProductController::class);
+Route::post('/products/{product}/bids', [BidController::class, 'store'])
+    ->middleware('auth')
+    ->name('products.bids.store');
+
+Route::resource('products', ProductController::class);

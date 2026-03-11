@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Validator;
 
 class StoreBidRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StoreBidRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return $this->user() !== null;
     }
 
     /**
@@ -22,7 +24,43 @@ class StoreBidRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'amount' => [
+                'required',
+                'integer',
+                'min:' . $this->minimumBidAmount(),
+                function ($attribute, $value, $fail) {
+                    $product = $this->product();
+                    if ($product && !$product->isBiddingOpen()) {
+                        $fail('Bidding is closed for this product.');
+                    }
+                },
+            ],
         ];
+    }
+
+
+    public function messages(): array
+    {
+        return [
+            'amount.min' => 'Your bid must be at least ' . number_format($this->minimumBidAmount()) . ' Ft.',
+        ];
+    }
+
+    private function minimumBidAmount(): int
+    {
+        $product = $this->product();
+
+        if ($product === null) {
+            return 1000;
+        }
+
+        return $product->minimumNextBidAmount();
+    }
+
+    private function product(): ?Product
+    {
+        $product = $this->route('product');
+
+        return $product instanceof Product ? $product : null;
     }
 }
