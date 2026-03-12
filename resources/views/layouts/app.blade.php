@@ -37,12 +37,11 @@
 
         @auth
             @if (Auth::user()->is_admin)
-                <a href="#" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
+                <a href="{{ route('dashboard') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
                     Admin Dashboard
                 </a>
 
-                <a href="{{ route('products.create') }}"
-                    class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
+                <a href="{{ route('products.create') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
                     Add New Product
                 </a>
             @endif
