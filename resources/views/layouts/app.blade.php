@@ -21,7 +21,7 @@
             View Products
         </a>
 
-        <a href="#" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
+        <a href="{{ route('aboutus') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
             About Us
         </a>
 

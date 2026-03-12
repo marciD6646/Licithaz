@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BidController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AboutUsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,3 +24,4 @@ Route::post('/products/{product}/bids', [BidController::class, 'store'])
     ->name('products.bids.store');
 
 Route::resource('products', ProductController::class);
+Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
