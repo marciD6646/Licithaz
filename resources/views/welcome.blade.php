@@ -24,7 +24,7 @@
             <div class="relative">
                 <div class="absolute -inset-3 rounded-3xl bg-linear-to-tr from-amber-200 via-orange-100 to-rose-200">
                 </div>
-                <img class="relative w-full rounded-2xl object-cover shadow-lg" src=""
+                <img class="relative w-full rounded-2xl object-cover shadow-lg" src="{{ asset('images/bid.png') }}"
                     alt="A picture about auctions" />
             </div>
         </section>
