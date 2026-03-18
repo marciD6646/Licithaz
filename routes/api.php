@@ -8,29 +8,17 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/products', [ProductController::class, 'index']);
-
-//Product routes
+// PUBLIC ROUTES
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{product}', [ProductController::class, 'show']);
 
-/* localhost:8000/api/register  || Login register routes*/
-// Route::post("/register", [UserController::class, "register"]);
-// Route::post("/login", [UserController::class, "login"]);
 
-//autenticated routes //TODO megcsinalni hogy csak az admin tudjon szerkeszteni
+// AUTHENTICATED ROUTES (admin)
 Route::middleware("auth:sanctum")->group(function () {
-    //user functions
-    // Route::controller(UserController::class)->group(function () {
-    //     Route::post("/logout", "logout");
-    //     Route::get("/user", "user");
-    // });
-});
 
-//product functions
-Route::controller(ProductController::class)->group(function () {
-    Route::post('/products', 'store');
-    Route::put('/products/{product}', 'update');
-    Route::patch('/products/{product}', 'update');
-    Route::delete('/products/{product}', 'destroy');
+    Route::post('/products', [ProductController::class, 'store']);
+    Route::put('/products/{product}', [ProductController::class, 'update']);
+    Route::patch('/products/{product}', [ProductController::class, 'update']);
+    Route::delete('/products/{product}', [ProductController::class, 'destroy']);
+
 });

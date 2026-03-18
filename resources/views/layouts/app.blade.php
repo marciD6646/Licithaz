@@ -1,72 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUCTIONHOUSE</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-
-<body class="bg-amber-100" id="body">
+<body class="body-bg">
     @yield('header')
-    <hr>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <hr class="hr-style">
 
-    <nav class="bg-gray-800 text-white flex divide-x divide-gray-700">
-        <a href="{{ route('welcome') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
-            Home
-        </a>
-
-        <a href="{{ route('products.index') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
-            View Products
-        </a>
-
-        <a href="{{ route('aboutus') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
-            About Us
-        </a>
+    <nav class="navbar">
+        <a href="{{ route('welcome') }}" class="navbar-link">Home</a>
+        <a href="{{ route('products.index') }}" class="navbar-link">View Products</a>
+        <a href="{{ route('aboutus') }}" class="navbar-link">About Us</a>
 
         @guest
-            <a href="{{ route('login') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
-                Login
-            </a>
-
-            <a href="{{ route('register') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
-                Register
-            </a>
+            <a href="{{ route('login') }}" class="navbar-link">Login</a>
+            <a href="{{ route('register') }}" class="navbar-link">Register</a>
         @endguest
 
         @auth
             @if (Auth::user()->is_admin)
-                <a href="{{ route('dashboard') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
-                    Admin Dashboard
-                </a>
-
-                <a href="{{ route('products.create') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
-                    Add New Product
-                </a>
+                <a href="{{ route('dashboard') }}" class="navbar-link">Admin Dashboard</a>
+                <a href="{{ route('products.create') }}" class="navbar-link">Add New Product</a>
             @endif
 
-            <a href="{{ route('profile') }}" class="flex-1 text-center py-3 hover:bg-gray-700 transition-colors">
-                Profile
-            </a>
+            <a href="{{ route('profile') }}" class="navbar-link">Profile</a>
 
             <form action="{{ route('logout') }}" method="POST" class="flex-1">
                 @csrf
-                <button type="submit" class="w-full text-center py-3 hover:bg-gray-700 transition-colors">
-                    Logout
-                </button>
+                <button type="submit" class="navbar-link">Logout</button>
             </form>
         @endauth
     </nav>
 
     @yield('content')
-
-    <script>
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.getElementById('body').classList.remove('bg-amber-100');
-            document.getElementById('body').style.backgroundColor = '#1A202C';
-        }
-    </script>
 </body>
-
-</html>

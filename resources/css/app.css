@@ -12,3 +12,27 @@
         "Noto Color Emoji";
 }
 
+/* app.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Navbar container */
+.navbar {
+  @apply bg-gray-800 text-white flex divide-x divide-gray-700;
+}
+
+/* Navbar links */
+.navbar-link {
+  @apply flex-1 text-center py-3 hover:bg-gray-700 transition-colors w-full;
+}
+
+/* Body background with dark mode */
+.body-bg {
+  @apply bg-amber-100 dark:bg-gray-900;
+}
+
+/* Horizontal rule */
+.hr-style {
+  @apply border-gray-300 dark:border-gray-700;
+}
