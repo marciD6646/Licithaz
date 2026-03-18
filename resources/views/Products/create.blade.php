@@ -38,7 +38,6 @@
             class="w-full rounded-lg border border-slate-300 px-4 py-2  ">
     </div>
 
-<<<<<<< HEAD
     <div>
         <label class="block text-sm font-semibold text-slate-700 mb-2">
         Category
@@ -157,22 +156,4 @@ document.getElementById('CreateForm').style.backgroundColor = '#575b64';
 }
 </script>
 @endsection
-=======
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Product</button>
-        </form>
-        
-        
-        
-        
-        <script>
-            if (localStorage.getItem('darkMode') === 'true') {
-                document.getElementById('create-product-section').style.color = '#f8f9fa';
-                document.getElementById('CreateForm').style.backgroundColor = '#575b64';
-                const elements = document.getElementsByClassName('CreateFormText');
-                for (let i = 0; i < elements.length; i++) {
-                    elements[i].style.color = '#f8f9fa';
-                }
-            }
-        </script>
-    @endsection
->>>>>>> be79229 (Admin Dashboard basic)
+
