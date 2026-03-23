@@ -1,57 +1,40 @@
 @extends('layouts.app')
+
 @section('content')
-    <div class="mx-auto max-w-6xl px-6 py-10">
-        <div class="mb-8">
-            <h1 class="Product-texts text-3xl font-bold text-slate-900">Products</h1>
-            <p class="Product-texts mt-2 text-slate-600">Browse active listings and starter bids.</p>
+    <div class="products-container">
+        <div class="products-header">
+            <h1 class="products-title">Products</h1>
+            <p class="products-subtitle">Browse active listings and starter bids.</p>
         </div>
 
         @if ($products->isEmpty())
-            <div class="Product-texts rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-slate-600">
+            <div class="empty-state">
                 No products yet. Create a listing to get started.
             </div>
         @else
-            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="products-grid">
                 @foreach ($products as $product)
-                    <div class="product-cards rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                        <div class="flex items-start justify-between gap-4">
+                    <div class="product-card">
+                        <div class="product-header">
                             <div>
-                                <h2 class="product-card-texts text-lg font-semibold text-slate-900">{{ $product->name }}</h2>
-                                <p class="product-card-texts mt-1 text-sm text-slate-500">{{ $product->category }}</p>
+                                <h2 class="product-name">{{ $product->name }}</h2>
+                                <p class="product-category">{{ $product->category }}</p>
                             </div>
-                            <span class=" rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
+                            <span class="bid-badge">
                                 Starting bid: {{ $product->starter_bid }}
                             </span>
                         </div>
-                        <div>
-                            <p class="product-card-texts mt-4 text-sm text-slate-600">Description:
-                                {{ $product->description }}</p>
+                        <div class="product-description">
+                            <p>Description: {{ $product->description }}</p>
                         </div>
-                        <div class="mt-auto flex justify-end">
-                            <a href="{{ route('products.show', $product) }}"
-                                class="inline-flex justify-end btn btn-primary rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800">View
-                                Details </a>
+                        <div class="product-actions">
+                            <a href="{{ route('products.show', $product) }}" class="product-button">
+                                View Details
+                            </a>
                         </div>
-
                     </div>
                 @endforeach
             </div>
         @endif
     </div>
-    <script>
-        if (localStorage.getItem('darkMode') === 'true') {
-            var texts = document.getElementsByClassName('Product-texts');
-            var cards = document.getElementsByClassName('product-cards');
-            var cardtexts = document.getElementsByClassName('product-card-texts');
-            for (var i = 0; i < texts.length; i++) {
-                texts[i].style.color = '#f8f9fa';
-            }
-            for (var i = 0; i < cards.length; i++) {
-                cards[i].style.backgroundColor = '#575b64';
-            }
-            for (var i = 0; i < cardtexts.length; i++) {
-                cardtexts[i].style.color = '#f8f9fa';
-            }
-        }
-    </script>
 @endsection

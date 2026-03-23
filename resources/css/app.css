@@ -36,3 +36,616 @@
 .hr-style {
   @apply border-gray-300 dark:border-gray-700;
 }
+
+/*               */
+/* ABOUT US PAGE */
+/*               */
+
+/* CONTAINER */
+.container {
+  @apply mx-auto max-w-7xl py-16 px-6;
+}
+
+/* INTRO */
+.intro {
+  @apply text-center mb-16;
+}
+
+.page-title {
+  @apply text-5xl md:text-6xl font-extrabold mb-4 text-gray-900;
+}
+
+.page-subtitle {
+  @apply text-gray-500 text-lg md:text-xl max-w-2xl mx-auto;
+}
+
+/* TEXT */
+.text {
+  @apply text-gray-600 leading-relaxed;
+}
+
+/* SECTION TITLES */
+.section-title {
+  @apply text-3xl font-semibold mb-4 text-gray-800;
+}
+
+.section-title.center {
+  @apply text-center mb-8;
+}
+
+/* CARD (Our Story) */
+.card {
+  @apply mb-16 bg-white rounded-2xl shadow-lg p-8 
+         hover:shadow-2xl transition-shadow duration-300;
+}
+
+/* MISSION */
+.mission {
+  @apply mb-16 bg-gradient-to-r from-blue-50 to-indigo-50 
+         p-8 rounded-2xl shadow-lg;
+}
+
+.mission-list {
+  @apply space-y-4 text-gray-700;
+}
+
+.check {
+  @apply text-blue-600 mr-2;
+}
+
+/* TEAM */
+.team {
+  @apply mb-16;
+}
+
+.team-grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-8;
+}
+
+.team-member {
+  @apply bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center 
+         transform transition-transform duration-300 hover:scale-105;
+}
+
+.avatar {
+  @apply w-24 h-24 rounded-full mb-4 shadow-md;
+}
+
+.name {
+  @apply font-bold text-lg;
+}
+
+.role {
+  @apply text-gray-500;
+}
+
+/* ACTION SECTION (formerly CTA) */
+.action-section {
+  @apply mt-16 text-center;
+}
+
+.action-title {
+  @apply text-3xl md:text-4xl font-bold mb-4 text-gray-800;
+}
+
+.action-text {
+  @apply text-gray-500 mb-6 max-w-xl mx-auto;
+}
+
+.action-button {
+  @apply bg-gradient-to-r from-blue-600 to-indigo-600 text-white 
+         px-8 py-3 rounded-full font-semibold shadow-lg 
+         hover:from-blue-700 hover:to-indigo-700 
+         transition-colors duration-300;
+}
+
+/*             */
+/*  DASHBOARD  */
+/*             */
+
+.dashboard-container {
+  @apply mx-auto p-4;
+}
+
+.dashboard-title {
+  @apply text-3xl font-bold mb-6 text-center;
+}
+
+.dashboard-buttons {
+  @apply flex flex-col sm:flex-row justify-center items-center gap-4 font-bold text-2xl mb-6;
+}
+
+.dashboard-button {
+  @apply p-6 rounded shadow w-full sm:w-1/3 text-2xl transition-colors;
+}
+
+.users-btn {
+  @apply bg-blue-500 text-white hover:bg-blue-600;
+}
+
+.products-btn {
+  @apply bg-green-500 text-white hover:bg-green-600;
+}
+
+.dashboard-section {
+  @apply p-4 bg-gray-100 rounded shadow mb-4;
+}
+
+.dashboard-section.hidden {
+  @apply hidden;
+}
+
+.dashboard-section-title {
+  @apply text-2xl font-bold mb-4;
+}
+
+.dashboard-table {
+  @apply min-w-full bg-white shadow rounded;
+}
+
+.dashboard-table th {
+  @apply p-2 border bg-gray-200;
+}
+
+.dashboard-table td {
+  @apply p-2 border;
+}
+
+/* edit/delete buttons */
+/* Actions buttons for dashboard tables */
+.actions-cell {
+  @apply flex gap-2;
+}
+
+.btn-edit {
+  @apply bg-yellow-400 text-white px-3 py-1 rounded hover:bg-yellow-500 transition-colors;
+}
+
+.btn-delete {
+  @apply bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-colors;
+}
+
+/*      */
+/* HOME */
+/*      */
+
+.dashboard-col {
+  @apply max-w-2xl mx-auto;
+}
+
+.status-alert {
+  @apply bg-green-100 border border-green-400 text-green-700 p-4 rounded shadow mb-4;
+}
+
+/*         */
+/* PROFILE */
+/*         */
+
+.profile-container {
+  @apply mx-auto max-w-5xl px-6 py-10;
+}
+
+.profile-grid {
+  @apply grid gap-6 lg:grid-cols-[320px,1fr] lg:items-start;
+}
+
+.profile-card {
+  @apply w-full rounded-xl bg-white p-8 shadow-lg;
+}
+
+.user-card {
+  @apply text-center;
+}
+
+.bids-card {
+  @apply text-left;
+}
+
+.user-name {
+  @apply text-lg font-semibold text-gray-800;
+}
+
+.user-email, 
+.user-bids {
+  @apply mt-2 text-gray-600;
+}
+
+.profile-btn {
+  @apply mt-4 inline-block w-3/4 cursor-pointer rounded px-4 py-2 text-center font-bold text-white;
+}
+
+.balance-btn {
+  @apply bg-gray-700 hover:bg-gray-500;
+}
+
+.bids-btn {
+  @apply bg-gray-700 hover:bg-gray-500;
+}
+
+.bids-title {
+  @apply text-2xl font-bold text-gray-800;
+}
+
+.bids-subtitle {
+  @apply mt-2 text-sm text-gray-600;
+}
+
+.bids-list {
+  @apply mt-6 space-y-4;
+}
+
+.empty-state {
+  @apply rounded-xl border border-dashed border-gray-300 px-4 py-6 text-center text-gray-600;
+}
+
+.bid-item {
+  @apply rounded-xl border border-gray-200 px-4 py-4;
+}
+
+.bid-info {
+  @apply flex flex-col gap-3 md:flex-row md:items-center md:justify-between mb-4 md:mb-0;
+}
+
+.info-label {
+  @apply text-sm text-gray-500;
+}
+
+.product-name {
+  @apply text-lg font-semibold text-gray-800 hover:text-emerald-700;
+}
+
+.bid-date {
+  @apply mt-1 text-sm text-gray-500;
+}
+
+.bid-amount-section {
+  @apply text-left md:text-right;
+}
+
+.bid-value {
+  @apply text-lg font-bold text-emerald-700;
+}
+
+/*       */
+/* HOME  */
+/*       */
+
+.main-content {
+  @apply mx-auto max-w-6xl space-y-12 px-6 py-12;
+}
+
+.welcome-section {
+  @apply grid items-center gap-10 rounded-3xl bg-slate-50 p-8 shadow-sm md:grid-cols-2;
+}
+
+.team-section {
+  @apply grid items-center gap-10 rounded-3xl bg-slate-900 p-8 text-white shadow-sm md:grid-cols-2;
+}
+
+.welcome-content {
+  @apply space-y-4;
+}
+
+.about-content {
+  @apply order-1 md:order-2 space-y-4;
+}
+
+.team-list {
+  @apply order-2 md:order-1 flex flex-col gap-6;
+}
+
+.welcome-badge {
+  @apply text-sm font-semibold uppercase tracking-[0.2em] text-slate-500;
+}
+
+.about-badge {
+  @apply text-sm font-semibold uppercase tracking-[0.2em] text-amber-200;
+}
+
+.welcome-title {
+  @apply mt-3 text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl;
+}
+
+.about-title {
+  @apply mt-3 text-3xl font-bold md:text-4xl;
+}
+
+.welcome-description {
+  @apply mt-4 text-lg text-slate-600;
+}
+
+.about-description {
+  @apply mt-4 text-lg text-slate-200;
+}
+
+.about-note {
+  @apply mt-4 text-sm text-slate-300;
+}
+
+.welcome-actions {
+  @apply mt-6 flex flex-wrap gap-3;
+}
+
+.main-button {
+  @apply rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800;
+}
+
+.image-section {
+  @apply relative;
+}
+
+.image-gradient {
+  @apply absolute -inset-3 rounded-3xl bg-gradient-to-tr from-amber-200 via-orange-100 to-rose-200;
+}
+
+.main-image {
+  @apply relative w-full rounded-2xl object-cover shadow-lg;
+}
+
+.team-item {
+  @apply flex items-center gap-4;
+}
+
+.team-photo {
+  @apply w-2/7 rounded-2xl object-cover shadow-lg;
+}
+
+.team-name {
+  @apply text-lg font-semibold;
+}
+
+/*              */ 
+/* Create Blade */
+/*              */
+
+.form-container {
+  @apply mx-auto max-w-3xl px-6;
+}
+
+.form-title {
+  @apply text-4xl md:text-5xl font-extrabold text-center mb-10 bg-gradient-to-r from-black to-gray-500 bg-clip-text text-transparent;
+}
+
+.error-container {
+  @apply mb-6 rounded-xl border border-red-200 bg-red-50 p-4 text-red-700 shadow;
+}
+
+.error-list {
+  @apply list-disc pl-5 space-y-1;
+}
+
+.main-form {
+  @apply bg-white p-8 rounded-3xl shadow-xl border border-slate-200 space-y-6;
+}
+
+.form-group {
+  @apply block;
+}
+
+.form-label {
+  @apply block text-sm font-semibold text-slate-700 mb-2;
+}
+
+.form-input {
+  @apply w-full rounded-lg border border-slate-300 px-4 py-2;
+}
+
+.form-row {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+.form-actions {
+  @apply pt-4;
+}
+
+.submit-btn {
+  @apply w-full bg-emerald-500 hover:bg-emerald-600 transition text-white font-semibold py-3 rounded-full shadow;
+}
+
+/*               */
+/*  INDEX blade  */
+/*               */
+
+.products-container {
+  @apply mx-auto max-w-6xl px-6 py-10;
+}
+
+.products-header {
+  @apply mb-8;
+}
+
+.products-title {
+  @apply text-3xl font-bold text-slate-900;
+}
+
+.products-subtitle {
+  @apply mt-2 text-slate-600;
+}
+
+.empty-state {
+  @apply rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-slate-600;
+}
+
+.products-grid {
+  @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+.product-card {
+  @apply rounded-2xl border border-slate-200 bg-white p-6 shadow-sm;
+}
+
+.product-header {
+  @apply flex items-start justify-between gap-4;
+}
+
+.product-name {
+  @apply text-lg font-semibold text-slate-900;
+}
+
+.product-category {
+  @apply mt-1 text-sm text-slate-500;
+}
+
+.bid-badge {
+  @apply rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700;
+}
+
+.product-description {
+  @apply mt-4;
+}
+
+.product-description p {
+  @apply text-sm text-slate-600;
+}
+
+.product-actions {
+  @apply mt-auto flex justify-end;
+}
+
+.product-button {
+  @apply inline-flex rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800;
+}
+
+/*             */
+/* SHOW blade  */
+/*             */
+
+.product-detail-container {
+  @apply mx-auto max-w-6xl px-6 py-10;
+}
+
+.success-alert {
+  @apply mb-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-emerald-800;
+}
+
+.product-header {
+  @apply mb-8;
+}
+
+.product-name-header {
+  @apply text-3xl font-bold text-slate-900;
+}
+
+.product-category-header {
+  @apply mt-2 text-slate-600;
+}
+
+.product-meta {
+  @apply mt-4 flex flex-wrap gap-3 text-sm font-medium text-slate-600;
+}
+
+.meta-badge {
+  @apply rounded-full bg-slate-100 px-3 py-1;
+}
+
+.product-main-card {
+  @apply rounded-2xl border border-slate-200 bg-white p-6 shadow-sm;
+}
+
+.product-main-grid {
+  @apply grid grid-cols-1 gap-6 md:grid-cols-2;
+}
+
+.product-image-section img {
+  @apply w-full rounded-2xl object-cover;
+}
+
+.product-details-section {
+  @apply flex flex-col gap-4;
+}
+
+.description-section h2 {
+  @apply text-lg font-semibold text-slate-900;
+}
+
+.description-text {
+  @apply mt-2 text-sm text-slate-600;
+}
+
+.bid-info-badges {
+  @apply flex flex-wrap gap-3 text-xs font-semibold;
+}
+
+.bid-badge {
+  @apply self-start rounded-full px-3 py-1;
+}
+
+.starter-bid {
+  @apply bg-emerald-50 text-emerald-700;
+}
+
+.minimum-bid {
+  @apply bg-sky-50 text-sky-700;
+}
+
+.bid-form {
+  @apply flex flex-col gap-3 md:flex-row md:items-start;
+}
+
+.bid-button {
+  @apply rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-600;
+}
+
+.bid-input-group {
+  @apply relative w-full md:w-40;
+}
+
+.bid-input {
+  @apply w-full rounded-lg border px-3 py-2 pr-10;
+}
+
+.bid-input.error {
+  @apply border-red-500;
+}
+
+.input-suffix {
+  @apply absolute right-3 top-1/2 -translate-y-1/2 text-slate-500;
+}
+
+.minimum-notice {
+  @apply flex items-center text-sm text-slate-500;
+}
+
+.guest-message {
+  @apply text-sm text-slate-600;
+}
+
+.auction-closed {
+  @apply rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-800;
+}
+
+.error-message {
+  @apply mt-2 text-sm text-red-600;
+}
+
+.bids-history-card {
+  @apply mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm;
+}
+
+.bids-history-title {
+  @apply text-xl font-semibold text-slate-900;
+}
+
+.no-bids-message {
+  @apply mt-3 text-sm text-slate-600;
+}
+
+.bids-list {
+  @apply mt-4 space-y-3;
+}
+
+.bid-item {
+  @apply flex items-center justify-between rounded-xl border border-slate-200 px-4 py-3;
+}
+
+.bid-user {
+  @apply font-semibold text-slate-900;
+}
+
+.bid-time {
+  @apply text-sm text-slate-500;
+}
+
+.bid-amount {
+  @apply text-sm font-semibold text-emerald-700;
+}

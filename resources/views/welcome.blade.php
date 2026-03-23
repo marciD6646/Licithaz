@@ -1,77 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="mx-auto max-w-6xl space-y-12 px-6 py-12">
-        <section id="welcome-section" class="grid items-center gap-10 rounded-3xl bg-slate-50 p-8 shadow-sm md:grid-cols-2">
-            <div>
-                <p class="welcome-section-inside-text text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-                    Welcome</p>
-                <h1
-                    class="welcome-section-inside-text mt-3 text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl">
-                    Bid smarter at AuctionHouse
-                </h1>
-                <p class="welcome-section-inside-text mt-4 text-lg text-slate-600">
-                    Discover live listings, track your bids, and win items with confidence.
-                </p>
-                <div class="mt-6 flex flex-wrap gap-3">
-                    <a class="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800"
-                        href="{{ route('products.index') }}">
-                        Browse products
-                    </a>
-
+    <main class="main-content">
+        <section id="welcome-section" class="welcome-section">
+            <div class="welcome-content">
+                <p class="welcome-badge">Welcome</p>
+                <h1 class="welcome-title">Bid smarter at AuctionHouse</h1>
+                <p class="welcome-description">Discover live listings, track your bids, and win items with confidence.</p>
+                <div class="welcome-actions">
+                    <a class="main-button" href="{{ route('products.index') }}">Browse products</a>
                 </div>
             </div>
-            <div class="relative">
-                <div class="absolute -inset-3 rounded-3xl bg-linear-to-tr from-amber-200 via-orange-100 to-rose-200">
-                </div>
-                <img class="relative w-full rounded-2xl object-cover shadow-lg" src="{{ asset('images/bid.png') }}"
-                    alt="A picture about auctions" />
+            <div class="image-section">
+                <div class="image-gradient"></div>
+                <img class="main-image" src="{{ asset('images/bid.png') }}" alt="A picture about auctions" />
             </div>
         </section>
 
-        <section class="grid items-center gap-10 rounded-3xl bg-slate-900 p-8 text-white shadow-sm md:grid-cols-2">
-            <div class="order-2 md:order-1 flex flex-col gap-6">
-                <!--<img class="w-full rounded-2xl object-cover shadow-lg" src="" alt="Team collaborating on a project" />-->
-                <div class="flex items-center gap-4">
-                    <img class="w-2/7 rounded-2xl object-cover shadow-lg" src="{{ asset('images/deak.png') }}"
-                        alt="Deákvári Marcell" />
-                    <p class="text-lg font-semibold"> ■► Deákvári Marcell</p>
+        <section class="team-section">
+            <div class="team-list">
+                <div class="team-item">
+                    <img class="team-photo" src="{{ asset('images/deak.png') }}" alt="Deákvári Marcell" />
+                    <p class="team-name">■► Deákvári Marcell</p>
                 </div>
-                <div class="flex items-center gap-4">
-                    <img class="w-2/7 rounded-2xl object-cover shadow-lg" src="{{ asset('images/szok.png') }}"
-                        alt="Szokolay Márk" />
-                    <p class="text-lg font-semibold"> ■► Szokolay Márk</p>
+                <div class="team-item">
+                    <img class="team-photo" src="{{ asset('images/szok.png') }}" alt="Szokolay Márk" />
+                    <p class="team-name">■► Szokolay Márk</p>
                 </div>
-                <div class="flex items-center gap-4">
-                    <img class="w-2/7 rounded-2xl object-cover shadow-lg" src="{{ asset('images/vik.png') }}"
-                        alt="Csermák Viktor" />
-                    <p class="text-lg font-semibold"> ■► Csermák Viktor</p>
+                <div class="team-item">
+                    <img class="team-photo" src="{{ asset('images/vik.png') }}" alt="Csermák Viktor" />
+                    <p class="team-name">■► Csermák Viktor</p>
                 </div>
-
             </div>
-            </div>
-            <div class="order-1 md:order-2">
-                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-amber-200">What is this about</p>
-                <h2 class="mt-3 text-3xl font-bold md:text-4xl">
-                    A simple platform for winning bids
-                </h2>
-                <p class="mt-4 text-lg text-slate-200">
+            <div class="about-content">
+                <p class="about-badge">What is this about</p>
+                <h2 class="about-title">A simple platform for winning bids</h2>
+                <p class="about-description">
                     You can find everything from cars to property, electronics to collectibles. Our user-friendly interface
                     makes it easy to search, bid, and win your desired items.
                 </p>
-                <p class="mt-4 text-sm text-slate-300">
-                    Use the navigation to explore listings to get started.
-                </p>
+                <p class="about-note">Use the navigation to explore listings to get started.</p>
             </div>
         </section>
     </main>
-    <script>
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.getElementById('welcome-section').style.backgroundColor = '#575b64';
-            var elements = document.getElementsByClassName('welcome-section-inside-text');
-            for (var i = 0; i < elements.length; i++) {
-                elements[i].style.color = '#f8f9fa';
-            }
-        }
-    </script>
 @endsection
