@@ -11,8 +11,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
-        //TODO: ONLY ADMIN
+        return (bool) $this->user()?->is_admin;
     }
 
     /**
@@ -34,7 +33,6 @@ class UpdateProductRequest extends FormRequest
                 'starter_bid' => 'required|numeric|min:0',
             ];
         }
-        ;
 
         return [
             'name' => 'sometimes|string|max:255',

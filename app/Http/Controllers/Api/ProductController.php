@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -41,8 +42,12 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request, Product $product)
     {
+        if (!$request->user()?->is_admin) {
+            return response()->json(['message' => 'Forbidden. Admin access required.'], 403);
+        }
+
         $product->delete();
         return response()->json(["msg" => "{$product->name} deleted successfully"]);
     }
