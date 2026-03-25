@@ -649,3 +649,36 @@
 .bid-amount {
   @apply text-sm font-semibold text-emerald-700;
 }
+
+/*        */
+/*  edit  */
+/*        */
+
+.edit-product-container {
+  @apply max-w-3xl mx-auto mt-10 p-6 bg-green-100 rounded-lg shadow;
+}
+
+.edit-product-container h1 {
+  @apply text-2xl font-bold mb-6;
+}
+
+.edit-product-container form div {
+  @apply mb-4;
+}
+
+.edit-product-container form label {
+  @apply block font-medium mb-1;
+}
+
+.edit-product-container form input,
+.edit-product-container form textarea {
+  @apply w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.edit-product-container form button {
+  @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded mt-4;
+}
+
+.edit-product-container .errors {
+  @apply mb-4 p-4 bg-red-100 text-red-700 rounded;
+}
