@@ -1,0 +1,134 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\yusers\\source\\repos\\licitAdminDashboard\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3441CF8D-A97C-1BBF-D673-EF574747EAD8}|licitAdminDashboard\\licitAdminDashboard.csproj|c:\\users\\yusers\\source\\repos\\licitadmindashboard\\licitadmindashboard\\models\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3441CF8D-A97C-1BBF-D673-EF574747EAD8}|licitAdminDashboard\\licitAdminDashboard.csproj|solutionrelative:licitadmindashboard\\models\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3441CF8D-A97C-1BBF-D673-EF574747EAD8}|licitAdminDashboard\\licitAdminDashboard.csproj|c:\\users\\yusers\\source\\repos\\licitadmindashboard\\licitadmindashboard\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3441CF8D-A97C-1BBF-D673-EF574747EAD8}|licitAdminDashboard\\licitAdminDashboard.csproj|solutionrelative:licitadmindashboard\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3441CF8D-A97C-1BBF-D673-EF574747EAD8}|licitAdminDashboard\\licitAdminDashboard.csproj|c:\\users\\yusers\\source\\repos\\licitadmindashboard\\licitadmindashboard\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3441CF8D-A97C-1BBF-D673-EF574747EAD8}|licitAdminDashboard\\licitAdminDashboard.csproj|solutionrelative:licitadmindashboard\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3441CF8D-A97C-1BBF-D673-EF574747EAD8}|licitAdminDashboard\\licitAdminDashboard.csproj|c:\\users\\yusers\\source\\repos\\licitadmindashboard\\licitadmindashboard\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3441CF8D-A97C-1BBF-D673-EF574747EAD8}|licitAdminDashboard\\licitAdminDashboard.csproj|solutionrelative:licitadmindashboard\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3441CF8D-A97C-1BBF-D673-EF574747EAD8}|licitAdminDashboard\\licitAdminDashboard.csproj|c:\\users\\yusers\\source\\repos\\licitadmindashboard\\licitadmindashboard\\productresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3441CF8D-A97C-1BBF-D673-EF574747EAD8}|licitAdminDashboard\\licitAdminDashboard.csproj|solutionrelative:licitadmindashboard\\productresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3441CF8D-A97C-1BBF-D673-EF574747EAD8}|licitAdminDashboard\\licitAdminDashboard.csproj|c:\\users\\yusers\\source\\repos\\licitadmindashboard\\licitadmindashboard\\models\\bids.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3441CF8D-A97C-1BBF-D673-EF574747EAD8}|licitAdminDashboard\\licitAdminDashboard.csproj|solutionrelative:licitadmindashboard\\models\\bids.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Bids.cs",
+              "DocumentMoniker": "C:\\Users\\yusers\\source\\repos\\licitAdminDashboard\\licitAdminDashboard\\Models\\Bids.cs",
+              "RelativeDocumentMoniker": "licitAdminDashboard\\Models\\Bids.cs",
+              "ToolTip": "C:\\Users\\yusers\\source\\repos\\licitAdminDashboard\\licitAdminDashboard\\Models\\Bids.cs",
+              "RelativeToolTip": "licitAdminDashboard\\Models\\Bids.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T16:59:23.532Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Users.cs",
+              "DocumentMoniker": "C:\\Users\\yusers\\source\\repos\\licitAdminDashboard\\licitAdminDashboard\\Models\\Users.cs",
+              "RelativeDocumentMoniker": "licitAdminDashboard\\Models\\Users.cs",
+              "ToolTip": "C:\\Users\\yusers\\source\\repos\\licitAdminDashboard\\licitAdminDashboard\\Models\\Users.cs",
+              "RelativeToolTip": "licitAdminDashboard\\Models\\Users.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T16:59:02.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductResponse.cs",
+              "DocumentMoniker": "C:\\Users\\yusers\\source\\repos\\licitAdminDashboard\\licitAdminDashboard\\ProductResponse.cs",
+              "RelativeDocumentMoniker": "licitAdminDashboard\\ProductResponse.cs",
+              "ToolTip": "C:\\Users\\yusers\\source\\repos\\licitAdminDashboard\\licitAdminDashboard\\ProductResponse.cs",
+              "RelativeToolTip": "licitAdminDashboard\\ProductResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T16:51:12.549Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\yusers\\source\\repos\\licitAdminDashboard\\licitAdminDashboard\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "licitAdminDashboard\\Models\\Product.cs",
+              "ToolTip": "C:\\Users\\yusers\\source\\repos\\licitAdminDashboard\\licitAdminDashboard\\Models\\Product.cs",
+              "RelativeToolTip": "licitAdminDashboard\\Models\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T16:48:54.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\yusers\\source\\repos\\licitAdminDashboard\\licitAdminDashboard\\MainPage.xaml",
+              "RelativeDocumentMoniker": "licitAdminDashboard\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\yusers\\source\\repos\\licitAdminDashboard\\licitAdminDashboard\\MainPage.xaml",
+              "RelativeToolTip": "licitAdminDashboard\\MainPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-18T14:05:54.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\yusers\\source\\repos\\licitAdminDashboard\\licitAdminDashboard\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "licitAdminDashboard\\MainPage.xaml.cs",
+              "ToolTip": "C:\\Users\\yusers\\source\\repos\\licitAdminDashboard\\licitAdminDashboard\\MainPage.xaml.cs",
+              "RelativeToolTip": "licitAdminDashboard\\MainPage.xaml.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAswFkAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T14:05:48.915Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
