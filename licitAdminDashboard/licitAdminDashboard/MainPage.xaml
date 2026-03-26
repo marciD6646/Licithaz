@@ -20,26 +20,35 @@
                   ColumnSpacing="15"
                   RowSpacing="15">
 
-                    <Frame BackgroundColor="#1e293b" CornerRadius="15" Padding="20">
-                        <VerticalStackLayout>
+                    <Border BackgroundColor="#1e293b"  Padding="20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout>
                             <Label Text="Users" TextColor="White"/>
                             <Label x:Name="UsersCountLabel" Text="0" FontSize="24" TextColor="#38bdf8" FontAttributes="Bold"/>
                         </VerticalStackLayout>
-                    </Frame>
+                    </Border>
 
-                    <Frame BackgroundColor="#1e293b" CornerRadius="15" Padding="20">
-                        <VerticalStackLayout>
+                    <Border BackgroundColor="#1e293b" Padding="20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout>
                             <Label Text="Products" TextColor="White"/>
                             <Label x:Name="ProductsCountLabel" Text="0" FontSize="24" TextColor="#22c55e" FontAttributes="Bold"/>
                         </VerticalStackLayout>
-                    </Frame>
+                    </Border>
 
-                    <Frame BackgroundColor="#1e293b" CornerRadius="15" Padding="20">
-                        <VerticalStackLayout>
+                    <Border BackgroundColor="#1e293b" Padding="20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout>
                             <Label Text="Bids" TextColor="White"/>
                             <Label x:Name="BidsCountLabel" Text="0" FontSize="24" TextColor="#f59e0b" FontAttributes="Bold"/>
                         </VerticalStackLayout>
-                    </Frame>
+                    </Border>
                 </Grid>
 
                 <!-- Tabs -->
@@ -47,19 +56,23 @@
                     <Button Text="Users" x:Name="UsersBtn" BackgroundColor="#3b82f6" TextColor="White"/>
                     <Button Text="Products" x:Name="ProductsBtn" BackgroundColor="#10b981" TextColor="White"/>
                     <Button Text="Bids" x:Name="BidsBtn" BackgroundColor="#f59e0b" TextColor="White"/>
-                </HorizontalStackLayout>
+                    <Button Text="Logout" x:Name="LogoutBtn" Background="Red" TextColor="White" Clicked="LogOutAdmin"/>
+            </HorizontalStackLayout>
 
                 <!-- Users list -->
                 <CollectionView x:Name="UsersList" IsVisible="True" Margin="0,10,0,0">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame BackgroundColor="#1e293b" CornerRadius="10" Padding="10" Margin="0,0,0,10">
-                                <StackLayout>
+                            <Border BackgroundColor="#1e293b" Padding="10" Margin="0,0,0,10">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+                            <StackLayout>
                                     <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold"/>
                                     <Label Text="{Binding Email}" TextColor="LightGray"/>
-                                    <Label Text="{Binding IsAdmin, StringFormat='Role: {0}'}" TextColor="LightGray"/>
+                                    <Label Text="{Binding IsAdmin, StringFormat='Admin: {0}'}" TextColor="LightGray"/>
                                 </StackLayout>
-                            </Frame>
+                            </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
@@ -68,13 +81,16 @@
                 <CollectionView x:Name="ProductsList" IsVisible="False" Margin="0,10,0,0">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame BackgroundColor="#1e293b" CornerRadius="10" Padding="10" Margin="0,0,0,10">
-                                <StackLayout>
+                            <Border BackgroundColor="#1e293b" Padding="10" Margin="0,0,0,10">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+                            <StackLayout>
                                     <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold"/>
                                     <Label Text="{Binding Category}" TextColor="LightGray"/>
                                     <Label Text="{Binding StarterBid, StringFormat='Start Bid: {0:C}'}" TextColor="LightGray"/>
                                 </StackLayout>
-                            </Frame>
+                            </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
@@ -83,13 +99,16 @@
                 <CollectionView x:Name="BidsList" IsVisible="False" Margin="0,10,0,0">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame BackgroundColor="#1e293b" CornerRadius="10" Padding="10" Margin="0,0,0,10">
-                                <StackLayout>
+                            <Border BackgroundColor="#1e293b" Padding="10" Margin="0,0,0,10">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+                            <StackLayout>
                                     <Label Text="{Binding Id, StringFormat='Bid ID: {0}'}" TextColor="White" FontAttributes="Bold"/>
                                     <Label Text="{Binding Amount, StringFormat='Amount: {0:C}'}" TextColor="LightGray"/>
                                     <Label Text="{Binding CreatedAt, StringFormat='Date: {0}'}" TextColor="LightGray"/>
                                 </StackLayout>
-                            </Frame>
+                            </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

@@ -85,6 +85,31 @@ namespace licitAdminDashboard
             }
         }
 
+        private async void LogOutAdmin(object sender, EventArgs e)
+        {
+            try
+            {
+                var token = Preferences.Get("auth_token", string.Empty);
+                
+                if (!string.IsNullOrEmpty(token))
+                {
+                    _httpClient.DefaultRequestHeaders.Authorization = 
+                        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                    
+                    await _httpClient.PostAsync("admin/logout", null);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Logout error: {ex.Message}");
+            }
+            finally
+            {
+                Preferences.Remove("auth_token");
+                Application.Current.MainPage = new NavigationPage(new LoginPage());
+            }
+        }
+
         // =========================
         // TAB SWITCHING
         // =========================
