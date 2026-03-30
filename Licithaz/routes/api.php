@@ -26,6 +26,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/admin/users', [UserController::class, 'index'])
         ->middleware('can:viewAny,' . User::class);
+    Route::post('/admin/users/ban/{user}', [UserController::class, 'banUser'])
+        ->middleware('can:ban,user');
+    Route::post('/admin/users/unban/{user}', [UserController::class, 'unbanUser'])
+        ->middleware('can:unban,user');
 
 
     Route::post('/products', [ProductController::class, 'store'])
