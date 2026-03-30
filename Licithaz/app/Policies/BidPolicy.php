@@ -13,7 +13,7 @@ class BidPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class BidPolicy
      */
     public function view(User $user, Bid $bid): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class BidPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class BidPolicy
      */
     public function update(User $user, Bid $bid): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class BidPolicy
      */
     public function delete(User $user, Bid $bid): bool
     {
-        return false;
+        return (bool) $user->is_admin;
     }
 
     /**
@@ -53,7 +53,7 @@ class BidPolicy
      */
     public function restore(User $user, Bid $bid): bool
     {
-        return false;
+        return (bool) $user->is_admin;
     }
 
     /**
@@ -61,6 +61,6 @@ class BidPolicy
      */
     public function forceDelete(User $user, Bid $bid): bool
     {
-        return false;
+        return (bool) $user->is_admin;
     }
 }
