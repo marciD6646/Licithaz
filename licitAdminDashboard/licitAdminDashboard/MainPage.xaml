@@ -71,7 +71,21 @@
                                     <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold"/>
                                     <Label Text="{Binding Email}" TextColor="LightGray"/>
                                     <Label Text="{Binding IsAdmin, StringFormat='Admin: {0}'}" TextColor="LightGray"/>
+                                    <Label Text="{Binding IsBanned, StringFormat='Banned: {0}'}" TextColor="LightGray"/>
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Button Text="Ban"
+                                         CommandParameter="{Binding Id}"
+                                         BackgroundColor="Red"
+                                         Clicked="OnBanClicked"
+                                         TextColor="White"/>
+
+                                    <Button Text="Unban"
+                                         Clicked="OnUnbanClicked"
+                                         CommandParameter="{Binding Id}"
+                                         BackgroundColor="Green"
+                                         TextColor="White"/>
                                 </StackLayout>
+                            </StackLayout>
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

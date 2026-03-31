@@ -57,7 +57,16 @@ namespace licitAdminDashboard
         {
             try
             {
-                var users = await _httpClient.GetFromJsonAsync<List<User>>("users");
+                var token = Preferences.Get("auth_token", string.Empty);
+
+                if (!string.IsNullOrEmpty(token))
+                {
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                }
+
+                var users = await _httpClient.GetFromJsonAsync<List<User>>("admin/users");
+
                 if (users != null)
                 {
                     UsersList.ItemsSource = users;
@@ -109,6 +118,41 @@ namespace licitAdminDashboard
             {
                 Preferences.Remove("auth_token");
                 Application.Current.MainPage = new NavigationPage(new LoginPage());
+            }
+        }
+
+        private async void OnBanClicked(object sender, EventArgs e)
+        {
+
+
+            var button = sender as Button;
+            var userId = (int)button.CommandParameter;
+
+            try
+            {
+                await _httpClient.PostAsync($"admin/users/ban/{userId}", null); ;
+                LoadUsers(); 
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
+
+        private async void OnUnbanClicked(object sender, EventArgs e)
+        {
+
+            var button = sender as Button;
+            var userId = (int)button.CommandParameter;
+
+            try
+            {
+                await _httpClient.PostAsync($"admin/users/unban/{userId}", null);
+                LoadUsers(); 
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
             }
         }
 

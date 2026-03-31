@@ -10,5 +10,8 @@ namespace licitAdminDashboard.Models
 
         [JsonPropertyName("is_admin")]
         public bool IsAdmin { get; set; }
+
+        [JsonPropertyName("is_banned")]
+        public bool IsBanned { get; set; }
     }
 }
