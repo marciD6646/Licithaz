@@ -23,6 +23,8 @@ namespace licitAdminDashboard
 
             // Load data
             LoadProducts();
+            LoadUsers();
+            LoadBids();
 
             // Button events
             UsersBtn.Clicked += ShowUsers;
@@ -126,7 +128,7 @@ namespace licitAdminDashboard
             UsersList.IsVisible = true;
             BidsList.IsVisible = false;
 
-            LoadUsers();
+            
         }
 
         private void ShowBids(object sender, EventArgs e)
@@ -135,7 +137,7 @@ namespace licitAdminDashboard
             UsersList.IsVisible = false;
             BidsList.IsVisible = true;
 
-            LoadBids();
+           
         }
     }
 }
