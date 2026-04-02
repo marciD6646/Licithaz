@@ -25,7 +25,7 @@ class StoreProductRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'extended_description' => 'required|string',
-            'image_url' => 'required|url',
+            'image_url' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'bid_start_date' => 'required|date',
             'bid_end_date' => 'required|date|after_or_equal:bid_start_date',
             'category' => 'required|in:Electronics,Books,Clothing,House,Sports,Vehicles,Jewelry',

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -22,7 +23,16 @@ class ProductController extends Controller
     /* Store a newly created resource in storage.*/
     public function store(StoreProductRequest $request)
     {
-        Product::create($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('image_url')) {
+            $imagePath = $request->file('image_url')->store("products", "public");
+            $data['image_url'] = 'storage/' . $imagePath;
+        } else {
+            $data['image_url'] = null;
+        }
+
+        Product::create($data);
         return redirect()->route('products.index');
     }
     /* Display the specified resource. */
@@ -45,12 +55,32 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         $oldProduct = $product->name;
-        $product->update($request->all());
+        $data = $request->validated();
+
+        if ($request->hasFile('image_url')) {
+            // Delete old image if it's a stored file
+            if ($product->image_url && str_starts_with($product->image_url, 'storage/')) {
+                Storage::disk('public')->delete(
+                    str_replace('storage/', '', $product->image_url)
+                );
+            }
+
+            $imagePath = $request->file('image_url')->store("products", "public");
+            $data['image_url'] = 'storage/' . $imagePath;
+        }
+
+        $product->update($data);
         return redirect()->route('products.index')->with('success', "Product $oldProduct updated successfully.");
     }
     /* Remove the specified resource from storage.*/
     public function destroy(Product $product)
     {
+        if ($product->image_url && str_starts_with($product->image_url, 'storage/')) {
+            Storage::disk('public')->delete(
+                str_replace('storage/', '', $product->image_url)
+            );
+        }
+
         $product->delete();
         return redirect()->route('products.index')->with('success', "Product $product->name deleted successfully.");
     }

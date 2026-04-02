@@ -16,7 +16,7 @@
         @endif
 
         <!-- Edit Product Form -->
-        <form method="POST" action="{{ route('products.update', $product) }}">
+        <form method="POST" action="{{ route('products.update', $product) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -32,7 +32,8 @@
 
             <div style="margin-bottom:0.5rem;">
                 <label>Starter Bid:</label>
-                <input type="number" name="starter_bid" value="{{ $product->starter_bid }}" min="0" step="0.01" required>
+                <input type="number" name="starter_bid" value="{{ $product->starter_bid }}" min="0" step="0.01"
+                    required>
             </div>
 
             <div style="margin-bottom:0.5rem;">
@@ -58,8 +59,9 @@
             </div>
 
             <div style="margin-bottom:0.5rem;">
-                <label>Image URL:</label>
-                <input type="text" name="image_url" value="{{ $product->image_url }}" required>
+                <label>Image:</label>
+                <input type="file" name="image_url" accept="image/*">
+                <small>Leave empty to keep current image.</small>
             </div>
 
             <button type="submit" style="margin-top:1rem;">Update Product</button>

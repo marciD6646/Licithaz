@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Welcome')
+
+
 @section('content')
     <main class="main-content">
         <section id="welcome-section" class="welcome-section">

@@ -14,7 +14,8 @@
             </div>
         @endif
 
-        <form action="{{ route('products.store') }}" method="POST" id="CreateForm" class="main-form">
+        <form action="{{ route('products.store') }}" method="POST" id="CreateForm" class="main-form"
+            enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
@@ -26,7 +27,8 @@
                 <label class="form-label">Category</label>
                 <select name="category" required class="form-input">
                     <option value="">Choose category</option>
-                    <option value="Electronics" {{ old('category') === 'Electronics' ? 'selected' : '' }}>Electronics</option>
+                    <option value="Electronics" {{ old('category') === 'Electronics' ? 'selected' : '' }}>Electronics
+                    </option>
                     <option value="Books" {{ old('category') === 'Books' ? 'selected' : '' }}>Books</option>
                     <option value="Clothing" {{ old('category') === 'Clothing' ? 'selected' : '' }}>Clothing</option>
                     <option value="House" {{ old('category') === 'House' ? 'selected' : '' }}>House</option>
@@ -43,13 +45,13 @@
 
             <div class="form-group">
                 <label class="form-label">Extended Description</label>
-                <textarea name="extended_description" rows="5" required
-                    class="form-input">{{ old('extended_description') }}</textarea>
+                <textarea name="extended_description" rows="5" required class="form-input">{{ old('extended_description') }}</textarea>
             </div>
 
             <div class="form-group">
                 <label class="form-label">Image URL</label>
-                <input type="url" name="image_url" value="{{ old('image_url') }}" required class="form-input">
+                <input type="file" name="image_url" value="{{ old('image_url') }}" required class="form-input"
+                    accept="image/*">
             </div>
 
             <div class="form-row">

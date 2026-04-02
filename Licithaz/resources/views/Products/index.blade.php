@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Products - Licit Auction')
+
 @section('content')
     <div class="products-container">
         <div class="products-header">
