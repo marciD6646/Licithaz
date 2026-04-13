@@ -34,7 +34,13 @@
                             <td>{{ $user->is_admin ? 'Admin' : 'User' }}</td>
                             <td class="actions-cell">
                                 <button class="btn-edit">Edit</button>
-                                <button class="btn-delete">Delete</button>
+                                <!-- BAN / UNBAN -->
+                                <form action="{{ route('users.toggleBan', $user) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="submit" class="btn-ban">
+                                        {{ $user->is_banned ? 'Unban' : 'Ban' }}
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -66,15 +72,19 @@
                             <td>${{ number_format($product->starter_bid) }}</td>
                             <td>{{ $product->bid_start_date }}</td>
                             <td>{{ $product->bid_end_date }}</td>
-                            <td class="actions-cell"> <a href="{{ route('products.edit', $product) }}" class="btn-edit">Edit</a>
+                            <td class="actions-cell">
+                                <a href="{{ route('products.edit', $product) }}" class="btn-edit">Edit</a>
                                 <form action="{{ route('products.destroy', $product) }}" method="POST" style="display:inline;">
-                                    @csrf @method('DELETE') <button type="submit" class="btn-delete">Delete</button> </form>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-delete">Delete</button>
+                                </form>
                             </td>
-                    </tr> @endforeach
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
-    </div>
     </div>
 
     <script>

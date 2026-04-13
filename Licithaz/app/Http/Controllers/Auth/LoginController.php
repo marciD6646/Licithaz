@@ -26,6 +26,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+
     /**
      * Create a new controller instance.
      *
@@ -35,5 +36,19 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
+    }
+
+    /**
+     * Block banned users after login
+     */
+    protected function authenticated($request, $user)
+    {
+        if ($user->is_banned) {
+            auth()->logout();
+
+            return redirect()->back()->withErrors([
+                'email' => 'Your account is banned.',
+            ]);
+        }
     }
 }
