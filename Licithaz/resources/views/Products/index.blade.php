@@ -26,6 +26,10 @@
                                 Starting bid: {{ $product->starter_bid }}
                             </span>
                         </div>
+                        <div>
+                            <img src="{{ !empty($product->image_url) ? asset($product->image_url) : asset('images/1.jpg') }}"
+                                onerror="this.onerror=null;this.src='{{ asset('images/1.jpg') }}';" alt="Image">
+                        </div>
                         <div class="product-description">
                             <p>Description: {{ $product->description }}</p>
                         </div>
