@@ -6,8 +6,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController;
-
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,6 +28,3 @@ Route::resource('products', ProductController::class);
 Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-Route::patch('/users/{user}/toggle-ban', [UserController::class, 'toggleBan'])
-    ->name('users.toggleBan');
