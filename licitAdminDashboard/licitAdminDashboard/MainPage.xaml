@@ -53,10 +53,145 @@
 
                 <!-- Tabs -->
                 <HorizontalStackLayout Spacing="15" Margin="0,20,0,0">
-                    <Button Text="Users" x:Name="UsersBtn" BackgroundColor="#3b82f6" TextColor="White"/>
-                    <Button Text="Products" x:Name="ProductsBtn" BackgroundColor="#10b981" TextColor="White"/>
-                    <Button Text="Bids" x:Name="BidsBtn" BackgroundColor="#f59e0b" TextColor="White"/>
-                    <Button Text="Logout" x:Name="LogoutBtn" Background="Red" TextColor="White" Clicked="LogOutAdmin"/>
+
+                <Button Text="Users"
+        BackgroundColor="#3b82f6"
+        TextColor="White"
+                    x:Name="UsersBtn">
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#3b82f6"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#2563eb"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#1d4ed8"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
+
+                <Button Text="Products"
+                         BackgroundColor="#10b981"
+                         TextColor="White"
+                         x:Name="ProductsBtn">
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+
+                            <VisualStateGroup Name="CommonStates">
+
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#10b981"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#059669"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#047857"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
+
+                <Button Text="Bids"
+                     BackgroundColor="#f59e0b"
+                     TextColor="White"
+                     x:Name="BidsBtn">
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+
+                            <VisualStateGroup Name="CommonStates">
+
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#f59e0b"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#d97706"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#b45309"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
+
+
+                <Button Text="Logout"
+                     BackgroundColor="#ef4444"
+                     TextColor="White"
+                     x:Name="LogoutBtn"
+                     Clicked="LogOutAdmin">
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+
+                            <VisualStateGroup Name="CommonStates">
+
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#ef4444"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#dc2626"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#b91c1c"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
+
+
             </HorizontalStackLayout>
 
                 <!-- Users list -->
@@ -74,16 +209,75 @@
                                     <Label Text="{Binding IsBanned, StringFormat='Banned: {0}'}" TextColor="LightGray"/>
                                 <StackLayout Orientation="Horizontal" Spacing="10">
                                     <Button Text="Ban"
-                                         CommandParameter="{Binding Id}"
-                                         BackgroundColor="Red"
-                                         Clicked="OnBanClicked"
-                                         TextColor="White"/>
+                                        CommandParameter="{Binding Id}"
+                                        TextColor="White"
+                                        x:Name="BanBtn"
+                                        Clicked="OnBanClicked">
+                                        
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroupList>
+
+                                                <VisualStateGroup Name="CommonStates">
+
+                                                    <VisualState Name="Normal">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#ef4444"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                    <VisualState Name="PointerOver">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#dc2626"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                    <VisualState Name="Pressed">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#b91c1c"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                </VisualStateGroup>
+
+                                            </VisualStateGroupList>
+                                        </VisualStateManager.VisualStateGroups>
+                                    </Button>
 
                                     <Button Text="Unban"
-                                         Clicked="OnUnbanClicked"
-                                         CommandParameter="{Binding Id}"
-                                         BackgroundColor="Green"
-                                         TextColor="White"/>
+                                        CommandParameter="{Binding Id}"
+                                        TextColor="White"
+                                        x:Name="UnbanBtn"
+                                        Clicked="OnUnbanClicked">
+
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroupList>
+
+                                                <VisualStateGroup Name="CommonStates">
+
+                                                    <VisualState Name="Normal">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#22c55e"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                    <VisualState Name="PointerOver">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#16a34a"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                    <VisualState Name="Pressed">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#15803d"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                </VisualStateGroup>
+
+                                            </VisualStateGroupList>
+                                        </VisualStateManager.VisualStateGroups>
+                                    </Button>
+
                                 </StackLayout>
                             </StackLayout>
                             </Border>

@@ -23,9 +23,39 @@
                PlaceholderColor="Gray"/>
 
         <Button Text="Login"
-                BackgroundColor="#3b82f6"
-                TextColor="White"
-                Clicked="OnLoginClicked"/>
+        TextColor="White"
+        Clicked="OnLoginClicked"
+        x:Name="LoginBtn">
+
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroupList>
+
+                    <VisualStateGroup Name="CommonStates">
+
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#3b82f6"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#2563eb"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#1d4ed8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                    </VisualStateGroup>
+
+                </VisualStateGroupList>
+            </VisualStateManager.VisualStateGroups>
+
+        </Button>
 
         <Label x:Name="ErrorLabel"
                TextColor="Red"
