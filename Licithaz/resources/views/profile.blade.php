@@ -32,9 +32,15 @@
                             <div class="bid-item">
                                 <div class="bid-info">
                                     <p class="info-label">Product</p>
-                                    <a href="{{ route('products.show', $bid->product) }}" class="product-name">
-                                        {{ $bid->product->name }}
-                                    </a>
+                                    @if ($bid->product && !$bid->product->trashed())
+                                        <a href="{{ route('products.show', $bid->product) }}" class="product-name">
+                                            {{ $bid->product->name }}
+                                        </a>
+                                    @elseif ($bid->product)
+                                        <span class="product-name">{{ $bid->product->name }} (deleted)</span>
+                                    @else
+                                        <span class="product-name">Deleted product</span>
+                                    @endif
                                     <p class="bid-date">Placed at {{ $bid->created_at->format('Y-m-d H:i') }}</p>
                                 </div>
                                 <div class="bid-amount-section">

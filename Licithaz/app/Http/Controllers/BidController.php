@@ -3,29 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBidRequest;
-use App\Http\Requests\UpdateBidRequest;
-use App\Models\Bid;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 
 class BidController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -39,37 +21,5 @@ class BidController extends Controller
         return redirect()
             ->route('products.show', $product)
             ->with('status', 'Bid placed successfully: ' . number_format($bid->amount) . ' Ft.');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Bid $bid)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Bid $bid)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateBidRequest $request, Bid $bid)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Bid $bid)
-    {
-        //
     }
 }
