@@ -31,6 +31,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/admin/users/unban/{user}', [UserController::class, 'unbanUser'])
         ->middleware('can:unban,user');
 
+    Route::get('/admin/users/{user}/bids', [BidController::class, 'userBids'])
+    ->middleware('auth:sanctum');    
+
 
     Route::post('/products', [ProductController::class, 'store'])
         ->middleware('can:create,' . Product::class);

@@ -13,4 +13,8 @@ class BidController extends Controller
         $bids = Bid::orderBy('id', 'desc')->get();
         return response()->json($bids);
     }
+    public function userBids($userId)
+{
+    return \App\Models\Bid::where('user_id', $userId)->get();
+}
 }

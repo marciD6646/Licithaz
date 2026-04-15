@@ -8,8 +8,10 @@ using licitAdminDashboard.Models;
 namespace licitAdminDashboard
 {
     public partial class MainPage : ContentPage
+
     {
         private readonly HttpClient _httpClient;
+        public Command<int> UserDoubleTappedCommand { get; }
 
         public MainPage()
         {
@@ -17,16 +19,20 @@ namespace licitAdminDashboard
 
             _httpClient = new HttpClient
             {
-                // ⚠️ CHANGE THIS depending on your setup
                 BaseAddress = new Uri("http://127.0.0.1:8000/api/")
             };
 
-            // Load data
+            UserDoubleTappedCommand = new Command<int>(async (userId) =>
+            {
+                await LoadUserBids(userId);
+            });
+
+            BindingContext = this;
+
             LoadProducts();
             LoadUsers();
             LoadBids();
 
-            // Button events
             UsersBtn.Clicked += ShowUsers;
             ProductsBtn.Clicked += ShowProducts;
             BidsBtn.Clicked += ShowBids;
@@ -95,7 +101,26 @@ namespace licitAdminDashboard
                 await DisplayAlert("Error loading bids", ex.Message, "OK");
             }
         }
+        private async Task LoadUserBids(int userId)
+        {
+            try
+            {
+                var bids = await _httpClient.GetFromJsonAsync<List<Bid>>($"admin/users/{userId}/bids");
 
+                if (bids != null)
+                {
+                    // opció 1: megjeleníted a meglévő BidsList-ben
+                    BidsList.ItemsSource = bids;
+
+                    // átváltasz a bids tabra
+                    ShowBids(null, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error loading user bids", ex.Message, "OK");
+            }
+        }
         private async void LogOutAdmin(object sender, EventArgs e)
         {
             try
