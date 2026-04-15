@@ -107,14 +107,15 @@ namespace licitAdminDashboard
             {
                 var bids = await _httpClient.GetFromJsonAsync<List<Bid>>($"admin/users/{userId}/bids");
 
-                if (bids != null)
+                if (bids == null || bids.Count == 0)
                 {
-                    // opció 1: megjeleníted a meglévő BidsList-ben
-                    BidsList.ItemsSource = bids;
-
-                    // átváltasz a bids tabra
-                    ShowBids(null, null);
+                    await DisplayAlert("Info", "Ez a felhasználó még nem licitált semmire.", "OK");
+                    return;
                 }
+
+                UserBidsList.ItemsSource = bids;
+
+                ShowUserBids(); // 🔥 EZ A LÉNYEG
             }
             catch (Exception ex)
             {
@@ -189,6 +190,7 @@ namespace licitAdminDashboard
             ProductsList.IsVisible = true;
             UsersList.IsVisible = false;
             BidsList.IsVisible = false;
+            UserBidsList.IsVisible = false;
         }
 
         private void ShowUsers(object sender, EventArgs e)
@@ -196,8 +198,9 @@ namespace licitAdminDashboard
             ProductsList.IsVisible = false;
             UsersList.IsVisible = true;
             BidsList.IsVisible = false;
+            UserBidsList.IsVisible = false;
 
-            
+
         }
 
         private void ShowBids(object sender, EventArgs e)
@@ -205,8 +208,16 @@ namespace licitAdminDashboard
             ProductsList.IsVisible = false;
             UsersList.IsVisible = false;
             BidsList.IsVisible = true;
+            UserBidsList.IsVisible = false;
 
-           
+
+        }
+        private void ShowUserBids()
+        {
+            ProductsList.IsVisible = false;
+            UsersList.IsVisible = false;
+            BidsList.IsVisible = false;
+            UserBidsList.IsVisible = true;
         }
     }
 }
