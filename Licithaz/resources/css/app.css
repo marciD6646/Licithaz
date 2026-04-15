@@ -593,7 +593,7 @@
 }
 
 .bid-button {
-    @apply rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-600;
+    @apply rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-600 cursor-pointer transition-colors;
 }
 
 .bid-input-group {
@@ -659,6 +659,7 @@
 .bid-amount {
     @apply text-sm font-semibold text-emerald-700;
 }
+
 
 /*        */
 /*  edit  */

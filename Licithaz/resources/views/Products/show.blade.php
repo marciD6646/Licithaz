@@ -48,8 +48,8 @@
                                     @csrf
                                     <button type="submit" class="bid-button">Place Bid</button>
                                     <div class="bid-input-group">
-                                        <input type="number" id="amount" name="amount" min="{{ $minimumBid }}"
-                                            step="1000" value="{{ old('amount', $minimumBid) }}" class="bid-input">
+                                        <input type="number" id="amount" name="amount" min="{{ $minimumBid }}" step="1000"
+                                            value="{{ old('amount', $minimumBid) }}" class="bid-input">
                                         <span class="input-suffix">Ft</span>
                                     </div>
                                     <p class="minimum-notice">Minimum: {{ number_format($minimumBid) }} Ft</p>

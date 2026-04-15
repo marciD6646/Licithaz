@@ -14,8 +14,6 @@
                 <p class="user-name">Name: {{ $user->name }}</p>
                 <p class="user-email">Email: {{ $user->email }}</p>
                 <p class="user-bids">Placed bids: {{ $user->bids->count() }}</p>
-                <a href="" class="profile-btn balance-btn">Add Balance</a>
-                <a href="#my-bids" class="profile-btn bids-btn">View Bids</a>
             </div>
 
             <div id="my-bids" class="profile-card bids-card">
