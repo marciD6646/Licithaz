@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -7,6 +7,7 @@ using licitAdminDashboard.Models;
 
 namespace licitAdminDashboard
 {
+
     public partial class MainPage : ContentPage
 
     {
@@ -187,6 +188,7 @@ namespace licitAdminDashboard
         // =========================
         private void ShowProducts(object sender, EventArgs e)
         {
+            AddProductbtn.IsVisible = true;
             ProductsList.IsVisible = true;
             UsersList.IsVisible = false;
             BidsList.IsVisible = false;
@@ -195,6 +197,7 @@ namespace licitAdminDashboard
 
         private void ShowUsers(object sender, EventArgs e)
         {
+            AddProductbtn.IsVisible = false;
             ProductsList.IsVisible = false;
             UsersList.IsVisible = true;
             BidsList.IsVisible = false;
@@ -205,6 +208,7 @@ namespace licitAdminDashboard
 
         private void ShowBids(object sender, EventArgs e)
         {
+            AddProductbtn.IsVisible = false;
             ProductsList.IsVisible = false;
             UsersList.IsVisible = false;
             BidsList.IsVisible = true;
@@ -214,10 +218,15 @@ namespace licitAdminDashboard
         }
         private void ShowUserBids()
         {
+            AddProductbtn.IsVisible = false;
             ProductsList.IsVisible = false;
             UsersList.IsVisible = false;
             BidsList.IsVisible = false;
             UserBidsList.IsVisible = true;
+        }
+        private async void OpenNewProductPage(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NewProduct());
         }
     }
 }

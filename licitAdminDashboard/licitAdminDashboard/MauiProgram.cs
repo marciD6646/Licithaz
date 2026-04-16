@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 
 namespace licitAdminDashboard
 {
@@ -22,4 +22,5 @@ namespace licitAdminDashboard
             return builder.Build();
         }
     }
+
 }
