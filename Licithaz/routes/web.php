@@ -51,6 +51,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])
         ->middleware('can:delete,product')
         ->name('products.destroy');
+
+    Route::post('/products/{id}/restore', [ProductController::class, 'restore'])
+        ->name('products.restore');
+
+    Route::delete('/products/{id}/force-delete', [ProductController::class, 'forceDelete'])
+        ->name('products.forceDelete');
 });
 
 Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');

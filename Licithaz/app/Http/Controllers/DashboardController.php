@@ -15,6 +15,8 @@ class DashboardController extends Controller
     {
         $users = User::all();
         $products = Product::all();
-        return view('dashboard', compact('users', 'products'));
+        $trashedProducts = Product::onlyTrashed()->orderByDesc('deleted_at')->get();
+
+        return view('dashboard', compact('users', 'products', 'trashedProducts'));
     }
 }

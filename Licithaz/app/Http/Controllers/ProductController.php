@@ -85,5 +85,31 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', "Product $product->name deleted successfully.");
     }
 
-    //TODO Restore
+    public function restore(int $id)
+    {
+        $product = Product::withTrashed()->findOrFail($id);
+        $this->authorize('restore', $product);
+        $product->restore();
+        return redirect()->route('products.index')->with('success', "Product $product->name restored successfully.");
+    }
+
+    public function forceDelete(int $id)
+    {
+        $product = Product::onlyTrashed()->findOrFail($id);
+        $this->authorize('forceDelete', $product);
+
+        $imagePath = null;
+        if ($product->image_url && str_starts_with($product->image_url, 'storage/')) {
+            $imagePath = str_replace('storage/', '', $product->image_url);
+        }
+
+        $product->bids()->delete();
+        $product->forceDelete();
+
+        if ($imagePath) {
+            Storage::disk('public')->delete($imagePath);
+        }
+
+        return redirect()->route('products.index')->with('success', "Product $product->name permanently deleted.");
+    }
 }
