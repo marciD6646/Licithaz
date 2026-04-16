@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace licitAdminDashboard
 {
@@ -8,9 +8,6 @@ namespace licitAdminDashboard
         {
             InitializeComponent();
             MainPage = new NavigationPage(new LoginPage());
-
         }
-
-       
     }
 }

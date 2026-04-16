@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="licitAdminDashboard.NewProduct"
+             Title="Add New Product"
+             BackgroundColor="#0f172a">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Add New Product"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center" />
+
+            <Entry Placeholder="Product Name"
+                   TextColor="White"
+                   PlaceholderColor="Gray"
+                   BackgroundColor="#1e293b"
+                   x:Name="NameEntry"/>
+
+            <Picker Title="Select Category"
+                    TextColor="White"
+                    BackgroundColor="#1e293b"
+                    x:Name="CategoryPicker">
+                <Picker.Items>
+                    <x:String>Electronics</x:String>
+                    <x:String>Books</x:String>
+                    <x:String>Clothing</x:String>
+                    <x:String>House</x:String>
+                    <x:String>Sports</x:String>
+                    <x:String>Vehicles</x:String>
+                    <x:String>Jewelry</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Editor Placeholder="Short Description"
+                    TextColor="White"
+                    PlaceholderColor="Gray"
+                    BackgroundColor="#1e293b"
+                    HeightRequest="80"
+                    x:Name="DescriptionEditor"/>
+
+            <Editor Placeholder="Extended Description"
+                    TextColor="White"
+                    PlaceholderColor="Gray"
+                    BackgroundColor="#1e293b"
+                    HeightRequest="120"
+                    x:Name="ExtendedDescriptionEditor"/>
+
+            <Entry Placeholder="Image URL or File Path"
+                   TextColor="White"
+                   PlaceholderColor="Gray"
+                   BackgroundColor="#1e293b"
+                   x:Name="ImageEntry"/>
+
+            <Entry Placeholder="Starter Bid"
+                   Keyboard="Numeric"
+                   TextColor="White"
+                   PlaceholderColor="Gray"
+                   BackgroundColor="#1e293b"
+                   x:Name="StarterBidEntry"/>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+
+                <DatePicker x:Name="StartDatePicker"
+                            TextColor="White"
+                            BackgroundColor="#1e293b"/>
+
+                <DatePicker x:Name="EndDatePicker"
+                            TextColor="White"
+                            BackgroundColor="#1e293b"
+                            Grid.Column="1"/>
+            </Grid>
+
+            <Button Text="Add Product"
+                    BackgroundColor="#C9B05B"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    Clicked="OnSubmitProductClicked"
+                    CornerRadius="10"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

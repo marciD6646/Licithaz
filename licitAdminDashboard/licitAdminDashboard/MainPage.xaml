@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="licitAdminDashboard.MainPage"
@@ -107,7 +107,7 @@
                                         <Setter Property="BackgroundColor" Value="#1d4ed8"/>
                                     </VisualState.Setters>
                                 </VisualState>
-
+                                
                             </VisualStateGroup>
 
                         </VisualStateGroupList>
@@ -227,7 +227,7 @@
                     <DataTemplate>
                         <Border BackgroundColor="#1e293b" Padding="10" Margin="0,0,0,10">
 
-                            <!-- 🔥 DOUBLE CLICK -->
+                           
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer
                         NumberOfTapsRequired="2"
@@ -325,6 +325,37 @@
             </CollectionView>
 
             <!-- Products list -->
+            <Button Text="Add Product" IsVisible="False" x:Name="AddProductbtn" TextColor="White"
+                    BackgroundColor="#C9B05B" Padding="10" Margin="0,10,0,0" WidthRequest="200" Clicked="OpenNewProductPage">
+
+                <VisualStateManager.VisualStateGroups>
+                <VisualStateGroupList>
+
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#C9B05B"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#8C6E38"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#725423"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                    </VisualStateGroup>
+
+                </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
+                
                 <CollectionView x:Name="ProductsList" IsVisible="False" Margin="0,10,0,0">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
