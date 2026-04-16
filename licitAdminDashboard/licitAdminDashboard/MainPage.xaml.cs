@@ -116,7 +116,7 @@ namespace licitAdminDashboard
 
                 UserBidsList.ItemsSource = bids;
 
-                ShowUserBids(); // 🔥 EZ A LÉNYEG
+                ShowUserBids(); 
             }
             catch (Exception ex)
             {

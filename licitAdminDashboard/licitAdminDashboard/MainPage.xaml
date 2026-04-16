@@ -227,7 +227,7 @@
                     <DataTemplate>
                         <Border BackgroundColor="#1e293b" Padding="10" Margin="0,0,0,10">
 
-                            <!-- 🔥 DOUBLE CLICK -->
+                           
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer
                         NumberOfTapsRequired="2"

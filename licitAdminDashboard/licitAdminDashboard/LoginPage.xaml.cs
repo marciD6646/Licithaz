@@ -3,8 +3,8 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Microsoft.Maui.Controls; // MAUI elemek
-using Microsoft.Maui.Storage; // Preferences
+using Microsoft.Maui.Controls; 
+using Microsoft.Maui.Storage; 
 
 namespace licitAdminDashboard
 {
@@ -47,15 +47,14 @@ namespace licitAdminDashboard
                 {
                     var result = JsonSerializer.Deserialize<LoginResponse>(responseContent);
 
-                    // TOKEN mentése
+                   
                     Preferences.Set("auth_token", result.token);
 
-                    // Dashboard oldal megnyitása
+                    
                     Application.Current.MainPage = new NavigationPage(new MainPage());
                 }
                 else
                 {
-                    // Laravel hibás login üzenet kiírása
                     ErrorLabel.Text = responseContent;
                     ErrorLabel.IsVisible = true;
                 }
@@ -67,8 +66,6 @@ namespace licitAdminDashboard
             }
         }
     }
-
-    // LOGIN RESPONSE MODEL
     public class LoginResponse
     {
         public string token { get; set; }

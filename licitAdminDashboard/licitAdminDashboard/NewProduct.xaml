@@ -8,21 +8,18 @@
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 
-            <!-- Title -->
             <Label Text="Add New Product"
                    FontSize="28"
                    FontAttributes="Bold"
                    TextColor="White"
                    HorizontalOptions="Center" />
 
-            <!-- Product Name -->
             <Entry Placeholder="Product Name"
                    TextColor="White"
                    PlaceholderColor="Gray"
                    BackgroundColor="#1e293b"
                    x:Name="NameEntry"/>
 
-            <!-- Category -->
             <Picker Title="Select Category"
                     TextColor="White"
                     BackgroundColor="#1e293b"
@@ -38,7 +35,6 @@
                 </Picker.Items>
             </Picker>
 
-            <!-- Short Description -->
             <Editor Placeholder="Short Description"
                     TextColor="White"
                     PlaceholderColor="Gray"
@@ -46,7 +42,6 @@
                     HeightRequest="80"
                     x:Name="DescriptionEditor"/>
 
-            <!-- Extended Description -->
             <Editor Placeholder="Extended Description"
                     TextColor="White"
                     PlaceholderColor="Gray"
@@ -54,14 +49,12 @@
                     HeightRequest="120"
                     x:Name="ExtendedDescriptionEditor"/>
 
-            <!-- Image -->
             <Entry Placeholder="Image URL or File Path"
                    TextColor="White"
                    PlaceholderColor="Gray"
                    BackgroundColor="#1e293b"
                    x:Name="ImageEntry"/>
 
-            <!-- Starter Bid -->
             <Entry Placeholder="Starter Bid"
                    Keyboard="Numeric"
                    TextColor="White"
@@ -69,7 +62,6 @@
                    BackgroundColor="#1e293b"
                    x:Name="StarterBidEntry"/>
 
-            <!-- Dates -->
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
 
                 <DatePicker x:Name="StartDatePicker"
@@ -82,7 +74,6 @@
                             Grid.Column="1"/>
             </Grid>
 
-            <!-- Submit Button -->
             <Button Text="Add Product"
                     BackgroundColor="#C9B05B"
                     TextColor="White"
