@@ -12,7 +12,7 @@ class ProductController extends Controller
     /* Display a listing of the resource.*/
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(18);
         return view('products.index', ['products' => $products]);
     }
     /* Show the form for creating a new resource.*/

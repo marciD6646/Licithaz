@@ -41,6 +41,9 @@
                     </div>
                 @endforeach
             </div>
-        @endif
+            <div class="pagination-wrapper">
+                {{ $products->links() }}
+            </div>
+            @endif
     </div>
 @endsection

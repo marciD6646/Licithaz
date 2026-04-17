@@ -855,3 +855,48 @@
 .LoginButton {
     @apply font-semibold text-slate-900 hover:text-slate-700;
 }
+
+.pagination-wrapper {
+    @apply mt-10 flex justify-center;
+}
+
+.pagination-wrapper nav {
+    @apply flex items-center gap-2 
+           px-5 py-3 rounded-full
+           bg-white/60 backdrop-blur-xl
+           shadow-lg border border-slate-200
+        
+           dark:bg-slate-800/70 
+           dark:border-slate-700
+           dark:shadow-black/30;
+}
+
+.pagination-wrapper span,
+.pagination-wrapper a {
+    @apply px-4 py-2 rounded-full text-sm font-medium
+           transition-all duration-200 ease-in-out;
+}
+
+.pagination-wrapper a {
+    @apply bg-slate-100 text-slate-600
+           hover:bg-slate-700 hover:text-white
+           
+           dark:bg-slate-700/60 
+           dark:text-slate-200
+           dark:hover:bg-slate-300
+           dark:hover:text-slate-900
+
+           shadow-sm hover:shadow-md
+           hover:-translate-y-0.5;
+}
+
+.pagination-wrapper .active span {
+    @apply bg-slate-900 text-white
+           dark:bg-slate-100 dark:text-slate-900
+           shadow-md;
+}
+
+.pagination-wrapper span[aria-disabled="true"] {
+    @apply text-slate-400 cursor-not-allowed
+           dark:text-slate-500;
+}
