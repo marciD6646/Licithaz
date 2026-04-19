@@ -32,8 +32,7 @@
 
             <div style="margin-bottom:0.5rem;">
                 <label>Starter Bid:</label>
-                <input type="number" name="starter_bid" value="{{ $product->starter_bid }}" min="0" step="0.01"
-                    required>
+                <input type="number" name="starter_bid" value="{{ $product->starter_bid }}" min="0" step="0.01" required>
             </div>
 
             <div style="margin-bottom:0.5rem;">
@@ -64,7 +63,7 @@
                 <small>Leave empty to keep current image.</small>
             </div>
 
-            <button type="submit" style="margin-top:1rem;">Update Product</button>
+            <button type="submit" class="btn-update">Update Product</button>
         </form>
     </div>
 @endsection

@@ -34,7 +34,9 @@
                             <td>{{ $user->email_verified_at }}</td>
                             <td>{{ $user->is_admin ? 'Admin' : 'User' }}</td>
                             <td class="actions-cell">
-                                <button class="btn-edit">Edit</button>
+                                <a href="{{ route('users.edit', $user) }}" class="btn-edit">
+                                    Edit
+                                </a>
                                 <!-- BAN / UNBAN -->
                                 <form action="{{ route('users.toggleBan', $user) }}" method="POST" style="display:inline;">
                                     @csrf
@@ -75,8 +77,7 @@
                             <td>{{ $product->bid_end_date }}</td>
                             <td class="actions-cell">
                                 <a href="{{ route('products.edit', $product) }}" class="btn-edit">Edit</a>
-                                <form action="{{ route('products.destroy', $product) }}" method="POST"
-                                    style="display:inline;">
+                                <form action="{{ route('products.destroy', $product) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn-delete">Delete</button>

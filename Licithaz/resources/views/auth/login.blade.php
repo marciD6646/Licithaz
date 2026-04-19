@@ -42,14 +42,6 @@
                     @enderror
                 </div>
 
-                <div class="checkbox-row">
-                    <input class="checkbox" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                    <label class="checkbox-label" for="remember">
-                        {{ __('Remember Me') }}
-                    </label>
-                </div>
-
                 <div class="button-group">
                     <button type="submit" class="login-button">
                         {{ __('Login') }}

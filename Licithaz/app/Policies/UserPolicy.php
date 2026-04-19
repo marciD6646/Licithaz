@@ -27,4 +27,8 @@ class UserPolicy
             && $user->id !== $targetUser->id
             && !$targetUser->is_admin;
     }
+    public function update(User $user, User $targetUser): bool
+    {
+        return $user->is_admin;
+    }
 }

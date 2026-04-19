@@ -17,8 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('/profile', [ProfileController::class, 'show'])
     ->middleware('auth')
     ->name('profile');
@@ -32,6 +30,7 @@ Route::resource('products', ProductController::class)
     ->whereNumber('product');
 
 Route::middleware('auth')->group(function () {
+
     Route::get('/products/create', [ProductController::class, 'create'])
         ->middleware('can:create,' . Product::class)
         ->name('products.create');
@@ -68,3 +67,16 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 Route::post('/users/{user}/toggle-ban', [UserController::class, 'toggleBan'])
     ->middleware(['auth', 'can:ban,user'])
     ->name('users.toggleBan');
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])
+        ->name('users.edit');
+
+    Route::put('/users/{user}', [UserController::class, 'update'])
+        ->name('users.update');
+});
+
+Route::get('/payment', function () {
+    return view('payment');
+});
