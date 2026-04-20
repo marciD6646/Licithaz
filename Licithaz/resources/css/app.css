@@ -916,6 +916,7 @@
     @apply mt-10 flex justify-center;
 }
 
+
 .pagination-wrapper nav {
     @apply flex items-center gap-2 
            px-5 py-3 rounded-full
@@ -997,4 +998,168 @@
 
 .Payment-button{
     @apply w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-full shadow-lg transition-colors cursor-pointer;
+}
+
+
+.profile-page {
+    @apply max-w-5xl mx-auto px-6 py-10;
+}
+
+.alert-success {
+    @apply mb-6 p-4 rounded-xl bg-green-100 text-green-700;
+}
+
+/* HEADER */
+.profile-header {
+    @apply flex items-center gap-6 mb-10;
+}
+
+.profile-avatar {
+    @apply w-16 h-16 rounded-full bg-indigo-600 text-white flex items-center justify-center text-2xl font-bold shadow;
+}
+
+.profile-meta h1 {
+    @apply text-2xl font-semibold;
+}
+
+.profile-meta p {
+    @apply text-gray-500;
+}
+
+.profile-stats {
+    @apply flex gap-6 mt-3;
+}
+
+.stat span {
+    @apply font-bold text-lg;
+}
+
+.stat p {
+    @apply text-sm text-gray-500;
+}
+
+/* CARD */
+.card {
+    @apply bg-white shadow-md rounded-2xl p-6;
+}
+
+.card-header h2 {
+    @apply text-xl font-semibold;
+}
+
+.card-header p {
+    @apply text-gray-500 text-sm mb-4;
+}
+
+/* EMPTY */
+.empty-state {
+    @apply text-center text-gray-400 py-10;
+}
+
+/* BIDS */
+.bid-list {
+    @apply space-y-4;
+}
+
+.bid-card {
+    @apply flex justify-between items-center p-4 rounded-xl border hover:shadow transition;
+}
+
+.bid-left {
+    @apply flex flex-col;
+}
+
+.product-link {
+    @apply font-medium text-indigo-600 hover:underline;
+}
+
+.product-deleted {
+    @apply text-gray-400;
+}
+
+.bid-date {
+    @apply text-sm text-gray-400;
+}
+
+.bid-right {
+    @apply text-right;
+}
+
+.bid-price {
+    @apply text-lg font-semibold text-green-600;
+}
+
+
+
+.profile-layout {
+    @apply max-w-6xl mx-auto flex gap-8 px-6 py-10;
+}
+
+/* SIDEBAR */
+.sidebar {
+    @apply w-60 flex flex-col gap-2;
+}
+
+.sidebar-item {
+    @apply border border-gray-300 dark:border-gray-700
+           rounded-xl px-4 py-3 text-left
+           hover:bg-gray-100 dark:hover:bg-gray-800
+           transition text-gray-900 dark:text-gray-100;
+}
+
+.sidebar-item.active {
+    @apply bg-indigo-600 text-white
+           dark:bg-indigo-500 dark:text-white;
+}
+
+/* CONTENT */
+.content {
+    @apply flex-1;
+}
+
+/* CARD */
+.card {
+    @apply bg-white rounded-2xl shadow p-6;
+}
+
+/* PROFILE */
+.profile-header {
+    @apply flex items-center gap-6;
+}
+.profile-avatar {
+    @apply w-16 h-16 rounded-full overflow-hidden bg-indigo-600 flex items-center justify-center;
+}
+
+/* FORM */
+.form-group {
+    @apply mb-4 flex flex-col;
+}
+
+.input {
+    @apply border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none;
+}
+
+.btn-primary {
+    @apply bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition;
+}
+
+/* BIDS */
+.bid-list {
+    @apply space-y-3 mt-4;
+}
+
+.bid-card {
+    @apply flex justify-between items-center p-4 border rounded-xl hover:shadow transition;
+}
+
+.bid-date {
+    @apply text-sm text-gray-400;
+}
+
+.bid-price {
+    @apply font-semibold text-green-600;
+}
+
+.empty-state {
+    @apply text-gray-400 text-center py-10;
 }
