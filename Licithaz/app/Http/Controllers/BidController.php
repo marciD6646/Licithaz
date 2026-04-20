@@ -13,10 +13,18 @@ class BidController extends Controller
      */
     public function store(StoreBidRequest $request, Product $product): RedirectResponse
     {
+        $oldHighestBid = $product->bids()
+            ->with('user')
+            ->orderByDesc('amount')
+            ->orderByDesc('id')
+            ->first();
+
         $bid = $product->bids()->create([
             'user_id' => $request->user()->id,
             'amount' => $request->validated('amount'),
         ]);
+
+        $product->userOutBid($bid, $oldHighestBid);
 
         return redirect()
             ->route('products.show', $product)
