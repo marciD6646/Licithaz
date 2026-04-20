@@ -179,16 +179,60 @@
     @apply text-2xl font-bold mb-4;
 }
 
+
+
 .dashboard-table {
-    @apply min-w-full bg-white shadow rounded;
+    @apply min-w-full overflow-hidden rounded-2xl bg-white shadow-lg text-sm text-gray-600;
+}
+
+.dashboard-table thead {
+    @apply bg-gray-100 text-xs uppercase text-gray-700;
 }
 
 .dashboard-table th {
-    @apply p-2 border bg-gray-200;
+    @apply px-6 py-3 text-left font-semibold tracking-wider;
 }
 
 .dashboard-table td {
-    @apply p-2 border;
+    @apply px-6 py-4;
+}
+
+.dashboard-table tbody tr {
+    @apply border-t transition hover:bg-gray-50;
+}
+
+.dashboard-table td:first-child {
+    @apply font-medium text-gray-900;
+}
+.price {
+    @apply font-semibold text-green-600;
+}
+
+.deleted {
+    @apply text-red-500;
+}
+
+.actions-cell {
+    @apply flex justify-end gap-2;
+}
+.btn-edit {
+    @apply bg-blue-500 text-white px-3 py-1 text-xs rounded-lg hover:bg-blue-600 transition;
+}
+
+.btn-delete {
+    @apply bg-red-500 text-white px-3 py-1 text-xs rounded-lg hover:bg-red-600 transition;
+}
+
+.btn-ban {
+    @apply text-white px-3 py-1 text-xs rounded-lg transition;
+}
+
+.btn-ban:not(.banned) {
+    @apply bg-red-500 hover:bg-red-600;
+}
+
+.btn-ban.banned {
+    @apply bg-green-500 hover:bg-green-600;
 }
 
 /* edit/delete buttons */
