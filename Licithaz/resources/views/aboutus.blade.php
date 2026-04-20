@@ -15,19 +15,21 @@
         </div>
 
         <div class="card">
-            <h2 class="section-title">Our Story</h2>
+            <h2 class="section-title">About us</h2>
             <p class="text">
-                Valami szöveg rólúnk...
+              We are a passionate team dedicated to building a simple, transparent, and reliable online bidding platform where users can discover great products and place competitive bids with ease.
             </p>
         </div>
 
         <!-- céljaink hogy miért csinaljuk ezt az oldalt miért lesz hasznos stb -->
         <div class="mission">
-            <h2 class="section-title">Our Mission</h2>
+            <h2 class="section-title">What we do</h2>
+            <h2>We provide a platform where users can:</h2>
             <ul class="mission-list">
-                <li><span class="check">✔</span> Create a transparent auction platform.</li>
-                <li><span class="check">✔</span> Empower collectors and sellers worldwide.</li>
-                <li><span class="check">✔</span> Ensure secure and fair bidding.</li>
+                <li><span class="check">✔</span> Browse available products in real time.</li>
+                <li><span class="check">✔</span> Place bids securely and transparently</li>
+                <li><span class="check">✔</span> Track their bidding history</li>
+                <li><span class="check">✔</span> Manage their profile and activity easily</li>
             </ul>
         </div>
 
