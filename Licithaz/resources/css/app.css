@@ -1163,3 +1163,35 @@
 .empty-state {
     @apply text-gray-400 text-center py-10;
 }
+
+.footer {
+    @apply bg-[#0b1a2b] text-slate-300 mt-16 pt-10;
+}
+
+.footer-container {
+    @apply max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-6;
+}
+
+.footer-title {
+    @apply text-xl font-bold text-white mb-2;
+}
+
+.footer-subtitle {
+    @apply text-lg font-semibold text-white mb-2;
+}
+
+.footer-text {
+    @apply text-sm text-slate-400;
+}
+
+.footer-list {
+    @apply space-y-2;
+}
+
+.footer-list a {
+    @apply text-slate-300 hover:text-sky-400 transition;
+}
+
+.footer-bottom {
+    @apply text-center border-t border-slate-700 mt-8 py-4 text-slate-400 text-sm;
+}
