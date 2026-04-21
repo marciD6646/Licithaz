@@ -37,6 +37,7 @@
                 <div>
                     <h1>{{ $user->name }}</h1>
                     <p>{{ $user->email }}</p>
+                    <p>Member since: {{ $user->created_at->format('Y. m. d.') }}</p>
                 </div>
             </div>
         </div>
