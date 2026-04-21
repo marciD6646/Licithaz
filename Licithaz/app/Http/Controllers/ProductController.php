@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\Storage;
@@ -112,4 +113,18 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', "Product $product->name permanently deleted.");
     }
+  public function search(Request $request)
+{
+    $query = $request->get('q');
+
+    if (!$query) {
+        return response()->json([]);
+    }
+
+    $products = Product::where('name', 'LIKE', "{$query}%")
+        ->limit(5)
+        ->get();
+
+    return response()->json($products);
+}
 }
