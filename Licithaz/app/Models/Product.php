@@ -8,13 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Mail;
+use App\Models\User;
+
 
 class Product extends Model
 {
     /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'description', 'extended_description', 'image_url', 'starter_bid', 'bid_end_date', 'bid_start_date', 'category'];
+    protected $fillable = [
+        'name',
+        'description',
+        'extended_description',
+        'image_url',
+        'starter_bid',
+        'bid_end_date',
+        'bid_start_date',
+        'category'
+    ];
 
     protected function casts(): array
     {
@@ -79,5 +90,26 @@ class Product extends Model
             $mail->to($outbidUser->email)
                 ->subject('You have been outbid');
         });
+    }
+    public function winningBid(): ?Bid
+    {
+        return $this->bids()
+            ->orderByDesc('amount')
+            ->first();
+    }
+
+    public function winner(): ?User
+    {
+        return $this->winningBid()?->user;
+    }
+
+    public function isAuctionEnded(): bool
+    {
+        return now()->greaterThan($this->bid_end_date);
+    }
+
+    public function markAsPaid(): void
+    {
+        $this->delete();
     }
 }

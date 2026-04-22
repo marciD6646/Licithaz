@@ -9,12 +9,7 @@
             <p class="products-subtitle">Browse active listings and starter bids.</p>
 
             <div class="search-live">
-                <input 
-                    type="text" 
-                    id="search-input" 
-                    placeholder="Search products..." 
-                    autocomplete="off"
-                />
+                <input type="text" id="search-input" placeholder="Search products..." autocomplete="off" />
 
                 <div id="search-results" class="search-results"></div>
             </div>
@@ -64,57 +59,57 @@
 
     <!-- ONLY SEARCH JS CHANGED -->
     <script>
-document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function () {
 
-    const input = document.getElementById('search-input');
-    const resultsBox = document.getElementById('search-results');
+            const input = document.getElementById('search-input');
+            const resultsBox = document.getElementById('search-results');
 
-    if (!input || !resultsBox) return;
+            if (!input || !resultsBox) return;
 
-    let timeout = null;
+            let timeout = null;
 
-    input.addEventListener('keyup', function () {
+            input.addEventListener('keyup', function () {
 
-        clearTimeout(timeout);
+                clearTimeout(timeout);
 
-        timeout = setTimeout(() => {
+                timeout = setTimeout(() => {
 
-            let query = this.value;
+                    let query = this.value;
 
-            if (query.length < 2) {
-                resultsBox.innerHTML = '';
-                return;
-            }
-
-            fetch(`/products/search?q=${query}`)
-                .then(res => res.json())
-                .then(data => {
-                    resultsBox.innerHTML = '';
-
-                    if (data.length === 0) {
-                        resultsBox.innerHTML = '<div class="search-item">No results</div>';
+                    if (query.length < 2) {
+                        resultsBox.innerHTML = '';
                         return;
                     }
 
-                    data.forEach(product => {
-                        let item = document.createElement('div');
-                        item.classList.add('search-item');
+                    fetch(`/products/search?q=${query}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            resultsBox.innerHTML = '';
 
-                        item.innerHTML = `
-                            <a href="/products/${product.id}">
-                                ${product.name}
-                            </a>
-                        `;
+                            if (data.length === 0) {
+                                resultsBox.innerHTML = '<div class="search-item">No results</div>';
+                                return;
+                            }
 
-                        resultsBox.appendChild(item);
-                    });
-                });
+                            data.forEach(product => {
+                                let item = document.createElement('div');
+                                item.classList.add('search-item');
 
-        }, 300);
+                                item.innerHTML = `
+                                                            <a href="/products/${product.id}">
+                                                                ${product.name}
+                                                            </a>
+                                                        `;
 
-    });
+                                resultsBox.appendChild(item);
+                            });
+                        });
 
-});
+                }, 300);
+
+            });
+
+        });
     </script>
 
 @endsection

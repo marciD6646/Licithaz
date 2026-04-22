@@ -32,7 +32,7 @@ Route::middleware('auth:sanctum')->group(function () {
         ->middleware('can:unban,user');
 
     Route::get('/admin/users/{user}/bids', [BidController::class, 'userBids'])
-    ->middleware('auth:sanctum');    
+        ->middleware('auth:sanctum');
 
 
     Route::post('/products', [ProductController::class, 'store'])

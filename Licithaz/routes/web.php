@@ -17,24 +17,47 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::put('/profile/password', [ProfileController::class, 'updatePassword'])
-    ->name('profile.password.update');
-Route::patch('/profile', [ProfileController::class, 'update'])
-    ->name('profile.update');
-Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
-
+/*
+|--------------------------------------------------------------------------
+| Profile
+|--------------------------------------------------------------------------
+*/
 Route::get('/profile', [ProfileController::class, 'show'])
     ->middleware('auth')
     ->name('profile');
 
-Route::post('/products/{product}/bids', [BidController::class, 'store'])
-    ->middleware(['auth', 'can:create,' . Bid::class])
-    ->name('products.bids.store');
+Route::patch('/profile', [ProfileController::class, 'update'])
+    ->name('profile.update');
 
+Route::put('/profile/password', [ProfileController::class, 'updatePassword'])
+    ->name('profile.password.update');
+
+/*
+|--------------------------------------------------------------------------
+| Products (public)
+|--------------------------------------------------------------------------
+*/
 Route::resource('products', ProductController::class)
     ->only(['index', 'show'])
     ->whereNumber('product');
 
+Route::get('/products/search', [ProductController::class, 'search'])
+    ->name('products.search');
+
+/*
+|--------------------------------------------------------------------------
+| Bids
+|--------------------------------------------------------------------------
+*/
+Route::post('/products/{product}/bids', [BidController::class, 'store'])
+    ->middleware(['auth', 'can:create,' . Bid::class])
+    ->name('products.bids.store');
+
+/*
+|--------------------------------------------------------------------------
+| Authenticated product management
+|--------------------------------------------------------------------------
+*/
 Route::middleware('auth')->group(function () {
 
     Route::get('/products/create', [ProductController::class, 'create'])
@@ -62,9 +85,24 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/products/{id}/force-delete', [ProductController::class, 'forceDelete'])
         ->name('products.forceDelete');
+
+    /*
+    | Payment routes
+    */
+    Route::get('/products/{product}/checkout', [ProductController::class, 'checkout'])
+        ->name('products.checkout');
+
+    Route::post('/products/{product}/pay', [ProductController::class, 'pay'])
+        ->name('products.pay');
 });
 
-Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
+/*
+|--------------------------------------------------------------------------
+| About / Dashboard / Admin
+|--------------------------------------------------------------------------
+*/
+Route::get('/aboutus', [AboutUsController::class, 'index'])
+    ->name('aboutus');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'can:viewAny,' . User::class])
@@ -81,8 +119,4 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/users/{user}', [UserController::class, 'update'])
         ->name('users.update');
-});
-
-Route::get('/payment', function () {
-    return view('payment');
 });

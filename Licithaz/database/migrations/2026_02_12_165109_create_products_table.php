@@ -10,18 +10,17 @@ return new class extends Migration {
      */
     public function up(): void
     {
-
         Schema::create('products', function (Blueprint $table) {
-
 
             $table->id();
             $table->string('name');
             $table->text('description');
             $table->text("extended_description");
             $table->string('image_url')->nullable();
-            $table->integer('starter_bid')->default(1000)->round(-3);
-            $table->date('bid_start_date')->default(now());
-            $table->date('bid_end_date')->default(now()->addDays(7));
+            $table->integer('starter_bid')->default(1000);
+            $table->date('bid_start_date');
+            $table->date('bid_end_date');
+
             $table->enum('category', [
                 'Electronics',
                 'Books',
@@ -31,6 +30,10 @@ return new class extends Migration {
                 'Vehicles',
                 'Jewelry'
             ])->default('Electronics');
+
+            $table->string('status')->default('active');
+            $table->foreignId('winner_id')->nullable()->constrained('users')->nullOnDelete();
+
             $table->timestamps();
             $table->softDeletes();
         });

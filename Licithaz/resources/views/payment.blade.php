@@ -1,35 +1,40 @@
-@vite('resources/css/app.css')
-@vite('resources/js/app.js')
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+@section('title', 'Payment')
 
-<body>
+@section('content')
     <div class="Payment-container">
+
         <h1 class="Payment-title">Payment</h1>
-        <div class="Payment-methods">
+
+        <div class="Payment-summary">
+            <h2>{{ $product->name }}</h2>
+            <p>Winning bid: {{ number_format($amount) }} Ft</p>
         </div>
+
         <div class="Payment-details">
             <h2>Payment Details</h2>
-            <form>
-                <label for="CN">Number:</label>
-                <input type="text" id="CN" name="CN">
 
-                <label for="expiry-date">Expiry Date:</label>
-                <input type="text" id="expiry-date" name="expiry-date">
+            <form method="POST" action="{{ route('products.pay', $product) }}">
+                @csrf
 
-                <label for="cvv">CVV:</label>
-                <input type="text" id="cvv" name="cvv">
+                <label>Name on Card:</label>
+                <input type="text" name="card_name" required>
+
+                <label>Card Number:</label>
+                <input type="text" name="card_number" required>
+
+                <label>Expiry Date:</label>
+                <input type="text" name="expiry_date" required>
+
+                <label>CVV:</label>
+                <input type="text" name="cvv" required>
+
+                <button type="submit" class="Payment-button">
+                    Pay Now
+                </button>
             </form>
         </div>
-        <p>Amount: {paymentValue}</p>
-        <button class="Payment-button">Pay Now</button>
-    </div>
-</body>
 
-</html>
+    </div>
+@endsection
