@@ -17,7 +17,9 @@ class BidFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'amount' => $this->faker->numberBetween(1000, 100000),
+            'user_id' => \App\Models\User::factory(),
+            'auction_item_id' => \App\Models\Product::factory(),
         ];
     }
 }

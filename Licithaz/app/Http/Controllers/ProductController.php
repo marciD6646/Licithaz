@@ -45,21 +45,18 @@ class ProductController extends Controller
     {
         $product = Product::with('bids.user')->findOrFail($id);
 
-        if (now()->greaterThan($product->bid_end_date)) {
+        if ($product->isAuctionEnded() && $product->status === 'active') {
 
-            if ($product->status === 'active') {
+            $winningBid = $product->winningBid();
 
-                $highestBid = $product->bids()->orderByDesc('amount')->first();
-
-                if ($highestBid) {
-                    $product->winner_id = $highestBid->user_id;
-                    $product->status = 'pending_payment';
-                } else {
-                    $product->status = 'closed';
-                }
-
-                $product->save();
+            if ($winningBid) {
+                $product->winner_id = $winningBid->user_id;
+                $product->status = 'pending_payment';
+            } else {
+                $product->status = 'closed';
             }
+
+            $product->save();
         }
 
         return view('products.show', [

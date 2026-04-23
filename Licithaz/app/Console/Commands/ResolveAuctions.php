@@ -29,31 +29,42 @@ class ResolveAuctions extends Command
 
         foreach ($products as $product) {
 
+            $this->info("Processing: {$product->id} | Status: {$product->status}");
+
             if ($product->trashed()) {
+                $this->warn("Skipped (trashed)");
                 continue;
             }
 
-            $winner = $product->winner();
+            $winningBid = $product->bids()
+                ->with('user')
+                ->orderByDesc('amount')
+                ->first();
 
-            if (!$winner) {
-                $product->status = 'ended';
+            if (!$winningBid) {
+                $this->warn("No bids → closing");
+
+                $product->status = 'closed';
                 $product->save();
                 continue;
             }
 
-            $product->winner_id = $winner->id;
+            $this->info("Winner: {$winningBid->user->id}");
+
+            $product->winner_id = $winningBid->user_id;
             $product->status = 'pending_payment';
             $product->save();
 
+            $this->info("Set to pending_payment ✅");
+
             Mail::raw(
                 "You won the auction for '{$product->name}'. Please proceed to payment.",
-                function ($mail) use ($winner) {
-                    $mail->to($winner->email)
+                function ($mail) use ($winningBid) {
+                    $mail->to($winningBid->user->email)
                         ->subject('You won the auction!');
                 }
             );
         }
-
         $this->info('Auction resolution completed successfully.');
     }
 }

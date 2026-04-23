@@ -23,8 +23,17 @@ class ProductFactory extends Factory
             'description' => $this->faker->sentence(),
             'extended_description' => $this->faker->paragraph(20),
             'starter_bid' => $roundedBid * 1000,
-            'bid_start_date' => now(),
-            'bid_end_date' => now()->addMinutes(rand(60, 10080)), 
+            'bid_start_date' => now()->addMinutes(rand(-10080, -60)),
+            'bid_end_date' => now()->addMinutes(rand(60, 10080)),
+            'category' => $this->faker->randomElement([
+                'Electronics',
+                'Books',
+                'Clothing',
+                'House',
+                'Sports',
+                'Vehicles',
+                'Jewelry'
+            ]),
         ];
     }
 }
