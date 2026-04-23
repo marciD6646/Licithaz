@@ -42,9 +42,14 @@
                 <span class="meta-badge highest-bid">
                     Current highest bid: {{ number_format($currentHighestBid) }} Ft
                 </span>
+
+                {{-- ⬇️ IDŐ FORMÁTUM JAVÍTVA --}}
                 <span class="meta-badge auction-end">
-                    Auction ends: {{ $product->bid_end_date->format('Y-m-d') }}
+                    Auction ends: {{ $product->bid_end_date->format('Y.m.d H:i') }}
                 </span>
+
+                {{-- ⬇️ COUNTDOWN --}}
+                <span id="countdown" class="countdown-timer"></span>
             </div>
         </div>
 
@@ -128,7 +133,9 @@
                         <div class="bid-item">
                             <div>
                                 <p class="bid-user">{{ $bid->user->name }}</p>
-                                <p class="bid-time">{{ $bid->created_at->format('Y-m-d H:i') }}</p>
+
+                                {{-- ⬇️ ITT MÁR OKÉ VOLT, CSAK FORMÁTUM FINOMÍTÁS --}}
+                                <p class="bid-time">{{ $bid->created_at->format('Y.m.d H:i') }}</p>
                             </div>
 
                             <span class="bid-amount">
@@ -153,6 +160,29 @@
             if (popup) {
                 popup.style.display = 'flex';
             }
+
+        
+            const endTime = new Date("{{ $product->bid_end_date->format('Y-m-d H:i:s') }}").getTime();
+            const countdownEl = document.getElementById("countdown");
+
+            if (!countdownEl) return;
+
+            const interval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+
+                if (distance <= 0) {
+                    clearInterval(interval);
+                    countdownEl.innerHTML = "Auction ended";
+                    return;
+                }
+
+                const hours = Math.floor(distance / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownEl.innerHTML = hours + "h " + minutes + "m " + seconds + "s";
+            }, 1000);
         });
     </script>
 @endsection

@@ -30,8 +30,8 @@ class Product extends Model
     protected function casts(): array
     {
         return [
-            'bid_start_date' => 'date',
-            'bid_end_date' => 'date',
+            'bid_start_date' => 'datetime',
+            'bid_end_date' => 'datetime',
         ];
     }
 

@@ -37,14 +37,16 @@
 
             <div style="margin-bottom:0.5rem;">
                 <label>Bid Start Date:</label>
-                <input type="date" name="bid_start_date"
-                    value="{{ \Carbon\Carbon::parse($product->bid_start_date)->format('Y-m-d') }}" required>
+                <input type="datetime-local" name="bid_start_date"
+        value="{{ \Carbon\Carbon::parse($product->bid_start_date)->format('Y-m-d\TH:i') }}" required>
+
             </div>
 
             <div style="margin-bottom:0.5rem;">
                 <label>Bid End Date:</label>
-                <input type="date" name="bid_end_date"
-                    value="{{ \Carbon\Carbon::parse($product->bid_end_date)->format('Y-m-d') }}" required>
+                <input type="datetime-local" name="bid_end_date"
+        value="{{ \Carbon\Carbon::parse($product->bid_end_date)->format('Y-m-d\TH:i') }}" required>
+
             </div>
 
             <div style="margin-bottom:0.5rem;">

@@ -58,18 +58,20 @@
                 <div class="form-group">
                     <label class="form-label">Starter Bid</label>
                     <input type="number" name="starter_bid" min="0" value="{{ old('starter_bid') }}" required
-                        class="form-input">
+            class="form-input">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Bid Start Date</label>
-                    <input type="date" name="bid_start_date" value="{{ old('bid_start_date') }}" required
-                        class="form-input">
+                   <input type="datetime-local" name="bid_start_date"
+            value="{{ old('bid_start_date') }}" required class="form-input">
+
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="form-label">Bid End Date</label>
-                <input type="date" name="bid_end_date" value="{{ old('bid_end_date') }}" required class="form-input">
+                <input type="datetime-local" name="bid_end_date"
+        value="{{ old('bid_end_date') }}" required class="form-input">
             </div>
 
             <div class="form-actions">

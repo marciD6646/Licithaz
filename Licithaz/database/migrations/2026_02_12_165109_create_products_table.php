@@ -18,8 +18,8 @@ return new class extends Migration {
             $table->text("extended_description");
             $table->string('image_url')->nullable();
             $table->integer('starter_bid')->default(1000);
-            $table->date('bid_start_date');
-            $table->date('bid_end_date');
+            $table->dateTime('bid_start_date');
+            $table->dateTime('bid_end_date');
 
             $table->enum('category', [
                 'Electronics',

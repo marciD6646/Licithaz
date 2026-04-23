@@ -24,7 +24,7 @@ class ProductFactory extends Factory
             'extended_description' => $this->faker->paragraph(20),
             'starter_bid' => $roundedBid * 1000,
             'bid_start_date' => now(),
-            'bid_end_date' => now()->addDays(7)
+            'bid_end_date' => now()->addMinutes(rand(60, 10080)), 
         ];
     }
 }
