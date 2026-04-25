@@ -1,28 +1,57 @@
+using licitAdminDashboard.Services;
+
 namespace licitAdminDashboard;
 
 public partial class NewProduct : ContentPage
 {
+    private string selectedImagePath;
+    private readonly ApiService _apiService;
+
     public NewProduct()
     {
         InitializeComponent();
+        _apiService = new ApiService();
     }
+
+    // 📸 kép kiválasztás
+    private async void OnPickImageClicked(object sender, EventArgs e)
+    {
+        var result = await FilePicker.PickAsync(new PickOptions
+        {
+            PickerTitle = "Select image",
+            FileTypes = FilePickerFileType.Images
+        });
+
+        if (result != null)
+        {
+            selectedImagePath = result.FullPath;
+            PreviewImage.Source = ImageSource.FromFile(selectedImagePath);
+        }
+
+    }
+
+    // 🚀 feltöltés
     private async void OnSubmitProductClicked(object sender, EventArgs e)
     {
-        var product = new
+        bool success = await _apiService.CreateProductAsync(
+            NameEntry.Text,
+            CategoryPicker.SelectedItem?.ToString(),
+            DescriptionEditor.Text,
+            ExtendedDescriptionEditor.Text,
+            selectedImagePath,
+            StarterBidEntry.Text,
+            (DateTime)StartDatePicker.Date,
+            (DateTime)EndDatePicker.Date
+        );
+
+        if (success)
         {
-            Name = NameEntry.Text,
-            Category = CategoryPicker.SelectedItem?.ToString(),
-            Description = DescriptionEditor.Text,
-            ExtendedDescription = ExtendedDescriptionEditor.Text,
-            Image = ImageEntry.Text,
-            StarterBid = StarterBidEntry.Text,
-            StartDate = StartDatePicker.Date,
-            EndDate = EndDatePicker.Date
-        };
-
-        // TODO: send to API or database
-        await DisplayAlert("Success", "Product created!", "OK");
-
-        await Navigation.PopAsync(); //vissza visz a MainPage-re
+            await DisplayAlert("Success", "Product created!", "OK");
+            await Navigation.PopAsync();
+        }
+        else
+        {
+            await DisplayAlert("Error", "Upload failed", "OK");
+        }
     }
 }

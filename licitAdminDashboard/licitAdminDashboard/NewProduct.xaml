@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="licitAdminDashboard.NewProduct"
@@ -15,73 +14,79 @@
                    HorizontalOptions="Center" />
 
             <Entry Placeholder="Product Name"
+                   x:Name="NameEntry"
                    TextColor="White"
-                   PlaceholderColor="Gray"
-                   BackgroundColor="#1e293b"
-                   x:Name="NameEntry"/>
+                   BackgroundColor="#1e293b"/>
 
-            <Picker Title="Select Category"
-                    TextColor="White"
+            <Picker x:Name="CategoryPicker"
+                    Title="Select Category"
                     BackgroundColor="#1e293b"
-                    x:Name="CategoryPicker">
+                    TextColor="White">
                 <Picker.Items>
                     <x:String>Electronics</x:String>
                     <x:String>Books</x:String>
                     <x:String>Clothing</x:String>
-                    <x:String>House</x:String>
-                    <x:String>Sports</x:String>
-                    <x:String>Vehicles</x:String>
-                    <x:String>Jewelry</x:String>
                 </Picker.Items>
             </Picker>
 
-            <Editor Placeholder="Short Description"
-                    TextColor="White"
-                    PlaceholderColor="Gray"
-                    BackgroundColor="#1e293b"
+            <Editor x:Name="DescriptionEditor"
+                    Placeholder="Short Description"
                     HeightRequest="80"
-                    x:Name="DescriptionEditor"/>
-
-            <Editor Placeholder="Extended Description"
                     TextColor="White"
-                    PlaceholderColor="Gray"
-                    BackgroundColor="#1e293b"
+                    BackgroundColor="#1e293b"/>
+
+            <Editor x:Name="ExtendedDescriptionEditor"
+                    Placeholder="Extended Description"
                     HeightRequest="120"
-                    x:Name="ExtendedDescriptionEditor"/>
+                    TextColor="White"
+                    BackgroundColor="#1e293b"/>
 
-            <Entry Placeholder="Image URL or File Path"
-                   TextColor="White"
-                   PlaceholderColor="Gray"
-                   BackgroundColor="#1e293b"
-                   x:Name="ImageEntry"/>
+            <!-- 📸 IMAGE -->
+            <Button Text="Choose Image"
+                    Clicked="OnPickImageClicked"
+                    BackgroundColor="#334155"
+                    TextColor="White"/>
 
-            <Entry Placeholder="Starter Bid"
+            <Image x:Name="PreviewImage"
+                   HeightRequest="150"
+                   Aspect="AspectFill"/>
+
+            <Entry x:Name="StarterBidEntry"
+                   Placeholder="Starter Bid"
                    Keyboard="Numeric"
                    TextColor="White"
-                   PlaceholderColor="Gray"
-                   BackgroundColor="#1e293b"
-                   x:Name="StarterBidEntry"/>
+                   BackgroundColor="#1e293b"/>
+
+            <Label Text="Bid Dates"
+       TextColor="White"
+       FontAttributes="Bold"
+       Margin="0,10,0,0"/>
 
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
 
-                <DatePicker x:Name="StartDatePicker"
-                            TextColor="White"
-                            BackgroundColor="#1e293b"/>
+                <VerticalStackLayout>
+                    <Label Text="Start Date"
+               TextColor="Gray"
+               FontSize="12"/>
+                    <DatePicker x:Name="StartDatePicker"
+                    TextColor="White"/>
+                </VerticalStackLayout>
 
-                <DatePicker x:Name="EndDatePicker"
-                            TextColor="White"
-                            BackgroundColor="#1e293b"
-                            Grid.Column="1"/>
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="End Date"
+               TextColor="Gray"
+               FontSize="12"/>
+                    <DatePicker x:Name="EndDatePicker"
+                    TextColor="White"/>
+                </VerticalStackLayout>
+
             </Grid>
 
             <Button Text="Add Product"
-                    BackgroundColor="#C9B05B"
-                    TextColor="White"
-                    FontAttributes="Bold"
                     Clicked="OnSubmitProductClicked"
-                    CornerRadius="10"/>
+                    BackgroundColor="#C9B05B"
+                    TextColor="White"/>
 
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>
