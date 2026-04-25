@@ -1212,5 +1212,9 @@
 }
 
 .search-item {
-    @apply px-4 py-2 hover:bg-gray-100 cursor-pointer;
+    @apply hover:bg-gray-100 cursor-pointer;
+}
+
+a {
+    @apply px-4 py-2
 }

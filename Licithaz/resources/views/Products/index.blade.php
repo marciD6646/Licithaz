@@ -96,7 +96,7 @@
                                 item.classList.add('search-item');
 
                                 item.innerHTML = `
-                                                            <a href="/products/${product.id}">
+                                                            <a style="height: 100%; width: 100%; display: block;" href="/products/${product.id}">
                                                                 ${product.name}
                                                             </a>
                                                         `;
