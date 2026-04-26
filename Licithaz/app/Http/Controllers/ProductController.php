@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         $products = Product::where('status', '!=', 'sold')
             ->paginate(18);
@@ -20,44 +24,27 @@ class ProductController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): View
     {
         return view('products.create');
     }
 
-    public function store(StoreProductRequest $request)
+    public function store(StoreProductRequest $request): RedirectResponse
     {
         $data = $request->validated();
-
-        if ($request->hasFile('image_url')) {
-            $imagePath = $request->file('image_url')->store('products', 'public');
-            $data['image_url'] = 'storage/' . $imagePath;
-        } else {
-            $data['image_url'] = null;
-        }
+        $data['image_url'] = $this->storeProductImage($request->file('image_url'));
 
         Product::create($data);
 
-        return redirect()->route('products.index');
+        return redirect()
+            ->route('products.index')
+            ->with('success', 'Product created successfully.');
     }
 
-    public function show(int $id)
+    public function show(int $id, AuctionResolutionController $auctionResolutionController): View
     {
         $product = Product::with('bids.user')->findOrFail($id);
-
-        if ($product->isAuctionEnded() && $product->status === 'active') {
-
-            $winningBid = $product->winningBid();
-
-            if ($winningBid) {
-                $product->winner_id = $winningBid->user_id;
-                $product->status = 'pending_payment';
-            } else {
-                $product->status = 'closed';
-            }
-
-            $product->save();
-        }
+        $auctionResolutionController->resolveIfEnded($product);
 
         return view('products.show', [
             'product' => $product,
@@ -66,44 +53,37 @@ class ProductController extends Controller
         ]);
     }
 
-    public function edit(Product $product)
+    public function edit(Product $product): View
     {
         return view('products.edit', [
             'product' => $product
         ]);
     }
 
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product, AuctionResolutionController $auctionResolutionController): RedirectResponse
     {
         $oldProduct = $product->name;
         $data = $request->validated();
 
         if ($request->hasFile('image_url')) {
-
-            if ($product->image_url && str_starts_with($product->image_url, 'storage/')) {
-                Storage::disk('public')->delete(
-                    str_replace('storage/', '', $product->image_url)
-                );
-            }
-
-            $imagePath = $request->file('image_url')->store('products', 'public');
-            $data['image_url'] = 'storage/' . $imagePath;
+            $this->deleteStoredProductImage($product->image_url);
+            $data['image_url'] = $this->storeProductImage($request->file('image_url'));
         }
 
         $product->update($data);
+
+        // Re-evaluate auction status after date change
+        $product->refresh();
+        $auctionResolutionController->resolveIfEnded($product);
 
         return redirect()
             ->route('products.index')
             ->with('success', "Product $oldProduct updated successfully.");
     }
 
-    public function destroy(Product $product)
+    public function destroy(Product $product): RedirectResponse
     {
-        if ($product->image_url && str_starts_with($product->image_url, 'storage/')) {
-            Storage::disk('public')->delete(
-                str_replace('storage/', '', $product->image_url)
-            );
-        }
+        $this->deleteStoredProductImage($product->image_url);
 
         $product->delete();
 
@@ -112,7 +92,7 @@ class ProductController extends Controller
             ->with('success', "Product {$product->name} deleted successfully.");
     }
 
-    public function restore(int $id)
+    public function restore(int $id): RedirectResponse
     {
         $product = Product::withTrashed()->findOrFail($id);
 
@@ -125,17 +105,13 @@ class ProductController extends Controller
             ->with('success', "Product {$product->name} restored successfully.");
     }
 
-    public function forceDelete(int $id)
+    public function forceDelete(int $id): RedirectResponse
     {
         $product = Product::onlyTrashed()->findOrFail($id);
 
         $this->authorize('forceDelete', $product);
 
-        $imagePath = null;
-
-        if ($product->image_url && str_starts_with($product->image_url, 'storage/')) {
-            $imagePath = str_replace('storage/', '', $product->image_url);
-        }
+        $imagePath = $this->storedImagePath($product->image_url);
 
         $product->bids()->delete();
         $product->forceDelete();
@@ -149,65 +125,46 @@ class ProductController extends Controller
             ->with('success', "Product {$product->name} permanently deleted.");
     }
 
-    public function search(Request $request)
+    public function search(Request $request): JsonResponse
     {
-        $query = $request->get('q');
+        $searchTerm = trim((string) $request->get('q', ''));
 
-        if (!$query) {
+        if ($searchTerm == '') {
             return response()->json([]);
         }
+
         $products = Product::where('status', '!=', 'sold')
-            ->where('name', 'LIKE', "{$query}%")
+            ->where('name', 'LIKE', "{$searchTerm}%")
             ->limit(5)
             ->get();
+
         return response()->json($products);
     }
 
-    public function checkout(Product $product)
+    private function storeProductImage(?UploadedFile $file): ?string
     {
-        if (!auth()->check()) {
-            abort(403);
+        if ($file === null) {
+            return null;
         }
 
-        if (auth()->id() !== $product->winner_id) {
-            abort(403, 'You are not the winner of this auction.');
-        }
-
-        if ($product->status !== 'pending_payment') {
-            abort(403, 'This auction is not ready for payment.');
-        }
-
-        $amount = $product->winningBid()->amount;
-
-        return view('payment', compact('product', 'amount'));
+        return 'storage/' . $file->store('products', 'public');
     }
 
-    public function pay(Product $product, Request $request)
+    private function deleteStoredProductImage(?string $imageUrl): void
     {
-        if (!auth()->check()) {
-            abort(403);
+        $imagePath = $this->storedImagePath($imageUrl);
+
+        if ($imagePath !== null) {
+            Storage::disk('public')->delete($imagePath);
+        }
+    }
+
+    private function storedImagePath(?string $imageUrl): ?string
+    {
+        if ($imageUrl === null || !str_starts_with($imageUrl, 'storage/')) {
+            return null;
         }
 
-        if (auth()->id() !== $product->winner_id) {
-            abort(403, 'You are not the winner of this auction.');
-        }
-
-        if ($product->status !== 'pending_payment') {
-            abort(403, 'This product is not awaiting payment.');
-        }
-
-        $request->validate([
-            'card_name' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
-            'card_number' => ['required', 'digits_between:13,19'],
-            'expiry_date' => ['required'],
-            'cvv' => ['required', 'digits_between:3,4'],
-        ]);
-
-        $product->status = 'sold';
-        $product->save();
-
-        return redirect()
-            ->route('products.index')
-            ->with('success', 'Payment successful. You now own the item!');
+        return str_replace('storage/', '', $imageUrl);
     }
 }

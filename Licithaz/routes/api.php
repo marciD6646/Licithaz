@@ -21,7 +21,6 @@ Route::get('/bids', [BidController::class, 'index']);
 
 // AUTHENTICATED ROUTES (admin-only, enforced in controllers/requests)
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/admin/me', [AdminAuthController::class, 'me']);
     Route::post('/admin/logout', [AdminAuthController::class, 'logout']);
 
     Route::get('/admin/users', [UserController::class, 'index'])

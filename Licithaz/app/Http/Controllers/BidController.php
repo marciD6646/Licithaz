@@ -13,6 +13,12 @@ class BidController extends Controller
      */
     public function store(StoreBidRequest $request, Product $product): RedirectResponse
     {
+        if (!$product->isBiddingOpen() || $product->status !== 'active') {
+            return redirect()
+                ->route('products.show', $product)
+                ->withErrors(['amount' => 'Bidding is closed for this product.']);
+        }
+
         $oldHighestBid = $product->bids()
             ->with('user')
             ->orderByDesc('amount')

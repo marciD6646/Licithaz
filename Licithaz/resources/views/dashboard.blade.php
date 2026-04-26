@@ -8,6 +8,7 @@
         <div class="dashboard-buttons">
             <button id="usersBtn" class="dashboard-button users-btn">Users</button>
             <button id="productsBtn" class="dashboard-button products-btn">Products</button>
+            <a href="{{ route('payments.admin') }}" class="dashboard-button products-btn">Payments</a>
             <button id="restoreProductsBtn" class="dashboard-button products-btn">Restore Products</button>
         </div>
 
@@ -77,7 +78,8 @@
                             <td>{{ $product->bid_end_date }}</td>
                             <td class="actions-cell">
                                 <a href="{{ route('products.edit', $product) }}" class="btn-edit">Edit</a>
-                                <form action="{{ route('products.destroy', $product) }}" method="POST" style="display:inline;">
+                                <form action="{{ route('products.destroy', $product) }}" method="POST"
+                                    style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn-delete">Delete</button>

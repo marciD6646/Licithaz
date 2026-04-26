@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bid;
-use Illuminate\Http\Request;
 
 class BidController extends Controller
 {
@@ -14,7 +13,7 @@ class BidController extends Controller
         return response()->json($bids);
     }
     public function userBids($userId)
-{
-    return \App\Models\Bid::where('user_id', $userId)->get();
-}
+    {
+        return Bid::where('user_id', $userId)->get();
+    }
 }

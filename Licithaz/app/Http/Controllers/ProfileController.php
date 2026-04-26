@@ -2,73 +2,79 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-
     public function show(): View
     {
-        $user = Auth::user()->load([
-            'bids' => function ($query) {
-                $query->latest()->with('product');
+        $user = Auth::user();
+
+        abort_unless($user !== null, 403);
+
+        $userId = Auth::id();
+
+        $user->load([
+            'bids' => function ($query) use ($userId): void {
+                $query->whereIn('id', function ($subQuery) use ($userId): void {
+                    $subQuery->from('bids')
+                        ->selectRaw('MAX(id)')
+                        ->where('user_id', $userId)
+                        ->groupBy('auction_item_id');
+                })->latest()->with('product');
             },
         ]);
 
         return view('profile', ['user' => $user]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request): RedirectResponse
     {
-        $user = auth()->user();
-        
-        $request->validate([
+        $user = $request->user();
+
+        abort_unless($user !== null, 403);
+
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'avatar' => 'nullable|image|max:2048',
-            ]);
-            
-            $user->name = $request->name;
-            
-            if ($request->hasFile('avatar')) {
-                $path = $request->file('avatar')->store('avatars', 'public');
-                $user->avatar = $path;
-                }
-
-                $user->save();
-                
-                return back()->with('status', 'Profile updated successfully!');
-                }
-                public function updatePassword(Request $request)
-{
-    $request->validate([
-        'current_password' => ['required', 'current_password'],
-        'password' => [
-            'required',
-            'confirmed',
-            Password::min(8)
-                ->letters()
-                ->mixedCase()
-                ->numbers()
-                ->symbols()
-        ],
-    ]);
-
-    if (!Hash::check($request->current_password, auth()->user()->password)) {
-        throw ValidationException::withMessages([
-            'current_password' => 'Current password is incorrect',
         ]);
+
+        $user->name = $validated['name'];
+
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar = $path;
+        }
+
+        $user->save();
+
+        return back()->with('status', 'Profile updated successfully!');
     }
 
-    auth()->user()->update([
-        'password' => Hash::make($request->password)
-    ]);
+    public function updatePassword(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'current_password' => ['required', 'current_password'],
+            'password' => [
+                'required',
+                'confirmed',
+                Password::min(8)
+                    ->letters()
+                    ->mixedCase()
+                    ->numbers()
+                    ->symbols(),
+            ],
+        ]);
 
-    return back()->with('success', 'Password updated successfully!');
-    
-}
+        $request->user()?->update([
+            'password' => Hash::make($validated['password']),
+        ]);
 
+        return back()->with('success', 'Password updated successfully!');
+    }
 }

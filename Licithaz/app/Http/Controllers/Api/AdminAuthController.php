@@ -39,16 +39,6 @@ class AdminAuthController extends Controller
         ]);
     }
 
-    public function me(Request $request)
-    {
-        if (!$request->user()?->is_admin) {
-            return response()->json([
-                'message' => 'Forbidden. Only admins can access this endpoint.',
-            ], 403);
-        }
-
-        return response()->json(['user' => $request->user()]);
-    }
 
     public function logout(Request $request)
     {

@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Validator;
 
 class StoreBidRequest extends FormRequest
 {
@@ -61,6 +60,14 @@ class StoreBidRequest extends FormRequest
     {
         $product = $this->route('product');
 
-        return $product instanceof Product ? $product : null;
+        if ($product instanceof Product) {
+            return $product;
+        }
+
+        if (is_numeric($product)) {
+            return Product::find((int) $product);
+        }
+
+        return null;
     }
 }

@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
+
 class UserController extends Controller
 {
-    public function toggleBan(User $user)
+    public function toggleBan(User $user): RedirectResponse
     {
-        if (auth()->user()->id === $user->id && $user->is_admin) {
+        if (auth()->id() === $user->id && $user->is_admin) {
             return redirect()->back()->with('error', 'You cannot ban yourself as admin.');
         }
 
@@ -21,12 +25,18 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', $user->is_banned ? 'User banned.' : 'User unbanned.');
     }
-    public function edit(User $user)
+
+    public function edit(User $user): View
     {
-        return view('users.edit', compact('user'));
+        $this->authorize('update', $user);
+
+        return view('Users.edit', compact('user'));
     }
-    public function update(Request $request, User $user)
+
+    public function update(Request $request, User $user): RedirectResponse
     {
+        $this->authorize('update', $user);
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -34,12 +44,14 @@ class UserController extends Controller
             'is_admin' => 'required|boolean',
         ]);
 
-        $user->name = $validated['name'];
-        $user->email = $validated['email'];
-        $user->is_admin = $validated['is_admin'];
+        $user->fill([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'is_admin' => $validated['is_admin'],
+        ]);
 
         if (!empty($validated['password'])) {
-            $user->password = bcrypt($validated['password']);
+            $user->password = Hash::make($validated['password']);
         }
 
         $user->save();

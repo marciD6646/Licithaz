@@ -11,29 +11,6 @@
             </div>
         @endif
 
-        {{-- WINNER POPUP --}}
-        @if(
-                auth()->check()
-                && auth()->id() === $product->winner_id
-                && $product->status === 'pending_payment'
-            )
-
-            <div id="winner-popup" class="winner-popup">
-                <div class="popup-box">
-                    <h2>🎉 You won this auction!</h2>
-                    <p>Please proceed to payment to complete your purchase.</p>
-
-                    <a href="{{ route('products.checkout', $product) }}" class="popup-button">
-                        Go to Payment
-                    </a>
-
-                    <button onclick="closePopup()" class="popup-close">
-                        Close
-                    </button>
-                </div>
-            </div>
-        @endif
-
         <div class="product-header">
             <h1 class="product-name-header">{{ $product->name }}</h1>
             <p class="product-category-header">{{ $product->category }}</p>
@@ -83,9 +60,7 @@
                         @guest
                             <p class="guest-message">Please log in to place a bid.</p>
                         @else
-
                             @if ($product->isBiddingOpen())
-
                                 <form action="{{ route('products.bids.store', $product) }}" method="POST" class="bid-form">
                                     @csrf
 
@@ -94,8 +69,8 @@
                                     </button>
 
                                     <div class="bid-input-group">
-                                        <input type="number" id="amount" name="amount" min="{{ $minimumBid }}" step="1000"
-                                            value="{{ old('amount', $minimumBid) }}" class="bid-input">
+                                        <input type="number" id="amount" name="amount" min="{{ $minimumBid }}"
+                                            step="1000" value="{{ old('amount', $minimumBid) }}" class="bid-input">
 
                                         <span class="input-suffix">Ft</span>
                                     </div>
@@ -108,10 +83,9 @@
                                 @error('amount')
                                     <p class="error-message">{{ $message }}</p>
                                 @enderror
-
                             @else
                                 <p class="auction-closed">
-                                    Bidding is closed for this product.
+                                    Auction ended.
                                 </p>
                             @endif
 
@@ -150,18 +124,13 @@
     </div>
 
     <script>
-        function closePopup() {
-            const popup = document.getElementById('winner-popup');
-            if (popup) popup.style.display = 'none';
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const popup = document.getElementById('winner-popup');
             if (popup) {
                 popup.style.display = 'flex';
             }
 
-        
+
             const endTime = new Date("{{ $product->bid_end_date->format('Y-m-d H:i:s') }}").getTime();
             const countdownEl = document.getElementById("countdown");
 

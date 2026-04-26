@@ -2,14 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Bid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Mail;
-use App\Models\User;
-
 
 class Product extends Model
 {
@@ -56,10 +53,10 @@ class Product extends Model
 
     public function isBiddingOpen(): bool
     {
-        $today = now()->startOfDay();
+        $now = now();
 
-        return $today->greaterThanOrEqualTo($this->bid_start_date)
-            && $today->lessThanOrEqualTo($this->bid_end_date);
+        return $now->greaterThanOrEqualTo($this->bid_start_date)
+            && $now->lessThanOrEqualTo($this->bid_end_date);
     }
 
     public function userOutBid(Bid $newBid, ?Bid $oldHighestBid = null): void
@@ -91,6 +88,27 @@ class Product extends Model
                 ->subject('You have been outbid');
         });
     }
+
+    public function notifyWinner(Bid $winningBid): void
+    {
+        $winner = $winningBid->user ?? $winningBid->user()->first();
+
+        if ($winner === null || empty($winner->email)) {
+            return;
+        }
+
+        $amount = number_format((int) $winningBid->amount);
+        $paymentUrl = route('products.checkout', $this);
+
+        Mail::raw(
+            "Congratulations! You won the auction for '{$this->name}' with {$amount} Ft. Please complete payment here: {$paymentUrl}",
+            function ($mail) use ($winner) {
+                $mail->to($winner->email)
+                    ->subject('You won the auction!');
+            }
+        );
+    }
+
     public function winningBid(): ?Bid
     {
         return $this->bids()
@@ -98,18 +116,8 @@ class Product extends Model
             ->first();
     }
 
-    public function winner(): ?User
-    {
-        return $this->winningBid()?->user;
-    }
-
     public function isAuctionEnded(): bool
     {
         return now()->greaterThan($this->bid_end_date);
-    }
-
-    public function markAsPaid(): void
-    {
-        $this->delete();
     }
 }

@@ -7,7 +7,10 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ResolveAuctions;
 use App\Models\Bid;
+use App\Models\Payment;
 use App\Models\Product;
 use App\Models\User;
 
@@ -27,9 +30,11 @@ Route::get('/profile', [ProfileController::class, 'show'])
     ->name('profile');
 
 Route::patch('/profile', [ProfileController::class, 'update'])
+    ->middleware('auth')
     ->name('profile.update');
 
 Route::put('/profile/password', [ProfileController::class, 'updatePassword'])
+    ->middleware('auth')
     ->name('profile.password.update');
 
 /*
@@ -89,11 +94,17 @@ Route::middleware('auth')->group(function () {
     /*
     | Payment routes
     */
-    Route::get('/products/{product}/checkout', [ProductController::class, 'checkout'])
+    Route::get('/products/{product}/checkout', [PaymentController::class, 'checkout'])
         ->name('products.checkout');
 
-    Route::post('/products/{product}/pay', [ProductController::class, 'pay'])
+    Route::post('/products/{product}/pay', [PaymentController::class, 'pay'])
         ->name('products.pay');
+
+    /*
+    | My payments
+    */
+    Route::get('/payments', [PaymentController::class, 'index'])
+        ->name('payments.index');
 });
 
 /*
@@ -108,15 +119,25 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'can:viewAny,' . User::class])
     ->name('dashboard');
 
+Route::get('/admin/payments', [PaymentController::class, 'adminIndex'])
+    ->middleware(['auth', 'can:viewAny,' . Payment::class])
+    ->name('payments.admin');
+
 Route::post('/users/{user}/toggle-ban', [UserController::class, 'toggleBan'])
     ->middleware(['auth', 'can:ban,user'])
     ->name('users.toggleBan');
 
+Route::post('/admin/auctions/resolve', [ResolveAuctions::class, 'handle'])
+    ->middleware(['auth', 'can:viewAny,' . User::class])
+    ->name('auctions.resolve');
+
 Route::middleware('auth')->group(function () {
 
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])
+        ->middleware('can:update,user')
         ->name('users.edit');
 
     Route::put('/users/{user}', [UserController::class, 'update'])
+        ->middleware('can:update,user')
         ->name('users.update');
 });
