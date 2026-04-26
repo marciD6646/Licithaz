@@ -19,12 +19,40 @@
 
 /* Navbar container */
 .navbar {
-    @apply bg-gray-800 text-white flex divide-x divide-gray-700;
+    @apply relative flex items-center justify-between bg-gray-800 px-4 py-3 text-white;
+}
+
+.navbar-brand {
+    @apply text-lg font-semibold text-white no-underline;
+}
+
+.navbar-toggle {
+    @apply flex flex-col gap-1 rounded-md border-0 bg-transparent p-2 text-white cursor-pointer md:hidden;
+}
+
+.navbar-toggle span {
+    @apply block h-0.5 w-6 rounded-full bg-white;
+}
+
+.navbar-menu {
+    @apply absolute left-0 right-0 top-full hidden flex-col bg-gray-800 border-t border-gray-700 z-50 md:static md:flex md:flex-row md:items-center md:gap-1 md:border-t-0;
+}
+
+.navbar-menu.is-open {
+    @apply flex;
+}
+
+.navbar-form {
+    @apply w-full md:w-auto;
 }
 
 /* Navbar links */
 .navbar-link {
-    @apply flex-1 text-center py-3 hover:bg-gray-700 transition-colors w-full cursor-pointer;
+    @apply block w-full px-4 py-3 text-left hover:bg-gray-700 transition-colors cursor-pointer md:w-auto md:rounded-md md:px-3 md:py-2 md:text-center;
+}
+
+.navbar-button {
+    @apply border-0 bg-transparent;
 }
 
 /* Body background with dark mode */
@@ -179,8 +207,6 @@
     @apply text-2xl font-bold mb-4;
 }
 
-
-
 .dashboard-table {
     @apply min-w-full overflow-hidden rounded-2xl bg-white shadow-lg text-sm text-gray-600;
 }
@@ -245,7 +271,8 @@
     @apply bg-yellow-400 text-white px-3 py-1 rounded hover:bg-yellow-500 transition-colors cursor-pointer;
 }
 
-.btn-ban, .btn-delete {
+.btn-ban,
+.btn-delete {
     @apply bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-colors;
 }
 
@@ -355,7 +382,7 @@
 /*       */
 
 .main-content {
-    @apply mx-auto max-w-6xl space-y-12 px-6 py-12;
+    @apply mx-auto max-w-6xl space-y-12 px-4 py-8 overflow-x-hidden md:px-6 md:py-12;
 }
 
 .welcome-section {
@@ -415,15 +442,15 @@
 }
 
 .image-section {
-    @apply relative;
+    @apply relative overflow-hidden rounded-3xl;
 }
 
 .image-gradient {
-    @apply absolute -inset-3 rounded-3xl bg-gradient-to-tr from-amber-200 via-orange-100 to-rose-200;
+    @apply absolute inset-0 rounded-3xl bg-gradient-to-tr from-amber-200 via-orange-100 to-rose-200;
 }
 
 .main-image {
-    @apply relative w-full rounded-2xl object-cover shadow-lg;
+    @apply relative w-full max-w-full rounded-2xl object-cover shadow-lg block;
 }
 
 .team-item {
@@ -565,15 +592,15 @@
 /*             */
 
 .product-detail-container {
-    @apply mx-auto max-w-6xl px-6 py-10;
+    @apply mx-auto max-w-6xl px-2 py-8 md:px-6 md:py-10;
 }
 
 .success-alert {
     @apply mb-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-emerald-800;
 }
 
-.product-header {
-    @apply mb-8;
+.product-detail-header {
+    @apply mb-8 text-left;
 }
 
 .product-name-header {
@@ -585,15 +612,31 @@
 }
 
 .product-meta {
-    @apply mt-4 flex flex-wrap gap-3 text-sm font-medium text-slate-600;
+    @apply mt-4 flex flex-col items-start gap-2 text-sm font-medium text-slate-600 md:gap-3;
+}
+
+.product-meta-row {
+    @apply flex max-w-full flex-wrap items-start justify-start gap-2 self-start;
 }
 
 .meta-badge {
-    @apply rounded-full bg-slate-100 px-3 py-1;
+    @apply inline-flex min-w-0 flex-col items-start rounded-lg bg-slate-100 px-3 py-2 text-left leading-snug md:rounded-xl;
+}
+
+.meta-badge-label {
+    @apply text-xs font-semibold uppercase tracking-wide text-slate-500;
+}
+
+.meta-badge-value {
+    @apply mt-1 text-sm font-semibold text-slate-700 whitespace-nowrap;
+}
+
+.countdown-timer {
+    @apply self-start rounded-lg bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-700 md:w-auto;
 }
 
 .product-main-card {
-    @apply rounded-2xl border border-slate-200 bg-white p-6 shadow-sm;
+    @apply rounded-2xl border border-slate-200 bg-white p-3 shadow-sm md:p-6;
 }
 
 .product-main-grid {
@@ -704,7 +747,6 @@
     @apply text-sm font-semibold text-emerald-700;
 }
 
-
 /*                      */
 /*  edit(Product,User)  */
 /*                      */
@@ -742,11 +784,11 @@
     @apply mb-4 p-4 bg-red-100 text-red-700 rounded;
 }
 
-.btn-update{
+.btn-update {
     @apply cursor-pointer mt-4;
 }
 
-.selector{
+.selector {
     @apply bg-cyan-100 text-cyan-700 px-3 py-1 rounded;
 }
 
@@ -916,7 +958,6 @@
     @apply mt-10 flex justify-center;
 }
 
-
 .pagination-wrapper nav {
     @apply flex items-center gap-2 
            px-5 py-3 rounded-full
@@ -996,10 +1037,9 @@
     @apply mt-6 text-center text-lg font-semibold text-gray-900;
 }
 
-.Payment-button{
+.Payment-button {
     @apply w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-full shadow-lg transition-colors cursor-pointer;
 }
-
 
 .profile-page {
     @apply max-w-5xl mx-auto px-6 py-10;
@@ -1089,58 +1129,74 @@
     @apply text-lg font-semibold text-green-600;
 }
 
-
-
 .profile-layout {
-    @apply max-w-6xl mx-auto flex gap-8 px-6 py-10;
+    @apply max-w-6xl mx-auto flex flex-col gap-4 px-4 py-6
+           md:flex-row md:gap-8 md:px-6 md:py-10;
 }
 
 /* SIDEBAR */
 .sidebar {
-    @apply w-60 flex flex-col gap-2;
+    @apply flex flex-row flex-wrap gap-2 w-full
+           md:flex-col md:w-60 md:flex-nowrap;
 }
 
 .sidebar-item {
-    @apply border border-gray-300 dark:border-gray-700
-           rounded-xl px-4 py-3 text-left
-           hover:bg-gray-100 dark:hover:bg-gray-800
-           transition text-gray-900 dark:text-gray-100;
+    @apply border border-gray-300 bg-white
+            rounded-xl px-4 py-2 text-sm text-left text-gray-800 font-medium flex-1
+            hover:bg-gray-100 hover:text-gray-900 transition cursor-pointer
+            md:py-3 md:text-base md:flex-none;
 }
 
 .sidebar-item.active {
-    @apply bg-indigo-600 text-white
-           dark:bg-indigo-500 dark:text-white;
+    @apply bg-indigo-600 text-white border-indigo-600;
 }
 
 /* CONTENT */
 .content {
-    @apply flex-1;
+    @apply flex-1 min-w-0;
 }
 
 /* CARD */
 .card {
-    @apply bg-white rounded-2xl shadow p-6;
+    @apply bg-white rounded-2xl shadow p-4 md:p-6;
 }
 
 /* PROFILE */
 .profile-header {
-    @apply flex items-center gap-6;
+    @apply flex items-center gap-5 pb-5 border-b border-gray-100;
 }
+
 .profile-avatar {
-    @apply w-16 h-16 rounded-full overflow-hidden bg-indigo-600 flex items-center justify-center;
+    @apply w-16 h-16 rounded-full overflow-hidden bg-indigo-600 flex items-center justify-center flex-shrink-0;
+}
+
+.profile-header > div h1 {
+    @apply text-xl font-bold text-gray-900;
+}
+
+.profile-header > div p {
+    @apply text-sm text-gray-500 mt-0.5;
+}
+
+.tab.card > h2 {
+    @apply text-lg font-semibold text-gray-800 mb-5 pb-3 border-b border-gray-100;
 }
 
 /* FORM */
 .form-group {
-    @apply mb-4 flex flex-col;
+    @apply mb-4 flex flex-col gap-1;
+}
+
+.form-group label {
+    @apply text-sm font-medium text-gray-700;
 }
 
 .input {
-    @apply border rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none;
+    @apply border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none transition;
 }
 
 .btn-primary {
-    @apply bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition;
+    @apply bg-indigo-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition mt-2;
 }
 
 /* BIDS */
@@ -1149,15 +1205,24 @@
 }
 
 .bid-card {
-    @apply flex justify-between items-center p-4 border rounded-xl hover:shadow transition;
+    @apply flex flex-col gap-2 p-4 border rounded-xl hover:shadow transition
+           sm:flex-row sm:justify-between sm:items-center;
+}
+
+.bid-card > div:first-child {
+    @apply font-medium text-gray-800;
+}
+
+.bid-card > div:last-child {
+    @apply flex items-center gap-3 flex-wrap;
 }
 
 .bid-date {
-    @apply text-sm text-gray-400;
+    @apply text-sm text-gray-400 mt-0.5;
 }
 
 .bid-price {
-    @apply font-semibold text-green-600;
+    @apply font-semibold text-green-600 text-base;
 }
 
 .empty-state {
@@ -1196,7 +1261,6 @@
     @apply text-center border-t border-slate-700 mt-8 py-4 text-slate-400 text-sm;
 }
 
-
 /* SEARCH */
 .search-live {
     @apply relative mt-4 inline-block;
@@ -1216,5 +1280,5 @@
 }
 
 a {
-    @apply px-4 py-2
+    @apply px-4 py-2;
 }

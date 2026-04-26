@@ -11,19 +11,23 @@
             </div>
         @endif
 
-        <div class="product-header">
+        <div class="product-detail-header">
             <h1 class="product-name-header">{{ $product->name }}</h1>
             <p class="product-category-header">{{ $product->category }}</p>
 
             <div class="product-meta">
-                <span class="meta-badge highest-bid">
-                    Current highest bid: {{ number_format($currentHighestBid) }} Ft
-                </span>
+                <div class="product-meta-row">
+                    <span class="meta-badge highest-bid">
+                        <span class="meta-badge-label">Current highest bid</span>
+                        <span class="meta-badge-value">{{ number_format($currentHighestBid) }} Ft</span>
+                    </span>
 
-                {{-- ⬇️ IDŐ FORMÁTUM JAVÍTVA --}}
-                <span class="meta-badge auction-end">
-                    Auction ends: {{ $product->bid_end_date->format('Y.m.d H:i') }}
-                </span>
+                    {{-- ⬇️ IDŐ FORMÁTUM JAVÍTVA --}}
+                    <span class="meta-badge auction-end">
+                        <span class="meta-badge-label">Auction ends</span>
+                        <span class="meta-badge-value">{{ $product->bid_end_date->format('Y.m.d H:i') }}</span>
+                    </span>
+                </div>
 
                 {{-- ⬇️ COUNTDOWN --}}
                 <span id="countdown" class="countdown-timer"></span>

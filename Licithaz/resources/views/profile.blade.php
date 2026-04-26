@@ -115,7 +115,7 @@
                                     {{ $bid->product->name ?? 'Deleted product' }}
                                     <p class="bid-date">{{ $bid->created_at->diffForHumans() }}</p>
                                 </div>
-                                <div style="display:flex;align-items:center;gap:1rem;">
+                                <div>
                                     <span class="bid-price">
                                         {{ number_format($bid->amount) }} Ft
                                     </span>
