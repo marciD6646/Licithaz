@@ -4,7 +4,7 @@ namespace licitAdminDashboard;
 
 public partial class NewProduct : ContentPage
 {
-    private string selectedImagePath;
+    private string selectedImagePath = string.Empty;
     private readonly ApiService _apiService;
 
     public NewProduct()
@@ -14,7 +14,7 @@ public partial class NewProduct : ContentPage
     }
 
     // 📸 kép kiválasztás
-    private async void OnPickImageClicked(object sender, EventArgs e)
+    private async void OnPickImageClicked(object? sender, EventArgs e)
     {
         var result = await FilePicker.PickAsync(new PickOptions
         {
@@ -31,34 +31,34 @@ public partial class NewProduct : ContentPage
     }
 
     // 🚀 feltöltés
-    private async void OnSubmitProductClicked(object sender, EventArgs e)
+    private async void OnSubmitProductClicked(object? sender, EventArgs e)
     {
         try
         {
             var result = await _apiService.CreateProductAsync(
-                NameEntry.Text,
+                NameEntry.Text ?? string.Empty,
                 CategoryPicker.SelectedItem?.ToString(),
                 DescriptionEditor.Text,
                 ExtendedDescriptionEditor.Text,
                 selectedImagePath,
                 StarterBidEntry.Text,
-                (DateTime)StartDatePicker.Date,
-                (DateTime)EndDatePicker.Date
+                StartDatePicker.Date ?? DateTime.Today,
+                EndDatePicker.Date ?? DateTime.Today
             );
 
             if (result.Success)
             {
-                await DisplayAlert("Success", "Product created!", "OK");
+                await DisplayAlertAsync("Success", "Product created!", "OK");
                 await Navigation.PopAsync();
             }
             else
             {
-                await DisplayAlert("Error", result.ErrorMessage ?? "Upload failed", "OK");
+                await DisplayAlertAsync("Error", result.ErrorMessage ?? "Upload failed", "OK");
             }
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"Upload failed: {ex.Message}", "OK");
+            await DisplayAlertAsync("Error", $"Upload failed: {ex.Message}", "OK");
         }
     }
 }

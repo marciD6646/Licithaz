@@ -1,10 +1,11 @@
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Microsoft.Maui.Controls; 
-using Microsoft.Maui.Storage; 
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Storage;
 
 namespace licitAdminDashboard
 {
@@ -15,7 +16,7 @@ namespace licitAdminDashboard
             InitializeComponent();
         }
 
-        private async void OnLoginClicked(object sender, EventArgs e)
+        private async void OnLoginClicked(object? sender, EventArgs e)
         {
             var email = EmailEntry.Text;
             var password = PasswordEntry.Text;
@@ -47,11 +48,21 @@ namespace licitAdminDashboard
                 {
                     var result = JsonSerializer.Deserialize<LoginResponse>(responseContent);
 
-                   
+                    if (string.IsNullOrWhiteSpace(result?.token))
+                    {
+                        ErrorLabel.Text = "Sikertelen bejelentkezes: hianyzo token.";
+                        ErrorLabel.IsVisible = true;
+                        return;
+                    }
+
                     Preferences.Set("auth_token", result.token);
 
-                    
-                    Application.Current.MainPage = new NavigationPage(new MainPage());
+                    var app = Application.Current;
+                    var window = app?.Windows.FirstOrDefault();
+                    if (window is not null)
+                    {
+                        window.Page = new NavigationPage(new MainPage());
+                    }
                 }
                 else
                 {
@@ -68,7 +79,7 @@ namespace licitAdminDashboard
     }
     public class LoginResponse
     {
-        public string token { get; set; }
-        public string token_type { get; set; }
+        public string token { get; set; } = string.Empty;
+        public string token_type { get; set; } = string.Empty;
     }
 }

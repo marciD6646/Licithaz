@@ -11,19 +11,19 @@ namespace licitAdminDashboard.Models
         public int Id { get; set; }
 
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         [JsonPropertyName("category")]
-        public string Category { get; set; }
+        public string Category { get; set; } = string.Empty;
 
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         [JsonPropertyName("extended_description")]
-        public string ExtendedDescription { get; set; }
+        public string ExtendedDescription { get; set; } = string.Empty;
 
         [JsonPropertyName("image_url")]
-        public string ImageUrl { get; set; }
+        public string ImageUrl { get; set; } = string.Empty;
 
         [JsonPropertyName("starter_bid")]
         public decimal StarterBid { get; set; }

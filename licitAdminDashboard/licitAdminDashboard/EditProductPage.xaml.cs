@@ -1,4 +1,5 @@
 using licitAdminDashboard.Services;
+using System.Globalization;
 using Microsoft.Maui.Storage;
 
 namespace licitAdminDashboard;
@@ -6,8 +7,9 @@ namespace licitAdminDashboard;
 public partial class EditProductPage : ContentPage
 {
     private readonly ApiService _apiService;
-    private int _productId;
-    private string selectedImagePath;
+    private readonly int _productId;
+    private string selectedImagePath = string.Empty;
+    private Models.Product? _originalProduct;
 
     public EditProductPage(int productId)
     {
@@ -25,11 +27,19 @@ public partial class EditProductPage : ContentPage
 
             if (product == null)
             {
-                await DisplayAlert("Error", "Product not found or API error. Check console for details.", "OK");
+                await DisplayAlertAsync("Error", "Product not found or API error. Check console for details.", "OK");
                 return;
             }
 
+            _originalProduct = product;
+
             NameEntry.Text = product.Name;
+
+            if (!string.IsNullOrWhiteSpace(product.Category) && !CategoryPicker.Items.Contains(product.Category))
+            {
+                CategoryPicker.Items.Add(product.Category);
+            }
+
             CategoryPicker.SelectedItem = product.Category;
             DescriptionEditor.Text = product.Description;
             ExtendedDescriptionEditor.Text = product.ExtendedDescription;
@@ -43,12 +53,16 @@ public partial class EditProductPage : ContentPage
 
             if (!string.IsNullOrEmpty(product.ImageUrl))
             {
-                PreviewImage.Source = ImageSource.FromUri(new Uri(product.ImageUrl));
+                var imageUri = ResolveImageUri(product.ImageUrl);
+                if (imageUri != null)
+                {
+                    PreviewImage.Source = ImageSource.FromUri(imageUri);
+                }
             }
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"Failed to load product: {ex.Message}", "OK");
+            await DisplayAlertAsync("Error", $"Failed to load product: {ex.Message}", "OK");
         }
     }
 
@@ -59,7 +73,7 @@ public partial class EditProductPage : ContentPage
     }
 
     // 📸 KÉP CSERE
-    private async void OnPickImageClicked(object sender, EventArgs e)
+    private async void OnPickImageClicked(object? sender, EventArgs e)
     {
         var result = await FilePicker.PickAsync(new PickOptions
         {
@@ -75,35 +89,134 @@ public partial class EditProductPage : ContentPage
     }
 
     // 🚀 UPDATE
-    private async void OnUpdateProductClicked(object sender, EventArgs e)
+    private async void OnUpdateProductClicked(object? sender, EventArgs e)
     {
         try
         {
-            var result = await _apiService.UpdateProductAsync(
-                _productId,
-                NameEntry.Text,
-                CategoryPicker.SelectedItem?.ToString(),
-                DescriptionEditor.Text,
-                ExtendedDescriptionEditor.Text,
-                selectedImagePath,
-                StarterBidEntry.Text,
-                StartDatePicker.Date.Value,
-                EndDatePicker.Date.Value
-            );
+            if (_originalProduct == null)
+            {
+                await DisplayAlertAsync("Error", "Original product data not loaded.", "OK");
+                return;
+            }
+
+            var startDate = StartDatePicker.Date ?? DateTime.Today;
+            var endDate = EndDatePicker.Date ?? DateTime.Today;
+            if (endDate < startDate)
+            {
+                await DisplayAlertAsync("Validation", "End date must be after or equal to start date.", "OK");
+                return;
+            }
+
+            var changedFields = new Dictionary<string, string>();
+
+            var name = NameEntry.Text?.Trim() ?? string.Empty;
+            if (!string.Equals(name, _originalProduct.Name, StringComparison.Ordinal))
+            {
+                changedFields["name"] = name;
+            }
+
+            var category = CategoryPicker.SelectedItem?.ToString() ?? _originalProduct.Category;
+            if (!string.Equals(category, _originalProduct.Category, StringComparison.Ordinal))
+            {
+                changedFields["category"] = category;
+            }
+
+            var description = DescriptionEditor.Text?.Trim() ?? string.Empty;
+            if (!string.Equals(description, _originalProduct.Description, StringComparison.Ordinal))
+            {
+                changedFields["description"] = description;
+            }
+
+            var extendedDescription = ExtendedDescriptionEditor.Text?.Trim() ?? string.Empty;
+            if (!string.Equals(extendedDescription, _originalProduct.ExtendedDescription, StringComparison.Ordinal))
+            {
+                changedFields["extended_description"] = extendedDescription;
+            }
+
+            var starterBid = StarterBidEntry.Text?.Trim() ?? "0";
+            if (!decimal.TryParse(starterBid, NumberStyles.Number, CultureInfo.CurrentCulture, out var starterBidValue) &&
+                !decimal.TryParse(starterBid, NumberStyles.Number, CultureInfo.InvariantCulture, out starterBidValue))
+            {
+                await DisplayAlertAsync("Validation", "Starter bid must be a valid number.", "OK");
+                return;
+            }
+
+            if (starterBidValue != _originalProduct.StarterBid)
+            {
+                changedFields["starter_bid"] = starterBidValue.ToString(CultureInfo.InvariantCulture);
+            }
+
+            if (startDate.Date != _originalProduct.BidStartDate.Date)
+            {
+                changedFields["bid_start_date"] = startDate.ToString("yyyy-MM-dd");
+            }
+
+            if (endDate.Date != _originalProduct.BidEndDate.Date)
+            {
+                changedFields["bid_end_date"] = endDate.ToString("yyyy-MM-dd");
+            }
+
+            var hasImageChange = !string.IsNullOrWhiteSpace(selectedImagePath);
+            if (changedFields.Count == 0 && !hasImageChange)
+            {
+                await DisplayAlertAsync("Info", "No changes to update.", "OK");
+                return;
+            }
+
+            var result = await _apiService.PatchProductAsync(_productId, changedFields, selectedImagePath);
 
             if (result.Success)
             {
-                await DisplayAlert("Success", "Product updated!", "OK");
+                await DisplayAlertAsync("Success", "Product updated!", "OK");
                 await Navigation.PopAsync();
             }
             else
             {
-                await DisplayAlert("Error", result.ErrorMessage ?? "Update failed", "OK");
+                await DisplayAlertAsync("Error", result.ErrorMessage ?? "Update failed", "OK");
             }
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"Update failed: {ex.Message}", "OK");
+            await DisplayAlertAsync("Error", $"Update failed: {ex.Message}", "OK");
         }
+    }
+
+    private static Uri? ResolveImageUri(string imageUrl)
+    {
+        if (Uri.TryCreate(imageUrl, UriKind.Absolute, out var absoluteUri))
+        {
+            return absoluteUri;
+        }
+
+        var normalizedPath = imageUrl.Trim();
+        if (!normalizedPath.StartsWith("/"))
+        {
+            normalizedPath = $"/{normalizedPath}";
+        }
+
+        var pathCandidates = new List<string> { normalizedPath };
+        if (!normalizedPath.StartsWith("/storage/", StringComparison.OrdinalIgnoreCase))
+        {
+            pathCandidates.Add($"/storage{normalizedPath}");
+        }
+
+        var hostCandidates = new[]
+        {
+            "http://localhost:8000",
+            "http://127.0.0.1:8000"
+        };
+
+        foreach (var host in hostCandidates)
+        {
+            foreach (var path in pathCandidates)
+            {
+                if (Uri.TryCreate($"{host}{path}", UriKind.Absolute, out var candidate))
+                {
+                    return candidate;
+                }
+            }
+        }
+
+        return null;
     }
 }

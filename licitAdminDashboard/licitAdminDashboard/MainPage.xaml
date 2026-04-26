@@ -16,7 +16,7 @@
 
                 <!-- Summary cards -->
             <HorizontalStackLayout Spacing="15"
-                       HorizontalOptions="FillAndExpand"
+                       HorizontalOptions="Fill"
                        Margin="0,10,0,0">
 
                 <Border BackgroundColor="#1e293b"
@@ -173,6 +173,40 @@
                                 <VisualState Name="Pressed">
                                     <VisualState.Setters>
                                         <Setter Property="BackgroundColor" Value="#b45309"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
+
+                <Button Text="Payments"
+                     BackgroundColor="#8b5cf6"
+                     TextColor="White"
+                     x:Name="PaymentsBtn">
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+
+                            <VisualStateGroup Name="CommonStates">
+
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#8b5cf6"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#7c3aed"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#6d28d9"/>
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -452,6 +486,28 @@
                             <StackLayout>
                                     <Label Text="{Binding Id, StringFormat='Bid ID: {0}'}" TextColor="White" FontAttributes="Bold"/>
                                     <Label Text="{Binding Amount, StringFormat='Amount: {0:C}'}" TextColor="LightGray"/>
+                                    <Label Text="{Binding CreatedAt, StringFormat='Date: {0}'}" TextColor="LightGray"/>
+                                </StackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Payments list -->
+                <CollectionView x:Name="PaymentsList" IsVisible="False" Margin="0,10,0,0">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BackgroundColor="#1e293b" Padding="10" Margin="0,0,0,10">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10"/>
+                                </Border.StrokeShape>
+                                <StackLayout>
+                                    <Label Text="{Binding Id, StringFormat='Payment ID: {0}'}" TextColor="White" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Amount, StringFormat='Amount: {0:C}'}" TextColor="LightGray"/>
+                                    <Label Text="{Binding IsPaid, StringFormat='Paid: {0}'}" TextColor="LightGray"/>
+                                    <Label Text="{Binding User.Name, StringFormat='User: {0}'}" TextColor="LightGray"/>
+                                    <Label Text="{Binding User.Email, StringFormat='Email: {0}'}" TextColor="LightGray"/>
+                                    <Label Text="{Binding Product.Name, StringFormat='Product: {0}'}" TextColor="LightGray"/>
                                     <Label Text="{Binding CreatedAt, StringFormat='Date: {0}'}" TextColor="LightGray"/>
                                 </StackLayout>
                             </Border>

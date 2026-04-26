@@ -28,10 +28,8 @@
                     <x:String>Clothing</x:String>
                     <x:String>House</x:String>
                     <x:String>Sports</x:String>
-                    <x:String>Toys</x:String>
                     <x:String>Vehicles</x:String>
                     <x:String>Jewelry</x:String>
-                    <x:String>Other</x:String>
                 </Picker.Items>
             </Picker>
 

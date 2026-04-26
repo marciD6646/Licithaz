@@ -6,6 +6,6 @@ namespace licitAdminDashboard.Models
     public class ProductResponse
     {
         [JsonPropertyName("products")]
-        public List<Product> Products { get; set; }
+        public List<Product> Products { get; set; } = new();
     }
 }

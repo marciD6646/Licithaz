@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using Microsoft.Maui.Controls;
@@ -33,10 +34,12 @@ namespace licitAdminDashboard
             LoadProducts();
             LoadUsers();
             LoadBids();
+            LoadPayments();
 
             UsersBtn.Clicked += ShowUsers;
             ProductsBtn.Clicked += ShowProducts;
             BidsBtn.Clicked += ShowBids;
+            PaymentsBtn.Clicked += ShowPayments;
         }
 
         // =========================
@@ -56,7 +59,7 @@ namespace licitAdminDashboard
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error loading products", ex.Message, "OK");
+                await DisplayAlertAsync("Error loading products", ex.Message, "OK");
             }
         }
 
@@ -82,7 +85,7 @@ namespace licitAdminDashboard
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error loading users", ex.Message, "OK");
+                await DisplayAlertAsync("Error loading users", ex.Message, "OK");
             }
         }
 
@@ -99,9 +102,34 @@ namespace licitAdminDashboard
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error loading bids", ex.Message, "OK");
+                await DisplayAlertAsync("Error loading bids", ex.Message, "OK");
             }
         }
+
+        private async void LoadPayments()
+        {
+            try
+            {
+                var token = Preferences.Get("auth_token", string.Empty);
+
+                if (!string.IsNullOrEmpty(token))
+                {
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                }
+
+                var response = await _httpClient.GetFromJsonAsync<PaymentResponse>("payments");
+                if (response != null && response.Payments != null)
+                {
+                    PaymentsList.ItemsSource = response.Payments;
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlertAsync("Error loading payments", ex.Message, "OK");
+            }
+        }
+
         private async Task LoadUserBids(int userId)
         {
             try
@@ -110,30 +138,31 @@ namespace licitAdminDashboard
 
                 if (bids == null || bids.Count == 0)
                 {
-                    await DisplayAlert("Info", "Ez a felhasználó még nem licitált semmire.", "OK");
+                    await DisplayAlertAsync("Info", "Ez a felhasználó még nem licitált semmire.", "OK");
                     return;
                 }
 
                 UserBidsList.ItemsSource = bids;
 
-                ShowUserBids(); 
+                ShowUserBids();
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error loading user bids", ex.Message, "OK");
+                await DisplayAlertAsync("Error loading user bids", ex.Message, "OK");
             }
         }
-        private async void LogOutAdmin(object sender, EventArgs e)
+
+        private async void LogOutAdmin(object? sender, EventArgs e)
         {
             try
             {
                 var token = Preferences.Get("auth_token", string.Empty);
-                
+
                 if (!string.IsNullOrEmpty(token))
                 {
-                    _httpClient.DefaultRequestHeaders.Authorization = 
+                    _httpClient.DefaultRequestHeaders.Authorization =
                         new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                    
+
                     await _httpClient.PostAsync("admin/logout", null);
                 }
             }
@@ -144,87 +173,117 @@ namespace licitAdminDashboard
             finally
             {
                 Preferences.Remove("auth_token");
-                Application.Current.MainPage = new NavigationPage(new LoginPage());
+                var window = Application.Current?.Windows.FirstOrDefault();
+                if (window is not null)
+                {
+                    window.Page = new NavigationPage(new LoginPage());
+                }
             }
         }
 
-        private async void OnBanClicked(object sender, EventArgs e)
+        private async void OnBanClicked(object? sender, EventArgs e)
         {
+            if (sender is not Button button || button.CommandParameter is null)
+            {
+                return;
+            }
 
-
-            var button = sender as Button;
-            var userId = (int)button.CommandParameter;
+            if (!int.TryParse(button.CommandParameter.ToString(), out var userId))
+            {
+                return;
+            }
 
             try
             {
-                await _httpClient.PostAsync($"admin/users/ban/{userId}", null); ;
-                LoadUsers(); 
+                await _httpClient.PostAsync($"admin/users/ban/{userId}", null);
+                LoadUsers();
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", ex.Message, "OK");
+                await DisplayAlertAsync("Error", ex.Message, "OK");
             }
         }
 
-        private async void OnUnbanClicked(object sender, EventArgs e)
+        private async void OnUnbanClicked(object? sender, EventArgs e)
         {
+            if (sender is not Button button || button.CommandParameter is null)
+            {
+                return;
+            }
 
-            var button = sender as Button;
-            var userId = (int)button.CommandParameter;
+            if (!int.TryParse(button.CommandParameter.ToString(), out var userId))
+            {
+                return;
+            }
 
             try
             {
                 await _httpClient.PostAsync($"admin/users/unban/{userId}", null);
-                LoadUsers(); 
+                LoadUsers();
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", ex.Message, "OK");
+                await DisplayAlertAsync("Error", ex.Message, "OK");
             }
         }
 
         // =========================
         // TAB SWITCHING
         // =========================
-        private void ShowProducts(object sender, EventArgs e)
+        private void ShowProducts(object? sender, EventArgs e)
         {
             AddProductbtn.IsVisible = true;
             ProductsList.IsVisible = true;
             UsersList.IsVisible = false;
             BidsList.IsVisible = false;
+            PaymentsList.IsVisible = false;
             UserBidsList.IsVisible = false;
         }
 
-        private void ShowUsers(object sender, EventArgs e)
+        private void ShowUsers(object? sender, EventArgs e)
         {
             AddProductbtn.IsVisible = false;
             ProductsList.IsVisible = false;
             UsersList.IsVisible = true;
             BidsList.IsVisible = false;
+            PaymentsList.IsVisible = false;
             UserBidsList.IsVisible = false;
 
 
         }
 
-        private void ShowBids(object sender, EventArgs e)
+        private void ShowBids(object? sender, EventArgs e)
         {
             AddProductbtn.IsVisible = false;
             ProductsList.IsVisible = false;
             UsersList.IsVisible = false;
             BidsList.IsVisible = true;
+            PaymentsList.IsVisible = false;
             UserBidsList.IsVisible = false;
 
 
         }
+
+        private void ShowPayments(object? sender, EventArgs e)
+        {
+            AddProductbtn.IsVisible = false;
+            ProductsList.IsVisible = false;
+            UsersList.IsVisible = false;
+            BidsList.IsVisible = false;
+            PaymentsList.IsVisible = true;
+            UserBidsList.IsVisible = false;
+        }
+
         private void ShowUserBids()
         {
             AddProductbtn.IsVisible = false;
             ProductsList.IsVisible = false;
             UsersList.IsVisible = false;
             BidsList.IsVisible = false;
+            PaymentsList.IsVisible = false;
             UserBidsList.IsVisible = true;
         }
-        private async void OpenNewProductPage(object sender, EventArgs e)
+        private async void OpenNewProductPage(object? sender, EventArgs e)
         {
             await Navigation.PushAsync(new NewProduct());
         }
@@ -235,7 +294,7 @@ namespace licitAdminDashboard
             LoadProducts();
         }
 
-        private async void OnEditProductClicked(object sender, EventArgs e)
+        private async void OnEditProductClicked(object? sender, EventArgs e)
         {
             if (sender is Button btn && btn.CommandParameter is not null)
             {
@@ -246,13 +305,13 @@ namespace licitAdminDashboard
             }
         }
 
-        private async void OnDeleteProductClicked(object sender, EventArgs e)
+        private async void OnDeleteProductClicked(object? sender, EventArgs e)
         {
             if (sender is Button btn && btn.CommandParameter is not null)
             {
                 if (int.TryParse(btn.CommandParameter.ToString(), out int productId))
                 {
-                    var confirm = await DisplayAlert("Confirm", "Are you sure you want to delete this product?", "Yes", "No");
+                    var confirm = await DisplayAlertAsync("Confirm", "Are you sure you want to delete this product?", "Yes", "No");
                     if (!confirm) return;
 
                     try
@@ -261,17 +320,17 @@ namespace licitAdminDashboard
                         var success = await api.DeleteProductAsync(productId);
                         if (success)
                         {
-                            await DisplayAlert("Success", "Product deleted", "OK");
+                            await DisplayAlertAsync("Success", "Product deleted", "OK");
                             LoadProducts();
                         }
                         else
                         {
-                            await DisplayAlert("Error", "Delete failed", "OK");
+                            await DisplayAlertAsync("Error", "Delete failed", "OK");
                         }
                     }
                     catch (Exception ex)
                     {
-                        await DisplayAlert("Error", ex.Message, "OK");
+                        await DisplayAlertAsync("Error", ex.Message, "OK");
                     }
                 }
             }
