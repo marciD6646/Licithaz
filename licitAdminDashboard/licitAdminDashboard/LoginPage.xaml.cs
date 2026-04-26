@@ -15,6 +15,9 @@ namespace licitAdminDashboard
         {
             InitializeComponent();
         }
+        // =========================
+        //          LOGIN
+        // =========================
 
         private async void OnLoginClicked(object? sender, EventArgs e)
         {
@@ -41,11 +44,14 @@ namespace licitAdminDashboard
 
             try
             {
+                //Kérés küldése a szervernek a bejelentkezési adatokkal
                 var response = await client.PostAsync("http://127.0.0.1:8000/api/admin/login", content);
+                //Beolvassa a szerver válaszát szövegként
                 var responseContent = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
                 {
+                    //Token kivonása a szerver válaszából
                     var result = JsonSerializer.Deserialize<LoginResponse>(responseContent);
 
                     if (string.IsNullOrWhiteSpace(result?.token))
@@ -54,22 +60,26 @@ namespace licitAdminDashboard
                         ErrorLabel.IsVisible = true;
                         return;
                     }
-
+                    //Token elmentése a helyi tárhelyre
                     Preferences.Set("auth_token", result.token);
 
                     var app = Application.Current;
                     var window = app?.Windows.FirstOrDefault();
+
+                    // Navigálás a főoldalra
                     if (window is not null)
                     {
                         window.Page = new NavigationPage(new MainPage());
                     }
                 }
+                //Error esetén kiírja a szerver válaszát a hibaüzenet helyére
                 else
                 {
                     ErrorLabel.Text = responseContent;
                     ErrorLabel.IsVisible = true;
                 }
             }
+            //Hiba esetén kiírja a hibaüzenetet a hibaüzenet helyére(pl: szerver nem elérhető)
             catch (Exception ex)
             {
                 ErrorLabel.Text = "Szerver hiba: " + ex.Message;

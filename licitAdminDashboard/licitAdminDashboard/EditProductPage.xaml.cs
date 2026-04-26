@@ -18,7 +18,9 @@ public partial class EditProductPage : ContentPage
         _productId = productId;
     }
 
-    // 📥 TERMÉK BETÖLTÉS
+    //==========================
+    //     TERMÉK BETÖLTÉSE
+    //==========================
     private async Task LoadProduct()
     {
         try
@@ -65,14 +67,14 @@ public partial class EditProductPage : ContentPage
             await DisplayAlertAsync("Error", $"Failed to load product: {ex.Message}", "OK");
         }
     }
-
+    // Oldal megjelenésekor betölti a termék adatait
     protected override async void OnAppearing()
     {
         base.OnAppearing();
         await LoadProduct();
     }
 
-    // 📸 KÉP CSERE
+    //Kép kiválasztása a fájlrendszerből
     private async void OnPickImageClicked(object? sender, EventArgs e)
     {
         var result = await FilePicker.PickAsync(new PickOptions
@@ -88,7 +90,7 @@ public partial class EditProductPage : ContentPage
         }
     }
 
-    // 🚀 UPDATE
+    //Termék adatainak frissítése a szerveren
     private async void OnUpdateProductClicked(object? sender, EventArgs e)
     {
         try
@@ -180,7 +182,7 @@ public partial class EditProductPage : ContentPage
             await DisplayAlertAsync("Error", $"Update failed: {ex.Message}", "OK");
         }
     }
-
+    // Megpróbál érvényes képet URI-t létrehozni
     private static Uri? ResolveImageUri(string imageUrl)
     {
         if (Uri.TryCreate(imageUrl, UriKind.Absolute, out var absoluteUri))

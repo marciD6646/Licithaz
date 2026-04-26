@@ -8,7 +8,9 @@ namespace licitAdminDashboard
         {
             InitializeComponent();
         }
-
+        // =========================
+        //    ALKALMAZÁS INDÍTÁSA
+        // =========================
         protected override Window CreateWindow(IActivationState? activationState)
         {
             return new Window(new NavigationPage(new LoginPage()));

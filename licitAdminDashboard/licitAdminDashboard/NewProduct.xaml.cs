@@ -12,8 +12,11 @@ public partial class NewProduct : ContentPage
         InitializeComponent();
         _apiService = new ApiService();
     }
+    // =========================
+    //   NEW PRODUCT FELVÉTELE
+    // =========================
 
-    // 📸 kép kiválasztás
+    //kép kiválasztás
     private async void OnPickImageClicked(object? sender, EventArgs e)
     {
         var result = await FilePicker.PickAsync(new PickOptions
@@ -30,7 +33,7 @@ public partial class NewProduct : ContentPage
 
     }
 
-    // 🚀 feltöltés
+    //New product feltöltés
     private async void OnSubmitProductClicked(object? sender, EventArgs e)
     {
         try

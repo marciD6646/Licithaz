@@ -43,8 +43,10 @@ namespace licitAdminDashboard
         }
 
         // =========================
-        // LOAD DATA FROM API
+        //    LOAD DATA FROM API
         // =========================
+
+        // A productok betöltése az API-ról, és megjelenítése a ProductsList-ben
         private async void LoadProducts()
         {
             try
@@ -63,6 +65,7 @@ namespace licitAdminDashboard
             }
         }
 
+        // A felhasználók betöltése az API-ról, és megjelenítése a UsersList-ben
         private async void LoadUsers()
         {
             try
@@ -89,6 +92,7 @@ namespace licitAdminDashboard
             }
         }
 
+        // A licitek betöltése az API-ról, és megjelenítése a BidsList-ben
         private async void LoadBids()
         {
             try
@@ -106,6 +110,7 @@ namespace licitAdminDashboard
             }
         }
 
+        // A kifizetések betöltése az API-ról, és megjelenítése a PaymentsList-ben
         private async void LoadPayments()
         {
             try
@@ -129,7 +134,7 @@ namespace licitAdminDashboard
                 await DisplayAlertAsync("Error loading payments", ex.Message, "OK");
             }
         }
-
+        // Egy adott felhasználó licitjeinek betöltése az API-ról, és megjelenítése a UserBidsList-ben
         private async Task LoadUserBids(int userId)
         {
             try
@@ -151,7 +156,9 @@ namespace licitAdminDashboard
                 await DisplayAlertAsync("Error loading user bids", ex.Message, "OK");
             }
         }
-
+        // =========================
+        //         LOGOUT
+        // =========================
         private async void LogOutAdmin(object? sender, EventArgs e)
         {
             try
@@ -180,6 +187,9 @@ namespace licitAdminDashboard
                 }
             }
         }
+        // =========================
+        //      USER BAN/UNBAN
+        // =========================
 
         private async void OnBanClicked(object? sender, EventArgs e)
         {
@@ -228,7 +238,7 @@ namespace licitAdminDashboard
         }
 
         // =========================
-        // TAB SWITCHING
+        //       TAB SWITCHING
         // =========================
         private void ShowProducts(object? sender, EventArgs e)
         {
@@ -248,8 +258,6 @@ namespace licitAdminDashboard
             BidsList.IsVisible = false;
             PaymentsList.IsVisible = false;
             UserBidsList.IsVisible = false;
-
-
         }
 
         private void ShowBids(object? sender, EventArgs e)
@@ -260,8 +268,6 @@ namespace licitAdminDashboard
             BidsList.IsVisible = true;
             PaymentsList.IsVisible = false;
             UserBidsList.IsVisible = false;
-
-
         }
 
         private void ShowPayments(object? sender, EventArgs e)
@@ -283,6 +289,9 @@ namespace licitAdminDashboard
             PaymentsList.IsVisible = false;
             UserBidsList.IsVisible = true;
         }
+        // =========================
+        //  PRODUCT ADD/EDIT/DELETE
+        // =========================
         private async void OpenNewProductPage(object? sender, EventArgs e)
         {
             await Navigation.PushAsync(new NewProduct());

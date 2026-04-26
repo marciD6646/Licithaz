@@ -5,6 +5,7 @@
 
     <VerticalStackLayout Padding="30" Spacing="20" VerticalOptions="Center">
 
+        <!--Login UI-->
         <Label Text="Admin Login"
                FontSize="30"
                FontAttributes="Bold"
@@ -23,9 +24,9 @@
                PlaceholderColor="Gray"/>
 
         <Button Text="Login"
-        TextColor="White"
-        Clicked="OnLoginClicked"
-        x:Name="LoginBtn">
+            TextColor="White"
+            Clicked="OnLoginClicked"
+            x:Name="LoginBtn">
 
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroupList>

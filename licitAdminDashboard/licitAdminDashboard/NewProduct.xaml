@@ -6,7 +6,8 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
-
+    <!--New Product UI-->
+            
             <Label Text="Add New Product"
                    FontSize="28"
                    FontAttributes="Bold"
@@ -44,8 +45,7 @@
                     HeightRequest="120"
                     TextColor="White"
                     BackgroundColor="#1e293b"/>
-
-            <!-- 📸 IMAGE -->
+            
             <Button Text="Choose Image"
                     Clicked="OnPickImageClicked"
                     BackgroundColor="#334155"
@@ -62,33 +62,34 @@
                    BackgroundColor="#1e293b"/>
 
             <Label Text="Bid Dates"
-       TextColor="White"
-       FontAttributes="Bold"
-       Margin="0,10,0,0"/>
+                TextColor="White"
+                FontAttributes="Bold"
+                Margin="0,10,0,0"/>
 
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
 
                 <VerticalStackLayout>
                     <Label Text="Start Date"
-               TextColor="Gray"
-               FontSize="12"/>
+                        TextColor="Gray"
+                        FontSize="12"/>
                     <DatePicker x:Name="StartDatePicker"
-                    TextColor="White"/>
+                        TextColor="White"/>
                 </VerticalStackLayout>
 
                 <VerticalStackLayout Grid.Column="1">
                     <Label Text="End Date"
-               TextColor="Gray"
-               FontSize="12"/>
+                        TextColor="Gray"
+                        FontSize="12"/>
                     <DatePicker x:Name="EndDatePicker"
-                    TextColor="White"/>
+                        TextColor="White"/>
                 </VerticalStackLayout>
 
             </Grid>
-
+            
+           <!--NewProduct Button-->
             <Button Text="Add Product"
-        Clicked="OnSubmitProductClicked"
-        TextColor="White">
+                Clicked="OnSubmitProductClicked"
+                TextColor="White">
 
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroupList>

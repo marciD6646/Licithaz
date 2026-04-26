@@ -4,45 +4,40 @@
              x:Class="licitAdminDashboard.MainPage"
              BackgroundColor="#0f172a">
 
-
         <ScrollView>
             <VerticalStackLayout Padding="20" Spacing="20">
-
-                <Label Text="Auction Admin Dashboard"
+            <Label Text="Auction Admin Dashboard"
                    FontSize="28"
                    FontAttributes="Bold"
                    TextColor="White"
                    HorizontalOptions="Center" />
-
-                <!-- Summary cards -->
+            <!-- Summary cards -->
             <HorizontalStackLayout Spacing="15"
-                       HorizontalOptions="Fill"
-                       Margin="0,10,0,0">
-
+                 HorizontalOptions="Fill"
+                 Margin="0,10,0,0">
+                
                 <Border BackgroundColor="#1e293b"
-            Padding="20"
-            WidthRequest="120"
-            HorizontalOptions="Fill">
-
+                    Padding="20"
+                    WidthRequest="120"
+                    HorizontalOptions="Fill">
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20"/>
                     </Border.StrokeShape>
-
+                    
                     <VerticalStackLayout>
                         <Label Text="Users" TextColor="White"/>
                         <Label x:Name="UsersCountLabel"
-                   Text="0"
-                   FontSize="24"
-                   TextColor="#38bdf8"
-                   FontAttributes="Bold"/>
+                            Text="0"
+                            FontSize="24"
+                            TextColor="#38bdf8"
+                            FontAttributes="Bold"/>
                     </VerticalStackLayout>
                 </Border>
-
+                
                 <Border BackgroundColor="#1e293b"
-            Padding="20"
-            WidthRequest="120"
-            HorizontalOptions="Fill">
-
+                    Padding="20"
+                    WidthRequest="120"
+                    HorizontalOptions="Fill">
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20"/>
                     </Border.StrokeShape>
@@ -50,17 +45,17 @@
                     <VerticalStackLayout>
                         <Label Text="Products" TextColor="White"/>
                         <Label x:Name="ProductsCountLabel"
-                   Text="0"
-                   FontSize="24"
-                   TextColor="#22c55e"
-                   FontAttributes="Bold"/>
+                            Text="0"
+                            FontSize="24"
+                            TextColor="#22c55e"
+                            FontAttributes="Bold"/>
                     </VerticalStackLayout>
                 </Border>
 
                 <Border BackgroundColor="#1e293b"
-            Padding="20"
-            WidthRequest="120"
-            HorizontalOptions="Fill">
+                    Padding="20"
+                    WidthRequest="120"
+                    HorizontalOptions="Fill">
 
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20"/>
@@ -69,10 +64,10 @@
                     <VerticalStackLayout>
                         <Label Text="Bids" TextColor="White"/>
                         <Label x:Name="BidsCountLabel"
-                   Text="0"
-                   FontSize="24"
-                   TextColor="#f59e0b"
-                   FontAttributes="Bold"/>
+                            Text="0"
+                            FontSize="24"
+                            TextColor="#f59e0b"
+                            FontAttributes="Bold"/>
                     </VerticalStackLayout>
                 </Border>
 
@@ -80,10 +75,10 @@
 
             <!-- Tabs -->
                 <HorizontalStackLayout Spacing="15" Margin="0,20,0,0">
-
+            <!--Users Tab-->
                 <Button Text="Users"
-        BackgroundColor="#3b82f6"
-        TextColor="White"
+                    BackgroundColor="#3b82f6"
+                    TextColor="White"
                     x:Name="UsersBtn">
 
                     <VisualStateManager.VisualStateGroups>
@@ -113,7 +108,8 @@
                         </VisualStateGroupList>
                     </VisualStateManager.VisualStateGroups>
                 </Button>
-
+                    
+             <!--Products Tab-->
                 <Button Text="Products"
                          BackgroundColor="#10b981"
                          TextColor="White"
@@ -147,7 +143,8 @@
                         </VisualStateGroupList>
                     </VisualStateManager.VisualStateGroups>
                 </Button>
-
+                    
+            <!--Bids Tab-->
                 <Button Text="Bids"
                      BackgroundColor="#f59e0b"
                      TextColor="White"
@@ -181,7 +178,8 @@
                         </VisualStateGroupList>
                     </VisualStateManager.VisualStateGroups>
                 </Button>
-
+                    
+            <!--Payments Tab-->
                 <Button Text="Payments"
                      BackgroundColor="#8b5cf6"
                      TextColor="White"
@@ -216,7 +214,7 @@
                     </VisualStateManager.VisualStateGroups>
                 </Button>
 
-
+            <!--Logout Button-->
                 <Button Text="Logout"
                      BackgroundColor="#ef4444"
                      TextColor="White"
@@ -251,8 +249,7 @@
                         </VisualStateGroupList>
                     </VisualStateManager.VisualStateGroups>
                 </Button>
-
-
+                    
             </HorizontalStackLayout>
 
                 <!-- Users list -->
@@ -264,9 +261,9 @@
                            
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer
-                        NumberOfTapsRequired="2"
-                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UserDoubleTappedCommand}"
-                        CommandParameter="{Binding Id}" />
+                                    NumberOfTapsRequired="2"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UserDoubleTappedCommand}"
+                                    CommandParameter="{Binding Id}" />
                             </Border.GestureRecognizers>
 
                             <Border.StrokeShape>
@@ -278,13 +275,14 @@
                                 <Label Text="{Binding Email}" TextColor="LightGray"/>
                                 <Label Text="{Binding IsAdmin, StringFormat='Admin: {0}'}" TextColor="LightGray"/>
                                 <Label Text="{Binding IsBanned, StringFormat='Banned: {0}'}" TextColor="LightGray"/>
-
+                                
+                             <!-- Ban/Unban buttons -->
                                 <StackLayout Orientation="Horizontal" Spacing="10">
                                     <Button Text="Ban"
-                                CommandParameter="{Binding Id}"
-                                TextColor="White"
-                                x:Name="BanBtn"
-                                Clicked="OnBanClicked">
+                                        CommandParameter="{Binding Id}"
+                                        TextColor="White"
+                                        x:Name="BanBtn"
+                                        Clicked="OnBanClicked">
 
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroupList>
@@ -316,10 +314,10 @@
                                     </Button>
 
                                     <Button Text="Unban"
-                                CommandParameter="{Binding Id}"
-                                TextColor="White"
-                                x:Name="UnbanBtn"
-                                Clicked="OnUnbanClicked">
+                                        CommandParameter="{Binding Id}"
+                                        TextColor="White"
+                                        x:Name="UnbanBtn"
+                                        Clicked="OnUnbanClicked">
 
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroupList>
@@ -358,7 +356,8 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <!-- Products list -->
+            <!-- Products -->
+                <!--NewProduct BTN-->
             <Button Text="Add Product" IsVisible="False" x:Name="AddProductbtn" TextColor="White"
                     BackgroundColor="#C9B05B" Padding="10" Margin="0,10,0,0" WidthRequest="200" Clicked="OpenNewProductPage">
 
@@ -389,7 +388,7 @@
                 </VisualStateGroupList>
                 </VisualStateManager.VisualStateGroups>
             </Button>
-                
+                <!--Products List-->
                 <CollectionView x:Name="ProductsList" IsVisible="False" Margin="0,10,0,0">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -403,9 +402,9 @@
                                     <Label Text="{Binding StarterBid, StringFormat='Start Bid: {0:C}'}" TextColor="LightGray"/>
                                     <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,8,0,0">
                                     <Button Text="Edit"
-        TextColor="White"
-        CommandParameter="{Binding Id}"
-        Clicked="OnEditProductClicked">
+                                        TextColor="White"
+                                        CommandParameter="{Binding Id}"
+                                        Clicked="OnEditProductClicked">
 
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroupList>
@@ -436,9 +435,9 @@
                                         </VisualStateManager.VisualStateGroups>
                                     </Button>
                                     <Button Text="Delete"
-        TextColor="White"
-        CommandParameter="{Binding Id}"
-        Clicked="OnDeleteProductClicked">
+                                        TextColor="White"
+                                        CommandParameter="{Binding Id}"
+                                        Clicked="OnDeleteProductClicked">
 
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroupList>
