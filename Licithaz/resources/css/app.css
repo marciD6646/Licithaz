@@ -643,8 +643,12 @@
     @apply grid grid-cols-1 gap-6 md:grid-cols-2;
 }
 
-.product-image-section img {
-    @apply w-full rounded-2xl object-cover;
+.product-image-wrapper {
+    @apply w-full max-w-md h-80 overflow-hidden rounded-2xl bg-gray-100;
+}
+
+.product-image {
+    @apply w-full h-full object-contain;
 }
 
 .product-details-section {

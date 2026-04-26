@@ -37,9 +37,10 @@
         <div class="product-main-card">
             <div class="product-main-grid">
 
-                <div class="product-image-section">
-                    <img src="{{ asset($product->image_url) }}"
-                        onerror="this.onerror=null;this.src='{{ asset('images/1.jpg') }}';">
+                <div class="product-image-wrapper">
+                <img src="{{ asset($product->image_url) }}"
+                  class="product-image"
+                  onerror="this.onerror=null;this.src='{{   asset('images/1.jpg') }}';">
                 </div>
 
                 <div class="product-details-section">
