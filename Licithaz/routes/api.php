@@ -5,8 +5,10 @@ use App\Http\Controllers\Api\AdminAuthController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\BidController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\PaymentController;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Payment;
 
 // Admin auth (public)
 Route::post('/admin/login', [AdminAuthController::class, 'login']);
@@ -42,4 +44,7 @@ Route::middleware('auth:sanctum')->group(function () {
         ->middleware('can:update,product');
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])
         ->middleware('can:delete,product');
+
+    Route::get('/payments', [PaymentController::class, 'index'])
+        ->middleware('can:viewAny,' . Payment::class);
 });
