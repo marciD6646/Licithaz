@@ -1,20 +1,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="licitAdminDashboard.NewProduct"
-             Title="Add New Product"
+             x:Class="licitAdminDashboard.EditProductPage"
+             Title="Edit Product"
              BackgroundColor="#0f172a">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 
-            <Label Text="Add New Product"
+            <Label Text="Edit Product"
                    FontSize="28"
                    FontAttributes="Bold"
                    TextColor="White"
                    HorizontalOptions="Center" />
 
-            <Entry Placeholder="Product Name"
-                   x:Name="NameEntry"
+            <Entry x:Name="NameEntry"
+                   Placeholder="Product Name"
                    TextColor="White"
                    BackgroundColor="#1e293b"/>
 
@@ -47,8 +47,7 @@
                     TextColor="White"
                     BackgroundColor="#1e293b"/>
 
-            <!-- 📸 IMAGE -->
-            <Button Text="Choose Image"
+            <Button Text="Change Image"
                     Clicked="OnPickImageClicked"
                     BackgroundColor="#334155"
                     TextColor="White"/>
@@ -62,6 +61,7 @@
                    Keyboard="Numeric"
                    TextColor="White"
                    BackgroundColor="#1e293b"/>
+
 
             <Label Text="Bid Dates"
        TextColor="White"
@@ -88,8 +88,8 @@
 
             </Grid>
 
-            <Button Text="Add Product"
-        Clicked="OnSubmitProductClicked"
+            <Button Text="Update Product"
+        Clicked="OnUpdateProductClicked"
         TextColor="White">
 
                 <VisualStateManager.VisualStateGroups>
@@ -99,19 +99,19 @@
 
                             <VisualState Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#C9B05B"/>
+                                    <Setter Property="BackgroundColor" Value="#22c55e"/>
                                 </VisualState.Setters>
                             </VisualState>
 
                             <VisualState Name="PointerOver">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#b89a3f"/>
+                                    <Setter Property="BackgroundColor" Value="#16a34a"/>
                                 </VisualState.Setters>
                             </VisualState>
 
                             <VisualState Name="Pressed">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#9f7f2a"/>
+                                    <Setter Property="BackgroundColor" Value="#15803d"/>
                                 </VisualState.Setters>
                             </VisualState>
 

@@ -367,6 +367,74 @@
                                     <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold"/>
                                     <Label Text="{Binding Category}" TextColor="LightGray"/>
                                     <Label Text="{Binding StarterBid, StringFormat='Start Bid: {0:C}'}" TextColor="LightGray"/>
+                                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,8,0,0">
+                                    <Button Text="Edit"
+        TextColor="White"
+        CommandParameter="{Binding Id}"
+        Clicked="OnEditProductClicked">
+
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroupList>
+
+                                                <VisualStateGroup Name="CommonStates">
+
+                                                    <VisualState Name="Normal">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#0ea5a4"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                    <VisualState Name="PointerOver">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#0d9488"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                    <VisualState Name="Pressed">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#0f766e"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                </VisualStateGroup>
+
+                                            </VisualStateGroupList>
+                                        </VisualStateManager.VisualStateGroups>
+                                    </Button>
+                                    <Button Text="Delete"
+        TextColor="White"
+        CommandParameter="{Binding Id}"
+        Clicked="OnDeleteProductClicked">
+
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroupList>
+
+                                                <VisualStateGroup Name="CommonStates">
+
+                                                    <VisualState Name="Normal">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#ef4444"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                    <VisualState Name="PointerOver">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#dc2626"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                    <VisualState Name="Pressed">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#b91c1c"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                </VisualStateGroup>
+
+                                            </VisualStateGroupList>
+                                        </VisualStateManager.VisualStateGroups>
+                                    </Button>
+                                </StackLayout>
                                 </StackLayout>
                             </Border>
                         </DataTemplate>

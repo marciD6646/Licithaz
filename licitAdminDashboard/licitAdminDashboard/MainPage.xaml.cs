@@ -228,5 +228,53 @@ namespace licitAdminDashboard
         {
             await Navigation.PushAsync(new NewProduct());
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            LoadProducts();
+        }
+
+        private async void OnEditProductClicked(object sender, EventArgs e)
+        {
+            if (sender is Button btn && btn.CommandParameter is not null)
+            {
+                if (int.TryParse(btn.CommandParameter.ToString(), out int productId))
+                {
+                    await Navigation.PushAsync(new EditProductPage(productId));
+                }
+            }
+        }
+
+        private async void OnDeleteProductClicked(object sender, EventArgs e)
+        {
+            if (sender is Button btn && btn.CommandParameter is not null)
+            {
+                if (int.TryParse(btn.CommandParameter.ToString(), out int productId))
+                {
+                    var confirm = await DisplayAlert("Confirm", "Are you sure you want to delete this product?", "Yes", "No");
+                    if (!confirm) return;
+
+                    try
+                    {
+                        var api = new Services.ApiService();
+                        var success = await api.DeleteProductAsync(productId);
+                        if (success)
+                        {
+                            await DisplayAlert("Success", "Product deleted", "OK");
+                            LoadProducts();
+                        }
+                        else
+                        {
+                            await DisplayAlert("Error", "Delete failed", "OK");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        await DisplayAlert("Error", ex.Message, "OK");
+                    }
+                }
+            }
+        }
     }
 }

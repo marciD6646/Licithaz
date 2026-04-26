@@ -33,25 +33,32 @@ public partial class NewProduct : ContentPage
     // 🚀 feltöltés
     private async void OnSubmitProductClicked(object sender, EventArgs e)
     {
-        bool success = await _apiService.CreateProductAsync(
-            NameEntry.Text,
-            CategoryPicker.SelectedItem?.ToString(),
-            DescriptionEditor.Text,
-            ExtendedDescriptionEditor.Text,
-            selectedImagePath,
-            StarterBidEntry.Text,
-            (DateTime)StartDatePicker.Date,
-            (DateTime)EndDatePicker.Date
-        );
+        try
+        {
+            var result = await _apiService.CreateProductAsync(
+                NameEntry.Text,
+                CategoryPicker.SelectedItem?.ToString(),
+                DescriptionEditor.Text,
+                ExtendedDescriptionEditor.Text,
+                selectedImagePath,
+                StarterBidEntry.Text,
+                (DateTime)StartDatePicker.Date,
+                (DateTime)EndDatePicker.Date
+            );
 
-        if (success)
-        {
-            await DisplayAlert("Success", "Product created!", "OK");
-            await Navigation.PopAsync();
+            if (result.Success)
+            {
+                await DisplayAlert("Success", "Product created!", "OK");
+                await Navigation.PopAsync();
+            }
+            else
+            {
+                await DisplayAlert("Error", result.ErrorMessage ?? "Upload failed", "OK");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            await DisplayAlert("Error", "Upload failed", "OK");
+            await DisplayAlert("Error", $"Upload failed: {ex.Message}", "OK");
         }
     }
 }
