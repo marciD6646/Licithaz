@@ -604,7 +604,7 @@
 }
 
 .product-name-header {
-    @apply text-3xl font-bold text-slate-900;
+    @apply text-3xl font-bold text-yellow-200;
 }
 
 .product-category-header {

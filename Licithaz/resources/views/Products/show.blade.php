@@ -38,9 +38,8 @@
             <div class="product-main-grid">
 
                 <div class="product-image-wrapper">
-                <img src="{{ asset($product->image_url) }}"
-                  class="product-image"
-                  onerror="this.onerror=null;this.src='{{   asset('images/1.jpg') }}';">
+                    <img src="{{ asset($product->image_url) }}" class="product-image"
+                        onerror="this.onerror=null;this.src='{{ asset('images/1.jpg') }}';">
                 </div>
 
                 <div class="product-details-section">
@@ -113,7 +112,6 @@
                             <div>
                                 <p class="bid-user">{{ $bid->user->name }}</p>
 
-                                {{-- ⬇️ ITT MÁR OKÉ VOLT, CSAK FORMÁTUM FINOMÍTÁS --}}
                                 <p class="bid-time">{{ $bid->created_at->format('Y.m.d H:i') }}</p>
                             </div>
 
