@@ -5,20 +5,12 @@
 @section('content')
     <div class="container">
 
-        <div class="intro">
-            <h1 class="page-title">
-                About AuctionHouse
-            </h1>
-            <p class="page-subtitle">
-                Connecting buyers and sellers in a fair and exciting online auction experience.
-            </p>
-        </div>
-
-        <div class="card">
-            <h2>About us</h2>
-            <p class="text">
-              We are a passionate team dedicated to building a simple, transparent, and reliable online bidding platform where users can discover great products and place competitive bids with ease.
-            </p>
+        <div class="mission">
+            <h2 class="section-title">About us</h2>
+            <h2>
+                We are a passionate team dedicated to building a simple, transparent, and reliable online bidding platform
+                where users can discover great products and place competitive bids with ease.
+            </h2>
         </div>
 
         <!-- céljaink hogy miért csinaljuk ezt az oldalt miért lesz hasznos stb -->
@@ -34,7 +26,7 @@
         </div>
 
         <div class="team">
-            <h2 class="section-title center">Meet the Team</h2>
+            <h2 class="section-title-two">Meet the Team</h2>
 
             <div class="team-grid">
                 <div class="team-member">

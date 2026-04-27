@@ -69,12 +69,10 @@
 /* ABOUT US PAGE */
 /*               */
 
-/* CONTAINER */
 .container {
     @apply mx-auto max-w-7xl py-16 px-6;
 }
 
-/* INTRO */
 .intro {
     @apply text-center mb-16;
 }
@@ -87,27 +85,28 @@
     @apply text-gray-500 text-lg md:text-xl max-w-2xl mx-auto;
 }
 
-/* TEXT */
 .text {
     @apply text-gray-600 leading-relaxed;
 }
 
-/* SECTION TITLES */
 .section-title {
     @apply text-3xl font-semibold mb-4 text-gray-800;
 }
+
+.section-title-two {
+    @apply text-3xl font-semibold mb-4 text-gray-800 dark:text-gray-200 justify-center flex;
+}
+
 
 .section-title.center {
     @apply text-center mb-8;
 }
 
-/* CARD (Our Story) */
 .card {
     @apply mb-16 bg-white rounded-2xl shadow-lg p-8 
-         hover:shadow-2xl transition-shadow duration-300;
+        hover:shadow-2xl transition-shadow duration-300;
 }
 
-/* MISSION */
 .mission {
     @apply mb-16 bg-gradient-to-r from-blue-50 to-indigo-50 
          p-8 rounded-2xl shadow-lg;
@@ -121,7 +120,6 @@
     @apply text-blue-600 mr-2;
 }
 
-/* TEAM */
 .team {
     @apply mb-16;
 }
@@ -147,17 +145,16 @@
     @apply text-gray-500;
 }
 
-/* ACTION SECTION (formerly CTA) */
 .action-section {
     @apply mt-16 text-center;
 }
 
 .action-title {
-    @apply text-3xl md:text-4xl font-bold mb-4 text-gray-800;
+    @apply text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-gray-200;
 }
 
 .action-text {
-    @apply text-gray-500 mb-6 max-w-xl mx-auto;
+    @apply text-gray-500 mb-6 max-w-xl mx-auto dark:text-gray-200;
 }
 
 .action-button {
@@ -165,6 +162,10 @@
          px-8 py-3 rounded-full font-semibold shadow-lg 
          hover:from-blue-700 hover:to-indigo-700 
          transition-colors duration-300;
+}
+
+.auction-title{
+    @apply text-4xl font-bold text-center mb-10 dark:text-gray-200;
 }
 
 /*             */
@@ -176,7 +177,7 @@
 }
 
 .dashboard-title {
-    @apply text-3xl font-bold mb-6 text-center;
+    @apply text-3xl font-bold mb-6 text-center dark:text-gray-200;
 }
 
 .dashboard-buttons {
@@ -188,11 +189,11 @@
 }
 
 .users-btn {
-    @apply bg-blue-500 text-white hover:bg-blue-600;
+    @apply bg-blue-500 text-white hover:bg-blue-600 justify-center flex;
 }
 
 .products-btn {
-    @apply bg-green-500 text-white hover:bg-green-600;
+    @apply bg-green-500 text-white hover:bg-green-600 justify-center flex;
 }
 
 .dashboard-section {
@@ -394,7 +395,7 @@
 }
 
 .team-section {
-    @apply grid items-center gap-10 rounded-3xl bg-slate-900 p-8 text-white shadow-sm md:grid-cols-2;
+    @apply grid items-center gap-10 rounded-3xl bg-slate-900 p-8 text-white shadow-sm md:grid-cols-2 dark:bg-gray-600;
 }
 
 .welcome-content {
@@ -410,7 +411,7 @@
 }
 
 .welcome-badge {
-    @apply text-sm font-semibold uppercase tracking-[0.2em] text-slate-500;
+    @apply text-sm font-semibold uppercase tracking-[0.2em] text-slate-800 md:font-bold;
 }
 
 .about-badge {
@@ -426,7 +427,7 @@
 }
 
 .welcome-description {
-    @apply mt-4 text-lg text-slate-600;
+    @apply mt-4 text-lg text-slate-800 md:font-semibold;
 }
 
 .about-description {
@@ -478,7 +479,7 @@
 }
 
 .form-title {
-    @apply text-4xl md:text-5xl font-extrabold text-center mb-10 bg-gradient-to-r from-black to-gray-500 bg-clip-text text-transparent;
+    @apply text-4xl md:text-5xl font-extrabold text-center mb-10 bg-gradient-to-r from-black to-gray-500 bg-clip-text text-transparent dark:bg-gradient-to-r from-white to-gray-800 bg-clip-text text-transparent;
 }
 
 .error-container {
@@ -530,11 +531,11 @@
 }
 
 .products-title {
-    @apply text-3xl font-bold text-slate-900;
+    @apply text-3xl font-bold text-slate-900 dark:text-white;
 }
 
 .products-subtitle {
-    @apply mt-2 text-slate-600;
+    @apply mt-2 text-slate-600 dark:text-white md:text-lg md:font-semibold;
 }
 
 .empty-state {
@@ -1361,4 +1362,8 @@ a {
 .filter-button-active {
     @apply bg-blue-500 text-white 
            dark:bg-blue-400 dark:text-black;
+}
+
+ #tab-profile{
+    @apply flex items-center dark:bg-gray-200;
 }
