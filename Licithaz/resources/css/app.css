@@ -604,7 +604,7 @@
 }
 
 .product-name-header {
-    @apply text-3xl font-bold text-yellow-200;
+    @apply text-3xl font-bold text-slate-900 dark:text-yellow-200;
 }
 
 .product-category-header {
@@ -1285,4 +1285,11 @@
 
 a {
     @apply px-4 py-2;
+}
+.search-link {
+    @apply flex items-center gap-3 w-full;
+}
+
+.search-image {
+    @apply w-10 h-10 object-cover rounded;
 }

@@ -57,7 +57,6 @@
         @endif
     </div>
 
-    <!-- ONLY SEARCH JS CHANGED -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
 
@@ -96,9 +95,10 @@
                                 item.classList.add('search-item');
 
                                 item.innerHTML = `
-                                                            <a style="height: 100%; width: 100%; display: block;" href="/products/${product.id}">
-                                                                ${product.name}
-                                                            </a>
+                                        <a href="/products/${product.id}" class="search-link">
+                                            <img src="${product.image_url}"class="search-image">
+                                            <span>${product.name}</span>
+                                        </a>
                                                         `;
 
                                 resultsBox.appendChild(item);
