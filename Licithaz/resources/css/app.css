@@ -1324,3 +1324,36 @@ a {
            rounded-lg px-3 py-2
            dark:bg-gray-700 dark:border-gray-600 dark:text-white;
 }
+
+/* FILTER CONTAINER */
+.filter-box {
+    @apply mt-4 flex ;
+}
+
+/* SELECT */
+.filter-select {
+    @apply px-4 py-2 rounded-xl border bg-white text-gray-800 shadow-sm 
+           focus:outline-none focus:ring-2 focus:ring-blue-500;
+
+    @apply dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600 
+           dark:focus:ring-blue-400;
+}
+
+/* BUTTON FILTER (ha azt használod) */
+.filter-buttons {
+    @apply flex flex-wrap gap-2 mt-4 justify-center;
+}
+
+.filter-button {
+    @apply px-4 py-2 rounded-full bg-gray-100 text-gray-700 
+           hover:bg-blue-500 hover:text-white transition;
+
+    @apply dark:bg-gray-700 dark:text-gray-200 
+           dark:hover:bg-blue-400 dark:hover:text-black;
+}
+
+/* ACTIVE STATE */
+.filter-button-active {
+    @apply bg-blue-500 text-white 
+           dark:bg-blue-400 dark:text-black;
+}

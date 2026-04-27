@@ -13,7 +13,19 @@
 
                 <div id="search-results" class="search-results"></div>
             </div>
-        </div>
+          <div class="filter-box">
+            <form method="GET" action="{{ route('products.index') }}">
+                <select name="category" onchange="this.form.submit()" class="filter-select">
+                  <option value="">All categories</option>
+                @foreach (['Electronics','Books','Clothing','House','Sports','Vehicles','Jewelry'] as $cat)
+                    <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>
+                        {{ $cat }}
+                    </option>
+                @endforeach
+                </select>
+            </form>
+          </div>
+      </div>
 
         @if ($products->isEmpty())
             <div class="empty-state">

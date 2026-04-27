@@ -14,15 +14,20 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index(): View
-    {
-        $products = Product::where('status', '!=', 'sold')
-            ->paginate(18);
+    public function index(Request $request): View
+{
+    $query = Product::where('status', '!=', 'sold');
 
-        return view('products.index', [
-            'products' => $products
-        ]);
+    if ($request->filled('category')) {
+        $query->where('category', $request->category);
     }
+
+    $products = $query->paginate(18)->withQueryString();
+
+    return view('products.index', [
+        'products' => $products
+    ]);
+}
 
     public function create(): View
     {
