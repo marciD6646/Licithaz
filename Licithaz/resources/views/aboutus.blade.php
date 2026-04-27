@@ -15,7 +15,7 @@
         </div>
 
         <div class="card">
-            <h2 class="section-title">About us</h2>
+            <h2>About us</h2>
             <p class="text">
               We are a passionate team dedicated to building a simple, transparent, and reliable online bidding platform where users can discover great products and place competitive bids with ease.
             </p>

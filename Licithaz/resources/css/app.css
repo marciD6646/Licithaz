@@ -94,7 +94,7 @@
 
 /* SECTION TITLES */
 .section-title {
-    @apply text-3xl font-semibold mb-4 text-gray-800;
+    @apply text-3xl font-semibold mb-4 text-gray-800 ;
 }
 
 .section-title.center {
@@ -1055,7 +1055,7 @@
 
 /* HEADER */
 .profile-header {
-    @apply flex items-center gap-6 mb-10;
+    @apply flex items-center gap-6 mb-10 text-gray-900 dark:text-gray-100;
 }
 
 .profile-avatar {
@@ -1148,11 +1148,19 @@
     @apply border border-gray-300 bg-white
             rounded-xl px-4 py-2 text-sm text-left text-gray-800 font-medium flex-1
             hover:bg-gray-100 hover:text-gray-900 transition cursor-pointer
-            md:py-3 md:text-base md:flex-none;
+            md:py-3 md:text-base md:flex-none
+           dark:border-gray-700
+           dark:bg-gray-800
+           dark:text-gray-200
+           dark:hover:bg-gray-700
+           dark:hover:text-white;
 }
 
 .sidebar-item.active {
-    @apply bg-indigo-600 text-white border-indigo-600;
+    @apply bg-indigo-600 text-white border-indigo-600
+    dark:bg-indigo-500
+    dark:border-indigo-500
+    dark:text-white;
 }
 
 /* CONTENT */
@@ -1162,12 +1170,15 @@
 
 /* CARD */
 .card {
-    @apply bg-white rounded-2xl shadow p-4 md:p-6;
+    @apply bg-white rounded-2xl shadow p-4 md:p-6
+    dark:bg-gray-800
+           dark:text-gray-200
+           dark:shadow-black/40;
 }
 
 /* PROFILE */
 .profile-header {
-    @apply flex items-center gap-5 pb-5 border-b border-gray-100;
+    @apply flex items-center gap-5 pb-5 border-b border-gray-100;  dark:text-gray-200;
 }
 
 .profile-avatar {
@@ -1183,7 +1194,9 @@
 }
 
 .tab.card > h2 {
-    @apply text-lg font-semibold text-gray-800 mb-5 pb-3 border-b border-gray-100;
+    @apply text-lg font-semibold text-gray-800 mb-5 pb-3 border-b border-gray-100
+    dark:text-gray-100
+           dark:border-gray-700;;
 }
 
 /* FORM */
@@ -1214,7 +1227,7 @@
 }
 
 .bid-card > div:first-child {
-    @apply font-medium text-gray-800;
+    @apply font-medium text-gray-800 dark:text-gray-100;
 }
 
 .bid-card > div:last-child {
@@ -1292,4 +1305,22 @@ a {
 
 .search-image {
     @apply w-10 h-10 object-cover rounded;
+}
+
+.form {
+    @apply space-y-4;
+}
+
+.form-group {
+    @apply flex flex-col gap-1;
+}
+
+.form-label {
+    @apply text-sm font-medium text-gray-700 dark:text-gray-300;
+}
+
+.input {
+    @apply bg-white border border-gray-300 text-gray-900
+           rounded-lg px-3 py-2
+           dark:bg-gray-700 dark:border-gray-600 dark:text-white;
 }
