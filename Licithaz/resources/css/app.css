@@ -94,7 +94,7 @@
 
 /* SECTION TITLES */
 .section-title {
-    @apply text-3xl font-semibold mb-4 text-gray-800 ;
+    @apply text-3xl font-semibold mb-4 text-gray-800;
 }
 
 .section-title.center {
@@ -207,20 +207,24 @@
     @apply text-2xl font-bold mb-4;
 }
 
+.dashboard-table-wrapper {
+    @apply overflow-x-auto rounded-2xl shadow-lg;
+}
+
 .dashboard-table {
-    @apply min-w-full overflow-hidden rounded-2xl bg-white shadow-lg text-sm text-gray-600;
+    @apply min-w-full bg-white text-sm text-gray-600;
 }
 
 .dashboard-table thead {
-    @apply bg-gray-100 text-xs uppercase text-gray-700;
+    @apply bg-gray-100 text-xs uppercase text-gray-700 sticky top-0;
 }
 
 .dashboard-table th {
-    @apply px-6 py-3 text-left font-semibold tracking-wider;
+    @apply px-6 py-3 text-left font-semibold tracking-wider whitespace-nowrap;
 }
 
 .dashboard-table td {
-    @apply px-6 py-4;
+    @apply px-6 py-4 whitespace-nowrap;
 }
 
 .dashboard-table tbody tr {
@@ -1178,7 +1182,8 @@
 
 /* PROFILE */
 .profile-header {
-    @apply flex items-center gap-5 pb-5 border-b border-gray-100;  dark:text-gray-200;
+    @apply flex items-center gap-5 pb-5 border-b border-gray-100;
+    dark: text-gray-200;
 }
 
 .profile-avatar {
@@ -1196,7 +1201,7 @@
 .tab.card > h2 {
     @apply text-lg font-semibold text-gray-800 mb-5 pb-3 border-b border-gray-100
     dark:text-gray-100
-           dark:border-gray-700;;
+           dark:border-gray-700;
 }
 
 /* FORM */
