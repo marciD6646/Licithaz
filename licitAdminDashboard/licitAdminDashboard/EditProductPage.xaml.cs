@@ -93,6 +93,36 @@ public partial class EditProductPage : ContentPage
     //Termék adatainak frissítése a szerveren
     private async void OnUpdateProductClicked(object? sender, EventArgs e)
     {
+        if (string.IsNullOrWhiteSpace(NameEntry.Text))
+        {
+            await DisplayAlertAsync("Error", "Name is required.", "OK");
+            return;
+        }
+
+        if (CategoryPicker.SelectedItem == null)
+        {
+            await DisplayAlertAsync("Error", "Category is required.", "OK");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(DescriptionEditor.Text))
+        {
+            await DisplayAlertAsync("Error", "Description is required.", "OK");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(ExtendedDescriptionEditor.Text))
+        {
+            await DisplayAlertAsync("Error", "Extended description is required.", "OK");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(StarterBidEntry.Text))
+        {
+            await DisplayAlertAsync("Error", "Starter bid is required.", "OK");
+            return;
+        }
+
         try
         {
             if (_originalProduct == null)
