@@ -1,3 +1,23 @@
-<Solution>
-  <Project Path="licitAdminDashboard/licitAdminDashboard.csproj" />
-</Solution>
+
+[Setup]
+AppName=licitAdminDashboard
+AppVersion=1.0
+DefaultDirName={pf}\licitAdminDashboard
+DefaultGroupName=licitAdminDashboard
+OutputDir=Output
+OutputBaseFilename=licitAdminDashboard-setup
+Compression=lzma2
+SolidCompression=yes
+
+[Files]
+Source: "C:\Users\yusers\Desktop\licithaz installer\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs ignoreversion
+
+[Icons]
+Name: "{group}\licitAdminDashboard"; Filename: "{app}\licitAdminDashboard.exe"
+Name: "{commondesktop}\licitAdminDashboard"; Filename: "{app}\licitAdminDashboard.exe"; Tasks: desktopicon
+
+[Tasks]
+Name: "desktopicon"; Description: "Asztali ikon létrehozása"; GroupDescription: "Extra opciók:"; Flags: unchecked
+
+[Run]
+Filename: "{app}\licitAdminDashboard.exe"; Description: "Indítás"; Flags: nowait postinstall skipifsilent
