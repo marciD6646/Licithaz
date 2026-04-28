@@ -1,0 +1,33 @@
+composer install
+php artisan key:generate
+Adatbázis létrehozása lokálisan utána:
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=licithaz
+DB_USERNAME=root
+DB_PASSWORD=
+
+php artisan migrate --seed 
+php artisan storage:link 
+npm install
+composer dev vagy composer run dev
+php artisan schedule:work
+
+
+
+Amennyiben az adott fejlesztő le akarja tesztelni élesben e-mail környezetben.
+MAIL_MAILER=smtp
+MAIL_SCHEME=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=sajat teszt email
+MAIL_PASSWORD="a gmail legeneralja a beallitasokban"
+MAIL_FROM_ADDRESS="sajat teszt email"
+MAIL_FROM_NAME="Licithaz (mi legyen a kuldo cime)"
+
+MAUI 
+A telepitőt megnyitva le kell tölteni és utána megnyitni a programot.
+Amennyiben a forráskód kell akkor el kell inditani a .slnx kiterjesztést és a visual studio 2022 magától letelepiti a függöségeket
+
