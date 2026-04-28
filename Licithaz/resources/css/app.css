@@ -498,10 +498,6 @@
     @apply block;
 }
 
-.form-label {
-    @apply block text-sm font-semibold text-slate-700 mb-2;
-}
-
 .form-input {
     @apply w-full rounded-lg border border-slate-300 px-4 py-2;
 }
@@ -1210,9 +1206,6 @@
     @apply mb-4 flex flex-col gap-1;
 }
 
-.form-group label {
-    @apply text-sm font-medium text-gray-700 dark:text-white;
-}
 
 .input {
     @apply border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none transition;
@@ -1322,7 +1315,7 @@ a {
 }
 
 .form-label {
-    @apply text-sm font-medium text-gray-700 dark:text-gray-300;
+    @apply text-sm font-medium text-black;
 }
 
 .input {
