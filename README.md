@@ -45,8 +45,8 @@ A cél egy modern, könnyen kezelhető aukciós rendszer létrehozása, amely le
 - Kategoria
 - Régió
 - Szűrés szerint:
-    - Ár
-    - Mennyi idő maradt a licitből
+  - Ár
+  - Mennyi idő maradt a licitből
 
 ---
 
