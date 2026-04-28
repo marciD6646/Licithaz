@@ -170,6 +170,6 @@ class ProductSeeder extends Seeder
             'starter_bid' => 24990.00,
             'image_url' => 'https://example.com/boat.jpg',
         ]);
-        Product::factory(100)->create();
+        //Product::factory(100)->create();
     }
 }
