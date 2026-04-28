@@ -1192,11 +1192,11 @@
 }
 
 .profile-header > div h1 {
-    @apply text-xl font-bold text-gray-900;
+    @apply text-xl font-bold text-gray-900 dark:text-gray-100;
 }
 
 .profile-header > div p {
-    @apply text-sm text-gray-500 mt-0.5;
+    @apply text-sm text-gray-500 mt-0.5 dark:text-white mt-0.5;
 }
 
 .tab.card > h2 {
@@ -1211,7 +1211,7 @@
 }
 
 .form-group label {
-    @apply text-sm font-medium text-gray-700;
+    @apply text-sm font-medium text-gray-700 dark:text-white;
 }
 
 .input {
@@ -1364,6 +1364,4 @@ a {
            dark:bg-blue-400 dark:text-black;
 }
 
- #tab-profile{
-    @apply flex items-center dark:bg-gray-200;
-}
+

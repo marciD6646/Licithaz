@@ -93,6 +93,7 @@ public partial class EditProductPage : ContentPage
     //Termék adatainak frissítése a szerveren
     private async void OnUpdateProductClicked(object? sender, EventArgs e)
     {
+        //Error handling 
         if (string.IsNullOrWhiteSpace(NameEntry.Text))
         {
             await DisplayAlertAsync("Error", "Name is required.", "OK");

@@ -5,6 +5,9 @@ using Microsoft.Maui.Storage;
 
 namespace licitAdminDashboard.Services
 {
+    //===========================
+    //  API KAPCSOLAT KEZELÉSE
+    //===========================
     public class ApiService
     {
         private readonly HttpClient _httpClient;
@@ -18,7 +21,7 @@ namespace licitAdminDashboard.Services
 
 
         }
-
+        // Auth token hozzáadása minden kéréshez
         private void ApplyAuthHeader()
         {
             var token = Preferences.Get("auth_token", "");
@@ -31,6 +34,7 @@ namespace licitAdminDashboard.Services
                     new AuthenticationHeaderValue("Bearer", token);
             }
         }
+        // PRODUCT LÉTREHOZÁS
         public async Task<(bool Success, string? ErrorMessage)> CreateProductAsync(
 
             string? name,
@@ -45,6 +49,7 @@ namespace licitAdminDashboard.Services
             ApplyAuthHeader();
             using var content = new MultipartFormDataContent();
 
+            // ha null, akkor üres stringet küldünk a backendnek
             content.Add(new StringContent(name ?? string.Empty), "name");
             content.Add(new StringContent(category ?? ""), "category");
             content.Add(new StringContent(description ?? ""), "description");
@@ -53,6 +58,7 @@ namespace licitAdminDashboard.Services
             content.Add(new StringContent(startDate.ToString("yyyy-MM-dd")), "bid_start_date");
             content.Add(new StringContent(endDate.ToString("yyyy-MM-dd")), "bid_end_date");
 
+            //kép feltöltés ha van kép
             if (!string.IsNullOrEmpty(imagePath) && File.Exists(imagePath))
             {
                 var stream = File.OpenRead(imagePath);
@@ -64,6 +70,7 @@ namespace licitAdminDashboard.Services
 
             try
             {
+                // POST kérés a backendnek
                 var response = await _httpClient.PostAsync("products", content);
 
                 if (!response.IsSuccessStatusCode)
@@ -79,7 +86,7 @@ namespace licitAdminDashboard.Services
                 return (false, ex.Message);
             }
         }
-
+        //egy terméket lekér (id alapján)
         public async Task<Models.Product?> GetProductAsync(int id)
         {
             ApplyAuthHeader();
@@ -96,14 +103,13 @@ namespace licitAdminDashboard.Services
                     return null;
                 }
 
-                // Some APIs wrap payload as { "product": { ... } }.
+                
                 if (doc.RootElement.TryGetProperty("product", out var prodElem) &&
                     prodElem.ValueKind == JsonValueKind.Object)
                 {
                     return JsonSerializer.Deserialize<Models.Product>(prodElem.GetRawText());
                 }
 
-                // Otherwise treat root object as the product payload.
                 return JsonSerializer.Deserialize<Models.Product>(rawJson);
             }
             catch
@@ -111,7 +117,7 @@ namespace licitAdminDashboard.Services
                 return null;
             }
         }
-
+        // PRODUCT MÓDOSÍTÁS (PATCH)
         public async Task<(bool Success, string? ErrorMessage)> PatchProductAsync(
             int id,
             Dictionary<string, string> changedFields,
@@ -123,7 +129,6 @@ namespace licitAdminDashboard.Services
             {
                 HttpResponseMessage response;
 
-                // For text-only updates, JSON PATCH is the most reliable with Laravel API routes.
                 if (string.IsNullOrWhiteSpace(imagePath))
                 {
                     var jsonContent = JsonContent.Create(changedFields);
@@ -150,7 +155,6 @@ namespace licitAdminDashboard.Services
                     return (true, null);
                 }
 
-                // Laravel + multipart can reject direct PATCH; fallback to method spoofing via POST.
                 using var fallbackContent = BuildProductMultipartContent(changedFields, imagePath, includeMethodOverride: true);
                 response = await _httpClient.PostAsync($"products/{id}", fallbackContent);
                 if (!response.IsSuccessStatusCode)
@@ -166,7 +170,7 @@ namespace licitAdminDashboard.Services
                 return (false, ex.Message);
             }
         }
-
+        // PATCH helyett POST-ot használunk _method override-dal, ha kép is van
         private static MultipartFormDataContent BuildProductMultipartContent(
             Dictionary<string, string> fields,
             string? imagePath,
@@ -193,7 +197,7 @@ namespace licitAdminDashboard.Services
 
             return content;
         }
-
+        // PRODUCT MÓDOSÍTÁS (PUT)
         public async Task<(bool Success, string? ErrorMessage)> UpdateProductAsync(
             int id,
             string? name,
@@ -224,8 +228,6 @@ namespace licitAdminDashboard.Services
                 content.Add(fileContent, "image_url", Path.GetFileName(imagePath));
             }
 
-            // Some backends (Laravel) don't accept multipart with PUT; use POST with
-            // method spoofing so the server treats it as a PUT.
             content.Add(new StringContent("PUT"), "_method");
 
             try
@@ -245,7 +247,7 @@ namespace licitAdminDashboard.Services
                 return (false, ex.Message);
             }
         }
-
+        // PRODUCT TÖRLÉS
         public async Task<bool> DeleteProductAsync(int id)
         {
             ApplyAuthHeader();

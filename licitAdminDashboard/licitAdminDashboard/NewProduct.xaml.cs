@@ -36,6 +36,7 @@ public partial class NewProduct : ContentPage
     //New product feltöltés
     private async void OnSubmitProductClicked(object? sender, EventArgs e)
     {
+        //Error handling
         if (string.IsNullOrWhiteSpace(NameEntry.Text))
         {
             await DisplayAlertAsync("Error", "Name is required.", "OK");
