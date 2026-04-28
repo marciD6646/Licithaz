@@ -32,7 +32,6 @@ A cél egy modern, könnyen kezelhető aukciós rendszer létrehozása, amely le
 
 - **Blade**
 - **TailwindCSS**
-- _(Később: React)_
 
 ---
 
@@ -42,11 +41,8 @@ A cél egy modern, könnyen kezelhető aukciós rendszer létrehozása, amely le
 
 ## 🔍 Keresés és szűrés
 
-- Kategoria
-- Régió
-- Szűrés szerint:
-  - Ár
-  - Mennyi idő maradt a licitből
+- Keresés a termékek között
+- Kategoria szürés
 
 ---
 
@@ -63,7 +59,7 @@ A cél egy modern, könnyen kezelhető aukciós rendszer létrehozása, amely le
 - Áruk létrehozása
 - Áruk szerkesztése
 - Áruk törlése (Soft Delete)
-- Több kép feltöltése
+- Kép feltöltés
 - Kategoria kiválasztása
 - Kezdő licit megadása
 
@@ -73,7 +69,7 @@ A cél egy modern, könnyen kezelhető aukciós rendszer létrehozása, amely le
 
 | Szerep      | Engedélyek                       |
 | ----------- | -------------------------------- |
-| Admin       | Áruk managelése                  |
+| Admin       | Áruk,Userek managelése           |
 | Felhasználó | Profil szerkesztése és licitálás |
 
 # 📜 License
