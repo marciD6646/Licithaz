@@ -1013,7 +1013,7 @@
 /*              */
 
 .Payment-container {
-    @apply w-full max-w-md bg-white p-8 rounded-2xl shadow-xl;
+    @apply w-full max-w-md bg-white p-8 rounded-2xl shadow-xl justify-center mx-auto m-20;
 }
 
 .Payment-title {
